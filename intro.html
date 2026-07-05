@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{ --accent:#00e5ff; }
+
+    html,body{height:100%;}
+
+    body{
+      margin:0;
+      background:#000;
+      color:white;
+      overflow:hidden;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .intro-wrap{
+      position:relative;
+      width:100vw;
+      height:100vh;
+      background:#000;
+    }
+
+    video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      background:#000;
+    }
+
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(0,229,255,.12), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(0,102,255,.12), transparent 40%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .skip{
+      position:fixed;
+      top:18px;
+      right:18px;
+      z-index:5;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(0,229,255,.25);
+      background:rgba(255,255,255,.06);
+      color:white;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.02em;
+      cursor:pointer;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow:0 0 35px rgba(0,229,255,.10);
+      transition: transform .2s ease, background-color .25s ease, border-color .25s ease;
+      user-select:none;
+    }
+
+    .skip:hover{
+      transform: translateY(-2px);
+      background:rgba(0,229,255,.10);
+      border-color: rgba(0,229,255,.45);
+    }
+
+    .skip:focus-visible{
+      outline:none;
+      box-shadow: 0 0 0 4px rgba(0,229,255,.22), 0 0 35px rgba(0,229,255,.35);
+    }
+
+    .skip .arrow{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:rgba(0,229,255,.14);
+      border:1px solid rgba(0,229,255,.3);
+      font-size:12px;
+      flex:0 0 auto;
+    }
+
+    @media (max-width: 520px){
+      .skip{top:12px; right:12px; padding:9px 12px;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      video{object-fit:contain;}
+    }
+
+    /* Mobile: choose best fit so important content remains visible */
+    @media (max-width: 520px){
+      video{
+        object-fit:cover;
+        object-position:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro-wrap">
+    <a class="skip" href="portfolio.html" aria-label="Skip intro">
+      <span class="arrow" aria-hidden="true">›</span>
+      Skip
+    </a>
+
+    <video
+      id="introVideo"
+      playsinline
+      preload="auto"
+      muted
+      controlslist="nodownload nodoremote noplaybackrate"
+    >
+      <source src="videos/videosintro.mp4.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    (function(){
+      const video = document.getElementById('introVideo');
+      const params = new URLSearchParams(window.location.search);
+      const sound = (params.get('sound') || '').toLowerCase();
+
+      const shouldPlaySound = sound === 'on';
+
+      // Muted by default to satisfy autoplay policies.
+      video.muted = !shouldPlaySound;
+
+      // Ensure no controls are shown.
+      video.controls = false;
+
+      // Attempt autoplay.
+      const tryPlay = async () => {
+        try {
+          await video.play();
+        } catch (e) {
+          // Autoplay might be blocked even when muted=false.
+          // If blocked, fall back to muted play.
+          if (video.muted === false) {
+            video.muted = true;
+            try { await video.play(); } catch (_) {}
+          }
+        }
+      };
+
+      video.addEventListener('ended', () => {
+        window.location.href = 'portfolio.html';
+      });
+
+      // In case the video ends quickly or fails to load.
+      video.addEventListener('error', () => {
+        window.location.href = 'portfolio.html';
+      });
+
+      // Start as soon as metadata is available.
+      if (video.readyState >= 2) {
+        tryPlay();
+      } else {
+        video.addEventListener('loadeddata', tryPlay, { once: true });
+      }
+    })();
+  </script>
+</body>
+</html>
+

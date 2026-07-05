@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uber Commute Lock | Case Study</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="background"></div>
+
+  <a class="case-back" href="portfolio.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
+
+  <main class="case-main">
+    <section class="case-section case-hero reveal" style="--d: 80ms" aria-label="Uber Case Study Header">
+      <div class="case-inner">
+        <div class="case-kicker">Featured Case Study</div>
+        <h1 class="case-title">Uber Commute Lock</h1>
+        <p class="case-subtitle">AI-Powered Commuter Subscription System</p>
+        <div class="case-divider"></div>
+        <p class="case-lede">
+          A story about replacing uncertainty with reliability—using prediction, incentives, and a subscription layer that makes commuters feel in control.
+        </p>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 140ms" aria-label="Problem">
+      <div class="case-inner">
+        <h2 class="case-h2">Problem</h2>
+        <div class="case-glass">
+          <p class="case-p"><strong>User Pain</strong></p>
+          <ul class="case-list">
+            <li>Surge pricing turns predictable mornings into financial risk.</li>
+            <li>Morning cancellations break schedules and trust.</li>
+            <li>Users feel they’re reacting to the system—not using a service.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 200ms" aria-label="Insights">
+      <div class="case-inner">
+        <h2 class="case-h2">Insights</h2>
+        <div class="case-glass">
+          <ul class="case-list">
+            <li>Predictability is a bigger value driver than occasional discounts.</li>
+            <li>Reliability affects retention through expectation-setting, not just convenience.</li>
+            <li>Commuters respond to “commitment signals” when uncertainty is reduced.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 260ms" aria-label="Solution">
+      <div class="case-inner">
+        <h2 class="case-h2">Solution</h2>
+        <div class="case-glass">
+          <ul class="case-list">
+            <li>A subscription-based commute locking system.</li>
+            <li>AI-driven demand prediction to reserve capacity ahead of time.</li>
+            <li>Driver incentive balancing to protect service quality.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 320ms" aria-label="Execution">
+      <div class="case-inner">
+        <h2 class="case-h2">Execution</h2>
+        <div class="case-grid-2">
+          <div class="case-glass">
+            <h3 class="case-h3">How it works</h3>
+            <ol class="case-steps">
+              <li>Users choose a commute window and lock their ride.</li>
+              <li>Prediction models estimate availability and risk.</li>
+              <li>Dynamic incentives align supply to locked demand.</li>
+              <li>Delivery happens with clear expectations and fewer surprises.</li>
+            </ol>
+          </div>
+          <div class="case-glass">
+            <h3 class="case-h3">What we validated</h3>
+            <ul class="case-list">
+              <li>Lock acceptance vs. cancellation rates.</li>
+              <li>User trust signals: return intent and plan stability.</li>
+              <li>Supply health: driver acceptance and coverage.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 380ms" aria-label="Impact">
+      <div class="case-inner">
+        <h2 class="case-h2">Impact</h2>
+        <div class="case-glass">
+          <ul class="case-list">
+            <li>Improved retention logic through reduced uncertainty (conceptual).</li>
+            <li>Lower “cost of waiting” for commuters.</li>
+            <li>More stable daily rhythms for riders and drivers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" style="--d: 440ms" aria-label="Learnings">
+      <div class="case-inner">
+        <h2 class="case-h2">Learnings</h2>
+        <div class="case-glass">
+          <ul class="case-list">
+            <li>Reliability is a product promise—make it measurable and visible.</li>
+            <li>Prediction only matters if the system can act on it.</li>
+            <li>Incentives are part of the UX; they shape outcomes users feel.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      document.body.classList.add('page-enter-initial');
+      document.addEventListener('DOMContentLoaded', function () {
+        // Force a reflow so the initial styles apply before the animation starts.
+        void document.body.offsetHeight;
+        document.body.classList.remove('page-enter-initial');
+        document.body.classList.add('page-entering');
+      });
+    })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

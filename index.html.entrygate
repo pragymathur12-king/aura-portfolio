@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter Portfolio Experience</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050816;
+      --accent:#00e5ff;
+      --text:rgba(255,255,255,.92);
+      --sub:rgba(139,207,255,.95);
+    }
+
+    html,body{height:100%;}
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      overflow:hidden;
+    }
+
+    .entry-bg{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at top left,#00f7ff22,transparent 35%),
+        radial-gradient(circle at bottom right,#0066ff22,transparent 35%),
+        var(--bg);
+    }
+
+    .entry-scrim{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(180deg, rgba(5,8,22,.65), rgba(5,8,22,.15));
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+
+    .entry-wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4vh 4vw;
+    }
+
+    .entry-card{
+      width:min(980px, 100%);
+      padding:5.5vh 5vw;
+      border-radius:26px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(0,229,255,.18);
+      box-shadow:0 0 60px rgba(0,229,255,.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .entry-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:radial-gradient(900px circle at var(--mx, 50%) var(--my, 0%), rgba(0,229,255,.26), transparent 45%);
+      opacity:.85;
+      pointer-events:none;
+    }
+
+    .entry-inner{position:relative; z-index:1;}
+
+    .entry-kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:rgba(139,207,255,.95);
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:18px;
+    }
+
+    .entry-kicker .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 22px rgba(0,229,255,.35);
+    }
+
+    .entry-title{
+      margin:0;
+      font-size:clamp(34px, 5vw, 56px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+      font-weight:900;
+      color:white;
+    }
+
+    .entry-subtitle{
+      margin:12px 0 28px;
+      font-size:clamp(16px, 2.1vw, 20px);
+      color:var(--sub);
+      font-weight:600;
+    }
+
+    .entry-actions{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .mode-btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px 28px;
+      border-radius:999px;
+      font-weight:900;
+      letter-spacing:.2px;
+      transition: transform .2s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+      position:relative;
+      outline:none;
+      user-select:none;
+      min-width:240px;
+    }
+
+    .mode-btn::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(120deg, transparent 0%, rgba(0,229,255,.25) 40%, rgba(0,229,255,.58) 60%, transparent 100%);
+      opacity:0;
+      transform:translateX(-10px);
+      transition:opacity .25s ease, transform .45s ease;
+      pointer-events:none;
+    }
+
+    .mode-btn:hover{transform:translateY(-2px) scale(1.02);}
+    .mode-btn:hover::after{opacity:1; transform:translateX(10px);}
+    .mode-btn:focus-visible{box-shadow:0 0 0 4px rgba(0,229,255,.22), 0 0 35px rgba(0,229,255,.35);}
+
+    .mode-sound{
+      background:var(--accent);
+      color:#050816;
+    }
+    .mode-sound:hover{box-shadow:0 0 55px rgba(0,229,255,.35);}
+
+    .mode-silent{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(0,229,255,.35);
+    }
+    .mode-silent:hover{
+      background:rgba(0,229,255,.14);
+      border-color:rgba(0,229,255,.7);
+      box-shadow:0 0 55px rgba(0,229,255,.25);
+    }
+
+    @media (max-width: 520px){
+      .entry-card{padding:5vh 4vw; border-radius:20px;}
+      .mode-btn{min-width:0; width:100%;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .mode-btn{transition:none;}
+      .mode-btn::after{transition:none;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="entry-bg" aria-hidden="true"></div>
+  <div class="entry-scrim" aria-hidden="true"></div>
+
+  <main class="entry-wrap">
+    <section class="entry-card" aria-label="Portfolio entry gate">
+      <div class="entry-inner">
+        <div class="entry-kicker"><span class="dot" aria-hidden="true"></span> Experience Gate</div>
+        <h1 class="entry-title">Enter Portfolio Experience</h1>
+        <p class="entry-subtitle">Choose your viewing mode</p>
+
+        <div class="entry-actions">
+          <a class="mode-btn mode-sound" href="intro.html?sound=on" aria-label="Enter with Sound">Enter with Sound</a>
+          <a class="mode-btn mode-silent" href="intro.html?sound=off" aria-label="Enter Silent Mode">Enter Silent Mode</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      const card = document.querySelector('.entry-card');
+      if(!card) return;
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      });
+    })();
+  </script>
+</body>
+
+</html>
+
