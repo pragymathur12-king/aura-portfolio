@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChargeDossier | Dispute Evidence Review Copilot Case Study</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .case-badge-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      color: #00e5ff;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .scenario-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .scenario-card:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      transform: translateY(-3px);
+    }
+    .scenario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .scenario-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #00e5ff;
+      font-size: 13px;
+    }
+    .scenario-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .score-tier-a { color: #10b981; }
+    .score-tier-b { color: #f59e0b; }
+    .score-tier-c { color: #ef4444; }
+    .case-cta-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 24px 0 10px;
+    }
+    .disclaimer-box {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <a class="case-back" href="portfolio.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
+
+  <main class="case-main">
+    <!-- Hero Section -->
+    <section class="case-section case-hero reveal" style="--d: 80ms" aria-label="ChargeDossier Case Study Header">
+      <div class="case-inner">
+        <div class="case-glass-card case-hero-card">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+            <div class="case-kicker" style="margin-bottom: 0;">Featured Fintech Case Study</div>
+            <span class="case-badge-pill">Mastercard Opportunity Lab</span>
+            <span class="case-badge-pill" style="border-color: #10b981; color: #10b981; background: rgba(16,185,129,0.12);">24/24 Automated Tests Passed</span>
+          </div>
+
+          <h1 class="case-title">ChargeDossier</h1>
+          <p class="case-subtitle">Evidence-Quality Review Copilot for High-Ticket E-Commerce Disputes</p>
+          <div class="case-divider"></div>
+          <p class="case-lede">
+            An explainable, deterministic evidence auditing system designed to help merchant risk and operations managers evaluate payment dispute viability before filing second presentments—eliminating 25% contingency fee drag and preventing contradictory submissions.
+          </p>
+
+          <div class="case-cta-group">
+            <a class="project-btn" href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" rel="noopener noreferrer">
+              Open Interactive Live Demo ↗
+            </a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/chargedossier" target="_blank" rel="noopener noreferrer">
+              View Source Code on GitHub ↗
+            </a>
+          </div>
+
+          <div class="case-meta-grid" aria-label="Case Study Metadata">
+            <div class="case-meta-card">
+              <div class="case-meta-label">Role</div>
+              <div class="case-meta-value">Product Manager &amp; Prototype Engineer</div>
+            </div>
+            <div class="case-meta-card">
+              <div class="case-meta-label">Domain</div>
+              <div class="case-meta-value">Fintech, Dispute Mechanics &amp; Rules Engines</div>
+            </div>
+            <div class="case-meta-card">
+              <div class="case-meta-label">Target Persona</div>
+              <div class="case-meta-value">US High-Ticket D2C Merchants ($150–$2,000+ AOV)</div>
+            </div>
+            <div class="case-meta-card">
+              <div class="case-meta-label">Target Roles</div>
+              <div class="case-meta-value">Mastercard Product Management &middot; Open Finance &middot; Agentic AI</div>
+            </div>
+            <div class="case-meta-card">
+              <div class="case-meta-label">Network Rules Modeled</div>
+              <div class="case-meta-value">Mastercard 4837 (Fraud) &amp; 4853 (Merchandise)</div>
+            </div>
+            <div class="case-meta-card">
+              <div class="case-meta-label">Architecture</div>
+              <div class="case-meta-value">Native Node.js REST API + Zero-Server In-Browser Sandbox</div>
+            </div>
+            <div class="case-meta-card" style="grid-column: 1 / -1">
+              <div class="case-meta-label">Verification Status</div>
+              <div class="case-meta-value">24 Automated Unit, Integration &amp; E2E Tests (100% Passing) + Live Browser Usability Verified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="case-section reveal" style="--d: 140ms" aria-label="The High-Ticket Merchant Problem">
+      <div class="case-inner">
+        <h2 class="case-h2">🎯 Problem &amp; Market Reality</h2>
+        <div class="case-glass-card case-glass">
+          <p class="case-p"><strong>The High-Ticket E-Commerce Dilemma ($150–$2,000+ AOV)</strong></p>
+          <p class="case-p">
+            In online retail, payment disputes (chargebacks) generate severe operational and financial drag. For merchants selling expensive physical goods (custom bicycles, ergonomic furniture, high-end electronics, audio equipment), each dispute puts hundreds or thousands of dollars at risk. Yet merchants are trapped between two flawed alternatives:
+          </p>
+          <ul class="case-list">
+            <li>
+              <strong>Manual In-House Representment (High Friction &amp; Abandonment):</strong> Risk teams spend 30 to 60 minutes per dispute manually pulling order records from Shopify, auth logs from Stripe, delivery tracking from FedEx/UPS, and support transcripts from Zendesk. Industry data shows ~60% of merchants abandon over 40% of their disputes due to labor exhaustion, suffering manual win rates under 20% on fraud claims.
+            </li>
+            <li>
+              <strong>Autopilot Contingency Bots (Severe Fee Drag):</strong> Automated dispute platforms (such as Chargeflow) operate on a 25% contingency take-rate on recovered funds. On a $1,200 dispute, the merchant pays a $300 fee for automated submission. More critically, autopilot bots blindly submit documents without detecting fatal flaws—such as tracking numbers showing the package is still in transit, or address discrepancies indicating genuine card theft.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="case-section reveal" style="--d: 200ms" aria-label="Product Insights">
+      <div class="case-inner">
+        <h2 class="case-h2">💡 Product Insights &amp; Strategic Theses</h2>
+        <div class="case-glass-card case-glass">
+          <ul class="case-list">
+            <li>
+              <strong>Pre-Flight Triage > Post-Facto Defense:</strong> The highest-leverage moment in dispute operations is <em>before</em> submission. Catching evidentiary gaps and contradictory claims prior to filing prevents wasting staff time on unviable submissions.
+            </li>
+            <li>
+              <strong>Deterministic Scoring > Probabilistic AI Hallucinations:</strong> In financial dispute representment, submitting fabricated or hallucinated evidence to issuing banks can lead to scheme fines or merchant account termination. ChargeDossier replaces opaque LLMs with a 100% deterministic, mathematically audit-trailed rules engine.
+            </li>
+            <li>
+              <strong>Human-in-the-Loop Decision Control:</strong> High-ticket merchants do not want hands-off autopilot bots deciding the fate of $1,000+ disputes. An explicit <em>Approve</em> or <em>Reject</em> checkpoint keeps human operators in control while doing 95% of the heavy evidence auditing upfront.
+            </li>
+            <li>
+              <strong>Early Rejection as a Financial Win:</strong> Explicitly choosing <em>not</em> to contest an unwinnable dispute (e.g., carrier tracking confirms item is delayed in transit) prevents wasting further staff hours and administrative fees on doomed submissions.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="case-section reveal" style="--d: 260ms" aria-label="Solution & Architecture">
+      <div class="case-inner">
+        <h2 class="case-h2">🚀 Solution &amp; System Architecture</h2>
+        <div class="case-glass-card case-glass">
+          <p class="case-p">
+            ChargeDossier is an upfront evidence-quality review copilot built to deliver institutional-grade representment auditing in under 90 seconds. Offered at an illustrative flat utility SaaS rate ($49/month) rather than a 25% contingency tax:
+          </p>
+
+          <div class="case-grid-2" style="margin-top: 18px;">
+            <div class="case-glass-card" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
+              <h3 class="case-h3">1. Deterministic Heuristic Scoring Engine</h3>
+              <p class="case-p" style="font-size: 13px;">
+                Evaluates merchant evidence against 5 core heuristic categories modeled on Mastercard reason codes (4837 Fraud vs. 4853 Merchandise):
+              </p>
+              <ul class="case-list" style="font-size: 13px;">
+                <li><strong>Payment Auth (35 pts):</strong> AVS match, CVC2, 3DS liability shift.</li>
+                <li><strong>Identity &amp; Account (15 pts):</strong> Account tenure, order history.</li>
+                <li><strong>Carrier POD (25 pts):</strong> Verified delivered status, GPS match, signature.</li>
+                <li><strong>Merchant Policy (15 pts):</strong> Terms acceptance, return/refund policy.</li>
+                <li><strong>Customer Comms (10 pts):</strong> Support transcripts, remedy offers.</li>
+              </ul>
+            </div>
+
+            <div class="case-glass-card" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
+              <h3 class="case-h3">2. Structured Second Presentment Dossier</h3>
+              <p class="case-p" style="font-size: 13px;">
+                Compiles an illustrative draft Second Presentment Dossier modeled on Mastercom API v6 technical guidelines:
+              </p>
+              <ul class="case-list" style="font-size: 13px;">
+                <li><strong>Executive Rebuttal Narrative:</strong> Formal merchant declaration citing scheme rules and delivery proofs.</li>
+                <li><strong>Structured Exhibits A–E:</strong> Order invoice, gateway auth receipt, carrier POD manifest, published return policy, and support chat transcripts.</li>
+                <li><strong>Human Decision Lock:</strong> Operator reviews the preview and explicitly Approves or Rejects with logged rationale.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Synthetic Benchmark Scenarios -->
+    <section class="case-section reveal" style="--d: 320ms" aria-label="Synthetic Benchmark Scenarios">
+      <div class="case-inner">
+        <h2 class="case-h2">🧪 The 4 Synthetic Benchmark Scenarios</h2>
+        <div class="case-glass-card case-glass">
+          <p class="case-p">
+            To validate the end-to-end user journey and heuristic edge cases without exposing sensitive merchant PII, ChargeDossier operates on 4 realistic synthetic benchmark dispute records:
+          </p>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-id">DSP-1049</span>
+                <span class="scenario-score score-tier-a">100/100 (Tier A)</span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 14px; color: #fff;">Wireless ANC Headphones</h4>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0 0 8px;">$349.00 USD &middot; Mastercard 4837 (Fraud)</p>
+              <p style="font-size: 12px; line-height: 1.5; color: #cbd5e1; margin: 0;">
+                Full AVS match (Y), CVC match (M), 3D Secure liability shift, FedEx delivered with cardholder signature. Flawless evidence package; recommended for immediate submission.
+              </p>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-id">DSP-2081</span>
+                <span class="scenario-score score-tier-c">22/100 (Tier C)</span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 14px; color: #fff;">Smart Home Security Hub</h4>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0 0 8px;">$489.00 USD &middot; Mastercard 4853 (Not Received)</p>
+              <p style="font-size: 12px; line-height: 1.5; color: #cbd5e1; margin: 0;">
+                Carrier tracking confirms shipment is still <em>In Transit</em> (severe blizzard delay). Audit catches fatal non-delivery flaw. Operator explicitly rejects dispute to avoid wasting staff labor on unwinnable case.
+              </p>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-id">DSP-3312</span>
+                <span class="scenario-score score-tier-c">2/100 (Tier C)</span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 14px; color: #fff;">Custom Carbon Wheelset</h4>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0 0 8px;">$1,299.00 USD &middot; Mastercard 4837 (Fraud)</p>
+              <p style="font-size: 12px; line-height: 1.5; color: #cbd5e1; margin: 0;">
+                Texas billing address vs. Florida freight forwarder, failed AVS (N), no 3DS auth, cardholder filed affidavit of card theft. Severe contradictions trigger maximum penalty; rejected as loss.
+              </p>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-id">DSP-4190</span>
+                <span class="scenario-score score-tier-b">73 → 100/100 (Tier A)</span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 14px; color: #fff;">Ergonomic Executive Chair</h4>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0 0 8px;">$850.00 USD &middot; Mastercard 4853 (Defective)</p>
+              <p style="font-size: 12px; line-height: 1.5; color: #cbd5e1; margin: 0;">
+                Delivered with signature, but initial score is 73/100 (Tier B) due to missing return policy attachment. Applying one-click remediation attaches published warranty policy and support remedy, elevating score to 100/100 (Tier A) for approval!
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding: 12px 16px; background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 10px; font-size: 13px;">
+            <strong>Instant Demo Reset:</strong> The top bar includes a one-click "Reset Demo" button that instantly restores all 4 synthetic records back to their baseline unreviewed state, allowing recruiters and evaluators to repeat the demo journeys continuously.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification & Automated Tests -->
+    <section class="case-section reveal" style="--d: 380ms" aria-label="Testing & Verification">
+      <div class="case-inner">
+        <h2 class="case-h2">🔬 Verification &amp; Automated Test Suite</h2>
+        <div class="case-glass-card case-glass">
+          <p class="case-p">
+            ChargeDossier was engineered with zero external npm dependencies using native Node.js. The codebase is verified by an automated test harness containing <strong>24 tests across 3 suites</strong>, all passing with a 100% pass rate:
+          </p>
+
+          <div class="case-grid-2" style="margin-top: 14px;">
+            <div class="case-glass-card" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
+              <h4 style="color: #00e5ff; margin: 0 0 8px; font-size: 14px;">Automated Test Coverage (24 Tests)</h4>
+              <ul class="case-list" style="font-size: 13px;">
+                <li><strong>Scoring Rules Engine (7 tests):</strong> Validates Tier A, B, and C thresholds, contradiction deductions, boundary edge cases (80, 79, 59), and defensive null handling.</li>
+                <li><strong>REST API Server (13 tests):</strong> Validates HTTP routing, GET dispute details, POST audit, POST dossier generation, POST approve, POST reject, POST fix, and static asset serving.</li>
+                <li><strong>End-to-End Workflow (4 tests):</strong> Validates happy path, explicit rejection, interactive gap remediation, and demo reset.</li>
+              </ul>
+            </div>
+
+            <div class="case-glass-card" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
+              <h4 style="color: #00e5ff; margin: 0 0 8px; font-size: 14px;">Browser Usability Verification</h4>
+              <ul class="case-list" style="font-size: 13px;">
+                <li>Dual execution: runs via local Node.js server (<code>localhost:3000</code>) or statically in the browser on GitHub Pages.</li>
+                <li>UI verified for responsive layout, tab switching, score gauge rendering, modal dialog confirmations, and toast alerts.</li>
+                <li>Zero console errors, zero failed network calls, zero external runtime dependencies.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honest Limitations Section -->
+    <section class="case-section reveal" style="--d: 440ms" aria-label="Honest Limitations & Unvalidated Claims">
+      <div class="case-inner">
+        <h2 class="case-h2">⚖️ Honest Epistemic Boundaries &amp; Next Steps</h2>
+        <div class="case-glass-card case-glass">
+          <p class="case-p">
+            As a product manager, rigorous epistemic integrity means clearly delineating between verified engineering artifacts and unvalidated commercial hypotheses:
+          </p>
+          <ul class="case-list">
+            <li>
+              <strong>Customer Willingness to Pay is Unvalidated:</strong> While merchants verbally object to 25% contingency take-rates, their behavioral willingness to pay a recurring $49/month SaaS utility remains an unvalidated hypothesis until live customer discovery interviews are executed.
+            </li>
+            <li>
+              <strong>Operator Review Friction vs. Autopilot Preference:</strong> It remains unproven whether busy merchant operators are willing to spend 60 to 90 seconds reviewing high-ticket cases, or whether they insist on 100% hands-off automation despite lower net recovery.
+            </li>
+            <li>
+              <strong>Zero Customer Interviews Conducted:</strong> Direct customer outreach was intentionally paused awaiting explicit authorization. No commercial claims of measured win-rate improvements or time savings on live merchant accounts are made.
+            </li>
+            <li>
+              <strong>Synthetic Sandbox Only:</strong> All records are synthetic benchmarks designed to demonstrate heuristic mechanics with zero live customer PII.
+            </li>
+          </ul>
+
+          <div class="disclaimer-box">
+            <strong>Academic Portfolio Disclaimer:</strong> ChargeDossier is an independent academic portfolio project developed by an Integrated MBA candidate (Class of 2027) for product management demonstration. It is not affiliated with, endorsed by, sponsored by, or certified by Mastercard International Incorporated, Visa Inc., Stripe, Shopify, or any live payment network or acquiring processor.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Links & Actions -->
+    <section class="case-section reveal" style="--d: 500ms" aria-label="Project Deliverables and Links">
+      <div class="case-inner">
+        <div class="case-glass-card case-hero-card" style="text-align: center;">
+          <h2 class="case-h2" style="margin-bottom: 10px;">Explore the Deliverables</h2>
+          <p class="case-p" style="max-width: 600px; margin: 0 auto 24px;">
+            Test the live interactive prototype in your browser, inspect the full source code and test suite on GitHub, or return to the portfolio.
+          </p>
+
+          <div class="case-cta-group" style="justify-content: center;">
+            <a class="project-btn" href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" rel="noopener noreferrer">
+              Interactive Live Demo ↗
+            </a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/chargedossier" target="_blank" rel="noopener noreferrer">
+              Source Code on GitHub ↗
+            </a>
+            <a class="project-btn project-btn-ghost" href="portfolio.html">
+              ← Return to Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      document.body.classList.add('page-enter-initial');
+      document.addEventListener('DOMContentLoaded', function () {
+        void document.body.offsetHeight;
+        document.body.classList.remove('page-enter-initial');
+        document.body.classList.add('page-entering');
+      });
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
