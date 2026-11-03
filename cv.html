@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pragy Mathur | Detailed Curriculum Vitae (CV)</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* CV Page Custom Enhancements adhering to Aura Portfolio Design System */
+    .cv-top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 8, 22, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+      padding: 14px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .cv-top-bar-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .cv-back-link {
+      display: inline-flex;
+      align-items: center;
+      color: #00e5ff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .cv-back-link:hover {
+      transform: translateX(-3px);
+      color: #8bcfff;
+    }
+    .cv-btn-sm {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .cv-btn-primary {
+      background: #00e5ff;
+      color: #050816;
+      border: 1px solid #00e5ff;
+    }
+    .cv-btn-primary:hover {
+      box-shadow: 0 0 24px rgba(0, 229, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .cv-btn-outline {
+      background: transparent;
+      color: #F8FAFC;
+      border: 1px solid rgba(0, 229, 255, 0.4);
+    }
+    .cv-btn-outline:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: #00e5ff;
+      color: #00e5ff;
+      transform: translateY(-2px);
+    }
+    .cv-container {
+      max-width: 1000px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+    .cv-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .cv-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00e5ff, rgba(0, 229, 255, 0.1));
+    }
+    .cv-header-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cv-header-info h1 {
+      font-size: 38px;
+      font-weight: 700;
+      color: #F8FAFC;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .cv-header-info h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #00e5ff;
+      margin-bottom: 12px;
+    }
+    .cv-contact-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .cv-contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s ease;
+    }
+    .cv-contact-pill:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.06);
+    }
+    .cv-section {
+      margin-top: 36px;
+    }
+    .cv-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #00e5ff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    }
+    .cv-section-title span.number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: rgba(0, 229, 255, 0.6);
+    }
+    .cv-entry {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .cv-entry:hover {
+      border-color: rgba(0, 229, 255, 0.25);
+      transform: translateY(-2px);
+    }
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .cv-entry-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+    .cv-entry-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.1);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 229, 255, 0.25);
+    }
+    .cv-entry-meta {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cv-list {
+      margin: 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .cv-list li {
+      margin-bottom: 8px;
+    }
+    .cv-list li:last-child {
+      margin-bottom: 0;
+    }
+    .cv-skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .cv-skill-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .cv-skill-cat {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00e5ff;
+      margin-bottom: 8px;
+    }
+    .cv-skill-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .cv-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(0, 229, 255, 0.08);
+      color: #00e5ff;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      margin-right: 4px;
+      margin-top: 6px;
+    }
+    .cv-anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .cv-nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s ease;
+    }
+    .cv-nav-link:hover {
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.1);
+    }
+    @media (max-width: 768px) {
+      .cv-card {
+        padding: 24px;
+      }
+      .cv-header-info h1 {
+        font-size: 28px;
+      }
+      .cv-header-info h2 {
+        font-size: 16px;
+      }
+      .cv-top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cv-top-bar-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+
+  <!-- Sticky Top Navigation Bar -->
+  <header class="cv-top-bar">
+    <a class="cv-back-link" href="./portfolio.html" aria-label="Back to Portfolio">
+      &larr; Back to Portfolio
+    </a>
+    <div class="cv-top-bar-actions">
+      <a class="cv-btn-sm cv-btn-primary" href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf">
+        Download Detailed CV (PDF)
+      </a>
+      <a class="cv-btn-sm cv-btn-outline" href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">
+        Download One-Page Resume (PDF)
+      </a>
+    </div>
+  </header>
+
+  <main class="cv-container">
+    <article class="cv-card reveal" style="--d: 80ms">
+      
+      <!-- CV Header -->
+      <div class="cv-header-grid">
+        <div class="cv-header-info">
+          <h1>Pragy Mathur</h1>
+          <h2>Associate Product Manager | AI Product Strategy &amp; Prototyping</h2>
+          <div class="cv-contact-pills">
+            <span class="cv-contact-pill">&#128205; Jodhpur, India</span>
+            <a class="cv-contact-pill" href="tel:+919509932859">&#128222; +91 9509932859</a>
+            <a class="cv-contact-pill" href="mailto:pragymathur12@gmail.com">&#9993; pragymathur12@gmail.com</a>
+            <a class="cv-contact-pill" href="https://linkedin.com/in/pragy-mathur-2a9393257" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="cv-contact-pill" href="https://github.com/pragymathur12-king" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="cv-contact-pill" href="https://pragymathur12-king.github.io/aura-portfolio/" target="_blank" rel="noopener noreferrer">Live Portfolio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Section Anchor Links -->
+      <nav class="cv-anchor-nav" aria-label="CV Sections Navigation">
+        <a class="cv-nav-link" href="#about">About Me</a>
+        <a class="cv-nav-link" href="#research">Research &amp; Publication</a>
+        <a class="cv-nav-link" href="#projects">Product &amp; Strategy Projects</a>
+        <a class="cv-nav-link" href="#experience">Work Experience</a>
+        <a class="cv-nav-link" href="#skills">Skills &amp; Tools</a>
+        <a class="cv-nav-link" href="#education">Education</a>
+        <a class="cv-nav-link" href="#credentials">Credentials</a>
+      </nav>
+
+      <!-- Section: About Me -->
+      <section id="about" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">01.</span> About Me</h3>
+        <p style="color: #cbd5e1; font-size: 15px; line-height: 1.85; margin: 0;">
+          Integrated MBA candidate specializing in International Business, with a business-first approach to product discovery, MVP development, product documentation, workflow design, and AI-assisted prototyping. Experienced in translating business problems into structured product concepts, validation workflows, and measurable success metrics. Portfolio projects span freight document automation, payment dispute evidence management, and subscription-based commuter pricing. Sole author of a published working paper on digital marketing and cross-cultural brand awareness. Seeking opportunities in Associate Product Management, Junior Product Management, Product Analysis, and AI Product Management.
+        </p>
+      </section>
+
+      <!-- Section: Research & Publication -->
+      <section id="research" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">02.</span> Research &amp; Publication</h3>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Digital Marketing Strategies and Global Brand Awareness: A Cross-Cultural Study of International Businesses</div>
+            <span class="cv-entry-role">Working Paper / Preprint</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Author:</strong> Pragy Mathur (Sole Author)</span>
+            <span><strong>Repository:</strong> Zenodo</span>
+            <span><strong>Record ID:</strong> 23871769</span>
+          </div>
+          <p style="color: #cbd5e1; font-size: 14px; line-height: 1.7; margin-bottom: 12px;">
+            An empirical investigation analyzing digital marketing frameworks across distinct cultural environments, assessing how global enterprises optimize brand affinity and customer conversion through culturally aligned digital initiatives.
+          </p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a class="cv-btn-sm cv-btn-outline" href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer">
+              DOI: 10.5281/zenodo.23871769 ↗
+            </a>
+            <a class="cv-btn-sm cv-btn-outline" href="https://zenodo.org/records/23871769" target="_blank" rel="noopener noreferrer">
+              View on Zenodo ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Product & Strategy Projects -->
+      <section id="projects" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">03.</span> Product &amp; Strategy Projects</h3>
+
+        <!-- Project 1: Loadvanta -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Loadvanta — Freight Rate Confirmation Processing System</div>
+              <div style="margin-top: 4px;">
+                <span class="cv-tag">Fintech / Logistics</span>
+                <span class="cv-tag">Deterministic Guardrails</span>
+                <span class="cv-tag">Human-in-the-Loop</span>
+              </div>
+            </div>
+            <span class="cv-entry-role">Founder / Product Builder</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Repository:</strong> <a href="https://github.com/pragymathur12-king/loadvanta-core" target="_blank" rel="noopener noreferrer" style="color: #00e5ff;">github.com/pragymathur12-king/loadvanta-core ↗</a></span>
+          </div>
+          <ul class="cv-list">
+            <li>Defined a product concept for US freight brokerages to reduce manual data entry from freight rate confirmations and related logistics documentation.</li>
+            <li>Designed a workflow covering document upload, data extraction, deterministic validation, and an Auto-Sync or Review Queue decision system.</li>
+            <li>Specified validation guardrails for mandatory fields, financial calculations, positive values, and confidence thresholds.</li>
+            <li>Designed exception handling so missing information and low-confidence results are sent for human review instead of being guessed or automatically approved.</li>
+            <li>Developed an ROI measurement framework covering processing time saved, manual entries avoided, and errors caught.</li>
+          </ul>
+        </div>
+
+        <!-- Project 2: ChargeDossier -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">ChargeDossier — Payment Dispute Evidence Quality Review Copilot</div>
+              <div style="margin-top: 4px;">
+                <span class="cv-tag">Dispute Mechanics</span>
+                <span class="cv-tag">Quality Scoring</span>
+                <span class="cv-tag">19/19 Tests Verified</span>
+              </div>
+            </div>
+            <span class="cv-entry-role">Product Portfolio Project</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Repository:</strong> <a href="https://github.com/pragymathur12-king/chargedossier" target="_blank" rel="noopener noreferrer" style="color: #00e5ff;">github.com/pragymathur12-king/chargedossier ↗</a></span>
+            <span><strong>Interactive Case Study:</strong> <a href="./chargedossier.html" style="color: #00e5ff;">View Case Study ↗</a></span>
+          </div>
+          <ul class="cv-list">
+            <li>Explored a product workflow to help merchants organize, assess, and prioritize evidence for high-ticket payment disputes.</li>
+            <li>Designed an evidence-quality scoring approach and Tier A, Tier B, and Tier C prioritization framework.</li>
+            <li>Developed sample scenarios covering fraud disputes, missing proof of delivery, conflicting evidence, and merchant policy gaps.</li>
+            <li>Focused on helping risk teams identify evidence deficiencies before second presentments and prioritize high-recovery cases.</li>
+            <li>Deterministic rules engine and test suite thoroughly validated with 19 out of 19 automated verification checks passing.</li>
+          </ul>
+        </div>
+
+        <!-- Project 3: Uber Commute Lock -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div>
+              <div class="cv-entry-title">Uber Commute Lock — Commuter Subscription Model</div>
+              <div style="margin-top: 4px;">
+                <span class="cv-tag">Product Discovery</span>
+                <span class="cv-tag">Pricing Strategy</span>
+                <span class="cv-tag">PRD Writing</span>
+              </div>
+            </div>
+            <span class="cv-entry-role">Product Portfolio Project</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Portfolio Case Study:</strong> <a href="./uber.html" style="color: #00e5ff;">View Case Study ↗</a></span>
+          </div>
+          <ul class="cv-list">
+            <li>Developed a subscription-based MVP concept for recurring commuters seeking more predictable, surge-free commute pricing.</li>
+            <li>Identified core commuter user pain points and structured a comprehensive Product Requirements Document (PRD).</li>
+            <li>Structured user stories, feature priorities, and potential retention and revenue success metrics to support evaluation.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section: Work Experience -->
+      <section id="experience" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">04.</span> Work Experience</h3>
+
+        <!-- Creative & Digital Project Planning -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Creative &amp; Digital Project Planning</div>
+            <span class="cv-entry-role">Project &amp; Digital Coordinator</span>
+          </div>
+          <ul class="cv-list">
+            <li>Coordinated creative project planning and execution across production activities, timelines, and collaborators.</li>
+            <li>Contributed to cross-platform content planning and audience-growth strategy.</li>
+            <li>Supported execution from initial concept through production coordination.</li>
+            <li>Contributed to digital content planning, communication, and audience engagement activities.</li>
+            <li>Supported content strategy and reviewed audience engagement signals to inform continuous improvements.</li>
+            <li>Coordinated digital initiatives in alignment with broader marketing and growth objectives.</li>
+          </ul>
+        </div>
+
+        <!-- Event Leadership & Volunteer Management -->
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Event Operations &amp; Volunteer Coordination</div>
+            <span class="cv-entry-role">Team Lead &amp; Operations Coordinator</span>
+          </div>
+          <ul class="cv-list">
+            <li>Led and coordinated a team of 30+ volunteers for large-scale events attended by more than 1,000 participants.</li>
+            <li>Supported comprehensive event planning, logistics, timelines, and stakeholder coordination.</li>
+            <li>Structured and delegated team responsibilities to ensure smooth, punctual event execution.</li>
+            <li>Supported outreach, volunteer onboarding, branding, and cross-functional communication activities.</li>
+            <li>Assisted with administrative recordkeeping and operations coordination for educational initiatives.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section: Skills & Tools -->
+      <section id="skills" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">05.</span> Skills &amp; Tools</h3>
+        <div class="cv-skills-grid">
+          
+          <div class="cv-skill-card">
+            <div class="cv-skill-cat">&#128640; Product Management</div>
+            <div class="cv-skill-desc">
+              Product discovery, problem framing, PRD writing, user stories, MVP scoping, feature prioritization, product workflows, competitive analysis, product metrics, Agile/Scrum fundamentals.
+            </div>
+          </div>
+
+          <div class="cv-skill-card">
+            <div class="cv-skill-cat">&#128200; Business &amp; Strategy</div>
+            <div class="cv-skill-desc">
+              Market research, customer segmentation, international business, growth strategy, go-to-market thinking, KPI definition, ROI frameworks, stakeholder management.
+            </div>
+          </div>
+
+          <div class="cv-skill-card">
+            <div class="cv-skill-cat">&#128295; Digital &amp; Technical Tools</div>
+            <div class="cv-skill-desc">
+              GitHub, Jira, Linear, Claude, ChatPRD, Kimi AI, v0 by Vercel, Gamma, and AI-assisted prototyping.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section: Education -->
+      <section id="education" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">06.</span> Education</h3>
+        
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Parul Institute of Business Administration, Parul University</div>
+            <span class="cv-entry-role">Graduation: May 2027</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Degree:</strong> Integrated Master of Business Administration (Integrated MBA)</span>
+            <span><strong>Specialization:</strong> International Business</span>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Delhi Public School, Pali, Rajasthan</div>
+            <span class="cv-entry-role">Secondary &amp; Senior Secondary</span>
+          </div>
+          <div class="cv-entry-meta">
+            <span><strong>Senior Secondary (Class XII) &middot; 2022:</strong> 66%</span>
+            <span><strong>Secondary (Class X) &middot; 2020:</strong> 79%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Certifications & Credentials -->
+      <section id="credentials" class="cv-section">
+        <h3 class="cv-section-title"><span class="number">07.</span> Certifications &amp; Credentials</h3>
+        <div class="cv-entry">
+          <div class="cv-entry-header">
+            <div class="cv-entry-title">Financial Market &amp; Mutual Funds Certification</div>
+            <span class="cv-entry-role">Credential</span>
+          </div>
+          <p style="color: #cbd5e1; font-size: 14px; line-height: 1.7; margin: 0;">
+            Certification associated with mutual funds, index funds, and market investment fundamentals.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer CTA inside Card -->
+      <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <a class="cv-back-link" href="./portfolio.html">
+          &larr; Return to Aura Portfolio
+        </a>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="cv-btn-sm cv-btn-primary" href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf">
+            Download Detailed CV (PDF)
+          </a>
+          <a class="cv-btn-sm cv-btn-outline" href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">
+            Download One-Page Resume (PDF)
+          </a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
