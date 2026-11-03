@@ -106,36 +106,7 @@ nav a:hover{
     font-size:18px;
 }
 
-.buttons{
-    margin-top:40px;
-}
-
-.buttons a{
-    text-decoration:none;
-    padding:16px 35px;
-    border-radius:40px;
-    margin-right:20px;
-    font-weight:600;
-}
-
-.btn1{
-    background:#00e5ff;
-    color:#F8FAFC;
-}
-
-.btn2{
-    border:2px solid #00e5ff;
-    color:#F8FAFC;
-}
-
-.btn1:hover{
-    transform:translateY(-3px);
-}
-
-.btn2:hover{
-    background:#00e5ff;
-    color:#F8FAFC;
-}
+/* Legacy buttons block replaced by unified responsive buttons system */
 
 /* Typography upgrades */
 .hero-left h3{
@@ -167,55 +138,90 @@ nav a:hover{
     max-width:680px;
 }
 
-/* Button hover: glow + subtle lift */
-.buttons a{
-    position:relative;
-    text-decoration:none;
-    padding:16px 35px;
-    border-radius:40px;
-    margin-right:20px;
-    font-weight:650;
-    letter-spacing:.2px;
-    transition:transform .2s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
-    outline:none;
+/* Responsive Action Buttons System (Hero & Portfolio CTA) */
+.buttons {
+    margin-top: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 16px;
+    width: 100%;
 }
 
-.buttons a::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    background:linear-gradient(120deg, transparent 0%, rgba(0,229,255,.25) 40%, rgba(0,229,255,.55) 60%, transparent 100%);
-    opacity:0;
-    transform:translateX(-10px);
-    transition:opacity .25s ease, transform .45s ease;
-    pointer-events:none;
+.buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+    outline: none;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+    white-space: normal;
+    max-width: 100%;
+    margin: 0;
 }
 
-.btn1{
-    box-shadow:0 0 0 rgba(0,229,255,.0);
+.buttons a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(120deg, transparent 0%, rgba(0, 229, 255, 0.25) 40%, rgba(0, 229, 255, 0.55) 60%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.25s ease, transform 0.45s ease;
+    pointer-events: none;
 }
 
-.btn2{
-    background:transparent;
-    box-shadow:0 0 0 rgba(0,229,255,.0);
+.btn1 {
+    background: #00e5ff;
+    color: #050816;
+    border: 2px solid #00e5ff;
+    box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+    font-weight: 700;
 }
 
-.btn1:hover,
-.btn2:hover{
-    transform:translateY(-2px) scale(1.02);
-    box-shadow:0 0 35px rgba(0,229,255,.35);
+.btn2 {
+    background: transparent;
+    color: #F8FAFC;
+    border: 2px solid rgba(0, 229, 255, 0.45);
+    box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+    font-weight: 600;
+}
+
+.btn1:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(0, 229, 255, 0.5);
+    color: #050816;
+    background: #00e5ff;
+}
+
+.btn2:hover {
+    background: rgba(0, 229, 255, 0.12);
+    border-color: #00e5ff;
+    color: #00e5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.35);
 }
 
 .btn1:hover::after,
-.btn2:hover::after{
-    opacity:1;
-    transform:translateX(10px);
+.btn2:hover::after {
+    opacity: 1;
+    transform: translateX(10px);
 }
 
 .btn1:focus-visible,
-.btn2:focus-visible{
-    box-shadow:0 0 0 4px rgba(0,229,255,.22), 0 0 35px rgba(0,229,255,.35);
+.btn2:focus-visible {
+    box-shadow: 0 0 0 3px #050816, 0 0 0 5px #00e5ff, 0 0 35px rgba(0, 229, 255, 0.4);
 }
 
 /* Page load entry (Uber page only via body.page-enter-*) */
@@ -584,7 +590,8 @@ body.page-entering{
     .hero-left h1{ font-size:50px; }
     .hero-left h2{ font-size:26px; }
     .hero-right img{ width:290px; height:290px; }
-    .buttons a{ margin-right:0; margin-top:12px; display:inline-block; }
+    .buttons { gap: 12px 14px; margin-top: 28px; width: 100%; }
+    .buttons a { padding: 13px 22px; font-size: 14px; margin: 0; }
 }
 
 @media (max-width: 480px){
@@ -594,7 +601,22 @@ body.page-entering{
     .hero-left h1{ font-size:40px; }
     .hero-left h2{ font-size:22px; }
     .hero-left p{ font-size:18px; }
-    .buttons a{ padding:14px 22px; }
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        width: 100%;
+        margin-top: 24px;
+    }
+    .buttons a {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 18px;
+        font-size: 14px;
+        text-align: center;
+        justify-content: center;
+        margin: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce){
