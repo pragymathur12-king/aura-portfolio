@@ -40,8 +40,9 @@
   const supportsIO = typeof IntersectionObserver !== 'undefined';
 
   const animate = (el, target) => {
+    const suffix = el.getAttribute('data-suffix') !== null ? el.getAttribute('data-suffix') : '+';
     if (reduceMotion) {
-      el.textContent = `${target}+`;
+      el.textContent = `${target}${suffix}`;
       return;
     }
 
@@ -55,7 +56,7 @@
       const elapsed = now - start;
       const t = Math.min(1, elapsed / duration);
       const value = Math.round(from + (target - from) * easeOutCubic(t));
-      el.textContent = `${value}+`;
+      el.textContent = `${value}${suffix}`;
       if (t < 1) requestAnimationFrame(step);
     };
 
