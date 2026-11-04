@@ -282,7 +282,7 @@
       status: 'MANUAL_REVIEW',
       label: 'MANUAL REVIEW QUEUE // CONFIDENCE DEFICIT',
       theme: 'amber',
-      reason: `All mandatory fields are present, but extraction confidence (${doc.extractionConfidence}%) is below the active authorization threshold (${threshold}%). Document is safely routed to the human operator review queue to prevent silent invoice discrepancies.`
+      reason: `All mandatory fields are present, but extraction confidence (${doc.extractionConfidence}%) is below the active authorization threshold (${threshold}%). Document is safely routed to the human operator review queue to enforce manual verification before TMS record lock.`
     };
   }
 
@@ -340,7 +340,7 @@
 
     // Update reasoning explanation panel
     if (whyProblemEl) {
-      whyProblemEl.textContent = 'Freight brokers handle hundreds of rate confirmation PDFs weekly from varied brokers. Blindly trusting LLM/OCR extraction leads to $150–$500 billing discrepancies per load.';
+      whyProblemEl.textContent = 'Freight rate confirmations arrive in varied, unstructured PDF formats across broker networks. Without deterministic validation guardrails, automated LLM or OCR extraction risks committing incomplete rates or contradictory accessorial clauses into TMS records, leading to billing exceptions and administrative reconciliation overhead.';
     }
     if (whyRuleEl) {
       whyRuleEl.innerHTML = `
@@ -412,66 +412,66 @@
     {
       id: 'DSP-1049',
       amount: '$349.00 USD',
-      item: 'High-End Noise-Cancelling Headphones',
-      reasonCode: 'Reason 4837 (Fraud / No Cardholder Authorization)',
+      item: 'AeroSound Pro Wireless ANC Headphones & MagSafe Dock',
+      reasonCode: 'Reason 4837 (Fraud — No Cardholder Authorization)',
       network: 'Mastercard Opportunity Lab Framework',
       initialEvidence: {
-        avsCvv: true,
-        pod: false,
-        termsRefund: true,
-        customerComm: false,
-        deviceIp: true,
+        avsCvv: true,        // 30 pts
+        pod: true,           // 35 pts
+        termsRefund: true,   // 12 pts
+        customerComm: true,  // 15 pts
+        deviceIp: true,      // 8 pts
         fatalMismatch: false
       },
-      context: 'Cardholder claims card was stolen and transaction was unauthorized. Digital merchant order confirmation matches billing address, but carrier left parcel at porch without signed proof of delivery.'
+      context: 'Full AVS match (Y), CVC match (M), 3DS authenticated, FedEx delivered with matching cardholder signature (E. VANCE). Flawless compelling evidence package meeting Second Presentment standards.'
     },
     {
       id: 'DSP-2081',
       amount: '$295.00 USD',
-      item: 'Commercial Espresso Coffee Grinder',
-      reasonCode: 'Reason 4853 (Cardholder Dispute / Goods Defective)',
+      item: 'BaristaCraft Precision Burr Coffee Grinder',
+      reasonCode: 'Reason 4853 (Goods / Services Not Received)',
       network: 'Mastercard Opportunity Lab Framework',
       initialEvidence: {
-        avsCvv: true,
-        pod: true,
+        avsCvv: false,
+        pod: false, // In transit - missing delivery scan
         termsRefund: true,
         customerComm: false,
-        deviceIp: false,
+        deviceIp: true,
         fatalMismatch: false
       },
-      context: 'Customer claims goods arrived broken and requested chargeback without contacting merchant support. Merchant has signed delivery scan and clear return merchandise policy disclosed at checkout.'
+      context: 'Carrier tracking confirms shipment is still In Transit (severe blizzard delay). Audit engine catches fatal non-delivery flaw. Operator explicitly rejects dispute to avoid unviable submission and dispute fees.'
     },
     {
       id: 'DSP-3312',
       amount: '$850.00 USD',
-      item: 'Ergonomic Motorized Standing Desk',
-      reasonCode: 'Reason 4837 (Fraud / Cardholder Authorization)',
+      item: 'ErgoLift Pro Motorized Standing Desk (Walnut / White)',
+      reasonCode: 'Reason 4837 (Fraud — No Cardholder Authorization)',
       network: 'Mastercard Opportunity Lab Framework',
       initialEvidence: {
-        avsCvv: true,
+        avsCvv: false,
         pod: true,
         termsRefund: false,
         customerComm: false,
-        deviceIp: true,
-        fatalMismatch: true // Reshipper delivery address mismatch
+        deviceIp: false,
+        fatalMismatch: true // Reshipper delivery address mismatch & affidavit
       },
-      context: 'Order was shipped to a known commercial freight forwarding warehouse, while billing address was in a different state. Fatal contradiction under network rules: merchant cannot prove true cardholder received shipment.'
+      context: 'Order shipped to Florida freight forwarding warehouse (Bay 4 Forwarding) while billing address was in Austin, Texas. AVS failed (N), 3DS failed, cardholder filed card theft affidavit. Severe fatal contradictions trigger rejection as loss.'
     },
     {
       id: 'DSP-4190',
       amount: '$1,150.00 USD',
-      item: 'Solid Oak Queen Bed Frame',
-      reasonCode: 'Reason 4853 (Cardholder Dispute / Goods Not Received)',
+      item: 'The Modern Modular Platform Bed Frame (King / Natural)',
+      reasonCode: 'Reason 4853 (Goods Not as Described / Defective Merchandise)',
       network: 'Mastercard Opportunity Lab Framework',
       initialEvidence: {
-        avsCvv: true,
-        pod: false, // Initially missing!
-        termsRefund: true,
-        customerComm: true,
-        deviceIp: true,
+        avsCvv: true,        // Payment auth: 30 pts
+        pod: true,           // Carrier delivery & signature: 35 pts
+        termsRefund: false,  // Missing published return policy: initially 0 pts
+        customerComm: false, // Missing customer support remedy log: initially 0 pts
+        deviceIp: true,      // Customer tenure & history: 8 pts
         fatalMismatch: false
       },
-      context: 'High-ticket furniture purchase. Customer claims non-receipt. Merchant has proof of order and email log, but carrier signed delivery receipt was initially not attached to representment dossier.'
+      context: 'High-ticket furniture purchase ($1,150). Customer reported cracked bed frame slat. Delivered with signature, but merchant dossier initially lacks published 30-day return/warranty policy clause and formal customer support remedy logs.'
     }
   ];
 
@@ -501,31 +501,34 @@
   const resetEvidenceBtn = document.getElementById('resetEvidenceBtn');
 
   function calculateScore(ev) {
+    // Scoring aligned with ChargeDossier deterministic heuristic engine:
+    // Payment & Auth: 30 pts | Delivery & Signature: 35 pts | Return Policy: 12 pts | Support Remedy: 15 pts | Account Tenure: 8 pts
     let score = 0;
-    if (ev.avsCvv) score += 20;
-    if (ev.pod) score += 30;
-    if (ev.termsRefund) score += 15;
-    if (ev.customerComm) score += 20;
-    if (ev.deviceIp) score += 15;
+    if (ev.avsCvv) score += 30;
+    if (ev.pod) score += 35;
+    if (ev.termsRefund) score += 12;
+    if (ev.customerComm) score += 15;
+    if (ev.deviceIp) score += 8;
     if (ev.fatalMismatch) score -= 40;
 
     score = Math.max(0, Math.min(100, score));
 
+    // Threshold boundaries: DSP-3312 = 0 pts; DSP-2081 = 20 pts; DSP-4190 baseline = 73 pts; DSP-1049 = 100 pts
     let tier = 'Tier C (Unviable / High Loss Risk)';
     let tierBadge = 'TIER C // UNVIABLE DEFENSE';
     let theme = 'rose';
-    let recommendation = 'Do not submit Second Presentment. The dossier lacks essential evidence required by card-network rules. Submitting will incur representment fees ($15-$35) with near-zero probability of recovery.';
+    let recommendation = 'Do not submit Second Presentment. The dossier contains fatal contradictions or lacks essential delivery evidence. Submitting will incur representment fees with near-zero probability of recovery.';
 
     if (score >= 80) {
       tier = 'Tier A (High Readiness // Ready for Second Presentment)';
       tierBadge = 'TIER A // DEFENSE READY';
       theme = 'emerald';
-      recommendation = 'Strong evidence dossier. Comprehensive carrier proof, customer identification, and merchant disclosure meet Second Presentment standards for Mastercard Reason 4837/4853.';
+      recommendation = 'Strong evidence package. Complete gateway authentication, carrier proof of delivery, published return terms, and support logs satisfy Second Presentment compelling evidence criteria.';
     } else if (score >= 60) {
       tier = 'Tier B (Moderate Readiness // Remediation Recommended)';
       tierBadge = 'TIER B // REMEDIATION NEEDED';
       theme = 'amber';
-      recommendation = 'Moderate defense readiness. Key evidence artifact missing (e.g. carrier GPS scan or customer correspondence). Remediation recommended before dossier submission.';
+      recommendation = 'Moderate defense readiness (73/100). Key merchant disclosure missing (published return policy and support remedy log). Remediation recommended before Second Presentment drafting.';
     }
 
     return { score, tier, tierBadge, theme, recommendation };

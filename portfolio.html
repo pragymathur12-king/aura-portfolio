@@ -300,7 +300,7 @@
           <div class="reasoning-col">
             <h4 class="reasoning-col-title">1. Problem Being Addressed</h4>
             <p id="fWhyProblem" class="reasoning-text">
-              Freight brokers handle hundreds of rate confirmation PDFs weekly from varied brokers. Blindly trusting LLM/OCR extraction leads to $150–$500 billing discrepancies per load.
+              Freight rate confirmations arrive in varied, unstructured PDF formats across broker networks. Without deterministic validation guardrails, automated LLM or OCR extraction risks committing incomplete rates or contradictory accessorial clauses into TMS records, leading to billing exceptions and administrative reconciliation overhead.
             </p>
           </div>
           <div class="reasoning-col">
@@ -319,7 +319,7 @@
         </div>
         <div class="reasoning-footer">
           <span class="reasoning-footer-note">
-            <strong>Project Grounding:</strong> Loadvanta is an end-to-end MVP functional architecture and PRD for AI-enabled freight rate confirmation processing (private repository, no fake paying customer or production claims).
+            <strong>Project Grounding:</strong> Loadvanta is an MVP functional architecture and PRD for AI-enabled freight rate confirmation processing with deterministic validation guardrails (synthetic benchmark dataset; does not claim paying customers, live fleet integrations, or measured dollar savings).
           </span>
           <a href="#projects" class="hud-link">View Loadvanta Case Summary &rarr;</a>
         </div>
@@ -362,10 +362,10 @@
             <div class="control-group">
               <label for="disputeCaseSelect" class="control-label">Select Synthetic Dispute Case</label>
               <select id="disputeCaseSelect" class="hud-select" aria-label="Select Synthetic Dispute Case">
-                <option value="DSP-1049">DSP-1049: $349.00 USD - Headphones (Reason 4837 / Fraud)</option>
-                <option value="DSP-2081">DSP-2081: $295.00 USD - Espresso Grinder (Reason 4853 / Defective)</option>
-                <option value="DSP-3312">DSP-3312: $850.00 USD - Standing Desk (Reason 4837 / Reshipper Mismatch)</option>
-                <option value="DSP-4190" selected>DSP-4190: $1,150.00 USD - Bed Frame (Reason 4853 / Non-Receipt)</option>
+                <option value="DSP-1049">DSP-1049: $349.00 USD - Wireless ANC Headphones (Reason 4837 / Fraud)</option>
+                <option value="DSP-2081">DSP-2081: $295.00 USD - Precision Coffee Grinder (Reason 4853 / In Transit)</option>
+                <option value="DSP-3312">DSP-3312: $850.00 USD - Motorized Standing Desk (Reason 4837 / Reshipper Mismatch)</option>
+                <option value="DSP-4190" selected>DSP-4190: $1,150.00 USD - Platform Bed Frame (Reason 4853 / Defective)</option>
               </select>
             </div>
 
@@ -377,14 +377,14 @@
               </div>
               <div class="case-meta-row">
                 <span class="meta-label">Disputed Item:</span>
-                <span class="meta-val" id="dCaseItem">Solid Oak Queen Bed Frame</span>
+                <span class="meta-val" id="dCaseItem">The Modern Modular Platform Bed Frame (King / Natural)</span>
               </div>
               <div class="case-meta-row">
                 <span class="meta-label">Reason Code:</span>
-                <span class="meta-val text-cyan" id="dCaseReason">Reason 4853 (Cardholder Dispute / Goods Not Received)</span>
+                <span class="meta-val text-cyan" id="dCaseReason">Reason 4853 (Goods Not as Described / Defective Merchandise)</span>
               </div>
               <div class="case-context-text" id="dCaseContext">
-                High-ticket furniture purchase. Customer claims non-receipt. Merchant has proof of order and email log, but carrier signed delivery receipt was initially not attached to representment dossier.
+                High-ticket furniture purchase ($1,150). Customer reported cracked bed frame slat. Delivered with signature, but merchant dossier initially lacks published 30-day return/warranty policy clause and formal customer support remedy logs.
               </div>
             </div>
 
@@ -393,32 +393,32 @@
             <div class="evidence-checklist-items">
               <label class="evidence-chk-row">
                 <input type="checkbox" id="chkAvsCvv" class="hud-checkbox" checked>
-                <span class="chk-label">AVS Match &amp; CVV2 Verified <small>(+20 pts)</small></span>
+                <span class="chk-label">Payment &amp; Identity Auth (AVS match, CVC match, 3DS authenticated) <small>(30 pts)</small></span>
               </label>
 
               <label class="evidence-chk-row">
-                <input type="checkbox" id="chkPod" class="hud-checkbox">
-                <span class="chk-label">Carrier Tracking &amp; Signed Proof of Delivery <small>(+30 pts)</small></span>
+                <input type="checkbox" id="chkPod" class="hud-checkbox" checked>
+                <span class="chk-label">Carrier Proof of Delivery &amp; Signed Customer Manifest <small>(35 pts)</small></span>
               </label>
 
               <label class="evidence-chk-row">
-                <input type="checkbox" id="chkTermsRefund" class="hud-checkbox" checked>
-                <span class="chk-label">Disclosed Terms &amp; Refund Policy Agreement <small>(+15 pts)</small></span>
+                <input type="checkbox" id="chkTermsRefund" class="hud-checkbox">
+                <span class="chk-label">Published 30-Day Return &amp; Warranty Policy Attached <small>(+12 pts remediation)</small></span>
               </label>
 
               <label class="evidence-chk-row">
-                <input type="checkbox" id="chkCustomerComm" class="hud-checkbox" checked>
-                <span class="chk-label">Customer Support Remediation / Correspondence Log <small>(+20 pts)</small></span>
+                <input type="checkbox" id="chkCustomerComm" class="hud-checkbox">
+                <span class="chk-label">Customer Support Remedy &amp; Replacement Log Attached <small>(+15 pts remediation)</small></span>
               </label>
 
               <label class="evidence-chk-row">
                 <input type="checkbox" id="chkDeviceIp" class="hud-checkbox" checked>
-                <span class="chk-label">Prior Order History &amp; Device/IP Match <small>(+15 pts)</small></span>
+                <span class="chk-label">Customer Account Tenure &amp; Prior Order History Verified <small>(8 pts)</small></span>
               </label>
 
               <label class="evidence-chk-row chk-penalty">
                 <input type="checkbox" id="chkFatalMismatch" class="hud-checkbox">
-                <span class="chk-label text-rose">Fatal Contradiction Flag (Address / Reshipper Mismatch) <small>(-40 pts)</small></span>
+                <span class="chk-label text-rose">Fatal Contradiction Flag (Freight Forwarder / Address Contradiction) <small>(-40 pts penalty)</small></span>
               </label>
             </div>
 
@@ -440,7 +440,7 @@
             
             <div class="score-center-display">
               <div class="score-number-box">
-                <span class="score-number text-amber" id="dScoreVal">70</span>
+                <span class="score-number text-amber" id="dScoreVal">73</span>
                 <span class="score-max">/100</span>
               </div>
               <div class="score-tier-wrap">
@@ -449,12 +449,12 @@
             </div>
 
             <div class="score-recommendation-box" id="dScoreRecommendation">
-              Moderate defense readiness. Key evidence artifact missing (signed carrier proof). Remediation recommended before dossier submission.
+              Moderate defense readiness (73/100). Key merchant disclosure missing (published return policy and support remedy log). Remediation recommended before Second Presentment drafting.
             </div>
 
             <!-- Comparison Diff -->
             <div class="score-diff-banner" id="dInitialComparison">
-              <strong>Baseline Comparison:</strong> Initial Case Score was <strong>70/100</strong> (TIER B). Current Remediation Delta: <span style="color:#10b981; font-weight:700;">0 pts</span>.
+              <strong>Baseline Comparison:</strong> Initial Case Score was <strong>73/100</strong> (TIER B). Current Remediation Delta: <span style="color:#10b981; font-weight:700;">0 pts</span>.
             </div>
 
             <!-- Scoring Tiers Reference -->
@@ -1175,7 +1175,7 @@
         <!-- Item 4: Zenodo Research Publication -->
         <div class="recruiter-highlight-item">
           <div class="highlight-badge text-cyan">Academic Research &bull; Zenodo DOI</div>
-          <h4 class="highlight-title">Peer-Reviewed Working Paper (Zenodo DOI)</h4>
+          <h4 class="highlight-title">Academic Working Paper / Preprint (Zenodo DOI)</h4>
           <p class="highlight-desc">Sole author of research on digital marketing strategies and cross-cultural brand awareness across international markets. Indexed on Zenodo repository (DOI: <a href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer" class="hud-link">10.5281/zenodo.23871769</a>).</p>
         </div>
       </div>
