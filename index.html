@@ -1,222 +1,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enter Portfolio Experience</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pragy Mathur | Associate Product Manager</title>
+  <meta name="description" content="Portfolio of Pragy Mathur — Associate Product Manager specializing in AI Product Strategy, Freight Ingestion, and Fintech Dispute Mechanics.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#050816;
-      --accent:#00e5ff;
-      --text:rgba(255,255,255,.92);
-      --sub:rgba(139,207,255,.95);
+    /* Homepage Specific Layout & Showcase Styles */
+    .hero-main {
+      padding: 90px 6% 70px;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      position: relative;
     }
-
-    html,body{height:100%;}
-
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      overflow:hidden;
+    .hero-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 56px;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
     }
-
-    .entry-bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background:
-        radial-gradient(circle at top left,#00f7ff22,transparent 35%),
-        radial-gradient(circle at bottom right,#0066ff22,transparent 35%),
-        var(--bg);
+    .hero-content {
+      flex: 1 1 62%;
     }
-
-    .entry-scrim{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      background:linear-gradient(180deg, rgba(5,8,22,.65), rgba(5,8,22,.15));
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
+    .hero-portrait {
+      flex: 0 0 360px;
+      display: flex;
+      justify-content: center;
     }
-
-    .entry-wrap{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:4vh 4vw;
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      padding: 4px 12px;
+      border-radius: 999px;
     }
-
-    .entry-card{
-      width:min(980px, 100%);
-      padding:5.5vh 5vw;
-      border-radius:26px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(0,229,255,.18);
-      box-shadow:0 0 60px rgba(0,229,255,.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      position:relative;
-      overflow:hidden;
+    .hero-title {
+      font-size: clamp(38px, 5.2vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 12px;
     }
-
-    .entry-card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:radial-gradient(900px circle at var(--mx, 50%) var(--my, 0%), rgba(0,229,255,.26), transparent 45%);
-      opacity:.85;
-      pointer-events:none;
+    .hero-role {
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
     }
-
-    .entry-inner{position:relative; z-index:1;}
-
-    .entry-kicker{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:rgba(139,207,255,.95);
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-size:12px;
-      margin-bottom:18px;
+    .hero-bio {
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: var(--text-sub);
+      max-width: 660px;
+      margin-bottom: 32px;
     }
-
-    .entry-kicker .dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 22px rgba(0,229,255,.35);
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+      margin-bottom: 36px;
     }
-
-    .entry-title{
-      margin:0;
-      font-size:clamp(34px, 5vw, 56px);
-      line-height:1.05;
-      letter-spacing:-.6px;
-      font-weight:900;
-      color:white;
+    .lab-feature-banner {
+      background: linear-gradient(135deg, rgba(14, 23, 48, 0.9) 0%, rgba(8, 14, 30, 0.95) 100%);
+      border: 1px solid var(--border-cyan);
+      border-radius: 18px;
+      padding: 32px;
+      margin-bottom: 70px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
     }
-
-    .entry-subtitle{
-      margin:12px 0 28px;
-      font-size:clamp(16px, 2.1vw, 20px);
-      color:var(--sub);
-      font-weight:600;
+    .lab-feature-content {
+      flex: 1 1 540px;
     }
-
-    .entry-actions{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
+    .lab-feature-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 10px;
     }
-
-    .mode-btn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px 28px;
-      border-radius:999px;
-      font-weight:900;
-      letter-spacing:.2px;
-      transition: transform .2s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
-      position:relative;
-      outline:none;
-      user-select:none;
-      min-width:240px;
+    .lab-feature-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
     }
-
-    .mode-btn::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      background:linear-gradient(120deg, transparent 0%, rgba(0,229,255,.25) 40%, rgba(0,229,255,.58) 60%, transparent 100%);
-      opacity:0;
-      transform:translateX(-10px);
-      transition:opacity .25s ease, transform .45s ease;
-      pointer-events:none;
+    .lab-feature-desc {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-sub);
+      margin-bottom: 18px;
     }
-
-    .mode-btn:hover{transform:translateY(-2px) scale(1.02);}
-    .mode-btn:hover::after{opacity:1; transform:translateX(10px);}
-    .mode-btn:focus-visible{box-shadow:0 0 0 4px rgba(0,229,255,.22), 0 0 35px rgba(0,229,255,.35);}
-
-    .mode-sound{
-      background:var(--accent);
-      color:#050816;
+    .lab-feature-stations-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .mode-sound:hover{box-shadow:0 0 55px rgba(0,229,255,.35);}
-
-    .mode-silent{
-      background:transparent;
-      color:white;
-      border:1px solid rgba(0,229,255,.35);
+    .lab-feature-chip {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .mode-silent:hover{
-      background:rgba(0,229,255,.14);
-      border-color:rgba(0,229,255,.7);
-      box-shadow:0 0 55px rgba(0,229,255,.25);
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 70px;
     }
-
-    @media (max-width: 520px){
-      .entry-card{padding:5vh 4vw; border-radius:20px;}
-      .mode-btn{min-width:0; width:100%;}
+    .principle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
     }
-
-    @media (prefers-reduced-motion: reduce){
-      .mode-btn{transition:none;}
-      .mode-btn::after{transition:none;}
+    .principle-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-cyan);
+    }
+    .principle-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .principle-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .principle-desc {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    @media (max-width: 900px) {
+      .hero-container { flex-direction: column-reverse; align-items: flex-start; }
+      .hero-portrait { width: 100%; justify-content: flex-start; }
+      .principles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero-main { padding: 50px 5% 40px; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .lab-feature-banner { padding: 24px; }
+      .hero-actions { flex-direction: column; width: 100%; align-items: stretch; }
+      .hero-actions .hud-btn { width: 100%; }
     }
   </style>
 </head>
-<body>
-  <div class="entry-bg" aria-hidden="true"></div>
-  <div class="entry-scrim" aria-hidden="true"></div>
 
-  <main class="entry-wrap">
-    <section class="entry-card" aria-label="Portfolio entry gate">
-      <div class="entry-inner">
-        <div class="entry-kicker"><span class="dot" aria-hidden="true"></span> Experience Gate</div>
-        <h1 class="entry-title">Enter Portfolio Experience</h1>
-        <p class="entry-subtitle">Choose your viewing mode</p>
+<body class="sci-fi-lab">
 
-        <div class="entry-actions">
-          <a class="mode-btn mode-sound" href="portfolio.html" aria-label="Enter Product Lab">⚡ Enter Product Intelligence Lab</a>
-          <a class="mode-btn mode-silent" href="intro.html?sound=on" aria-label="Watch Cinematic Intro with Sound">🔊 Watch Intro (With Sound)</a>
-          <a class="mode-btn mode-silent" href="intro.html?sound=off" aria-label="Watch Silent Intro">🔇 Watch Silent Intro</a>
-          <a class="mode-btn mode-silent" href="portfolio.html#contact" aria-label="Direct Recruiter Access">📋 Fast Recruiter Access</a>
-          <a class="mode-btn mode-silent" href="Pragy_Mathur_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Resume PDF">📄 One-Page Resume (PDF)</a>
-          <a class="mode-btn mode-silent" href="cv.html" aria-label="View Detailed CV">📑 View Detailed CV</a>
-          <a class="mode-btn mode-silent" href="Pragy_Mathur_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Detailed CV PDF">📥 Download CV (PDF)</a>
+<!-- Ambient Background & Tactical Grid Overlay -->
+<div class="ambient-lab-bg" aria-hidden="true">
+  <div class="hud-grid-matrix"></div>
+  <div class="hud-scanlines"></div>
+</div>
+
+<!-- ========================================================= -->
+<!-- PROFESSIONAL HEADER NAVIGATION                            -->
+<!-- ========================================================= -->
+<header class="hud-header">
+  <nav class="hud-nav" aria-label="Main Navigation">
+    <a href="index.html" class="hud-brand" style="text-decoration: none;">
+      <span class="hud-logo-dot" aria-hidden="true"></span>
+      <span class="hud-logo-text">PRAGY MATHUR</span>
+      <span class="hud-facility-tag">APM</span>
+    </a>
+
+    <ul class="hud-nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Case Studies</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="./portfolio.html" class="cyan-glow" style="font-weight: 700;">⚡ Product Lab</a></li>
+      <li><a href="./cv.html">Detailed CV</a></li>
+      <li><a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="hud-nav-cta">
+      <button type="button" class="hud-recruiter-btn" data-open-recruiter-modal aria-haspopup="dialog">
+        <span class="btn-flash-icon">⚡</span>
+        <span>Recruiter Access</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ========================================================= -->
+<!-- HERO SECTION                                              -->
+<!-- ========================================================= -->
+<section id="about" class="hero-main" aria-label="Professional Profile Introduction">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-kicker reveal" style="--d: 40ms">
+        <span class="live-beacon" aria-hidden="true"></span>
+        <span>ASSOCIATE PRODUCT MANAGER &bull; APM CANDIDATE</span>
+      </div>
+
+      <h1 class="hero-title reveal" style="--d: 80ms">
+        Translating Domain Ambiguity into <span class="cyan-glow">Deterministic Software</span>
+      </h1>
+
+      <h2 class="hero-role reveal" style="--d: 120ms">
+        AI Product Strategy &bull; Freight Ingestion &bull; Fintech Dispute Mechanics
+      </h2>
+
+      <p class="hero-bio reveal" style="--d: 160ms">
+        I am <strong>Pragy Mathur</strong>, an Associate Product Manager focused on building auditable, deterministic product systems. I bridge customer discovery and engineering execution by establishing non-negotiable completeness guardrails, confidence-based automation thresholds, and continuous quantitative trade-off models.
+      </p>
+
+      <!-- Action Buttons System (Zero Overlap Guaranteed) -->
+      <div class="hero-actions reveal" style="--d: 200ms">
+        <a href="./portfolio.html" class="hud-btn hud-btn-primary" aria-label="Explore Interactive Product Lab">
+          <span>⚡ EXPLORE PRODUCT LAB</span>
+        </a>
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="hud-btn hud-btn-ghost" aria-label="Download Resume PDF">
+          <span>📄 Download Resume (PDF)</span>
+        </a>
+        <a href="./cv.html" class="hud-btn hud-btn-ghost" aria-label="View Detailed CV">
+          <span>📑 View Detailed CV</span>
+        </a>
+        <button type="button" class="hud-btn hud-btn-accent" data-open-recruiter-modal aria-label="Open Fast Recruiter Access">
+          <span>📋 Recruiter Access</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-portrait reveal" style="--d: 240ms">
+      <div class="profile-hud-frame">
+        <div class="frame-corner corner-tl"></div>
+        <div class="frame-corner corner-tr"></div>
+        <div class="frame-corner corner-bl"></div>
+        <div class="frame-corner corner-br"></div>
+        <img src="images/profile.jpg.jpeg" alt="Pragy Mathur — Associate Product Manager" class="profile-hud-img">
+        <div class="profile-badge-overlay">
+          <span class="verified-indicator">✔ VERIFIED APM PROFILE</span>
+          <span class="verified-sub">24/24 Automated Tests Passed &bull; Zenodo DOI Preprint</span>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+</section>
 
-  <script>
-    (function(){
-      const card = document.querySelector('.entry-card');
-      if(!card) return;
-      card.addEventListener('pointermove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-      });
-    })();
-  </script>
+<!-- ========================================================= -->
+<!-- MAIN CONTENT CONTAINER                                    -->
+<!-- ========================================================= -->
+<main class="projects-inner" style="max-width: 1300px; margin: 0 auto; padding: 0 6%;">
+
+  <!-- ======================================================= -->
+  <!-- DEDICATED PROOF-OF-WORK SHOWCASE: PRODUCT INTELLIGENCE LAB -->
+  <!-- ======================================================= -->
+  <section class="lab-feature-banner reveal" style="--d: 60ms" aria-label="Product Intelligence Lab Showcase">
+    <div class="lab-feature-content">
+      <span class="lab-feature-tag">INTERACTIVE PROOF OF WORK</span>
+      <h3 class="lab-feature-title">AURA // Product Intelligence Lab</h3>
+      <p class="lab-feature-desc">
+        A dedicated client-side simulation suite built into this website that lets recruiters and engineering leaders experience firsthand how I evaluate product logic, confidence thresholds, and edge-case exceptions in real time.
+      </p>
+      <div class="lab-feature-stations-list">
+        <span class="lab-feature-chip"><strong>01</strong> Freight Ingest Confidence Router (Loadvanta)</span>
+        <span class="lab-feature-chip"><strong>02</strong> Dispute Evidence Copilot (ChargeDossier)</span>
+        <span class="lab-feature-chip"><strong>03</strong> Quantitative Strategy Prioritizer</span>
+      </div>
+    </div>
+    <div>
+      <a href="./portfolio.html" class="hud-btn hud-btn-primary" style="padding: 16px 32px; font-size: 14px;">
+        <span>⚡ LAUNCH INTERACTIVE LAB &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- PRODUCT OPERATING PRINCIPLES (MODAL / CREATIVE CREW)    -->
+  <!-- ======================================================= -->
+  <section class="reveal" style="--d: 80ms; margin-bottom: 70px;" aria-label="Core Operating Principles">
+    <h3 class="section-title" style="font-size: 24px; margin-bottom: 20px;">🛡️ APM Core Operating Principles</h3>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <span class="principle-num">01 // INTEGRITY</span>
+        <h4 class="principle-title">Deterministic Guardrails</h4>
+        <p class="principle-desc">Zero silent failures. Mandatory fields (Rate, Appointment, Destination) must never be bypassed by speculative LLM extraction.</p>
+      </div>
+
+      <div class="principle-card">
+        <span class="principle-num">02 // EXPLAINABILITY</span>
+        <h4 class="principle-title">Confidence Routing</h4>
+        <p class="principle-desc">Every automated decision is governed by explicit confidence boundaries, routing ambiguous records to human review.</p>
+      </div>
+
+      <div class="principle-card">
+        <span class="principle-num">03 // COMMERCE</span>
+        <h4 class="principle-title">Economics First</h4>
+        <p class="principle-desc">Balancing automation yield against exception costs. Designing flat SaaS alternatives to predatory third-party contingency take-rates.</p>
+      </div>
+
+      <div class="principle-card">
+        <span class="principle-num">04 // RIGOR</span>
+        <h4 class="principle-title">Quantitative Ranking</h4>
+        <p class="principle-desc">Prioritization models that penalize high uncertainty, demand discovery spikes, and de-risk engineering sprints before allocation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- SELECTED PROJECTS & CASE STUDIES                        -->
+  <!-- ======================================================= -->
+  <section id="projects" class="projects-section" aria-label="Featured Product Case Studies">
+    <div class="section-title-wrap reveal" style="--d: 60ms; margin-bottom: 24px;">
+      <span class="hud-tag tag-cyan">VERIFIED CASE STUDIES</span>
+      <h2 class="section-title">⭐ Featured Product Case Studies &amp; Architectures</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Case 1: ChargeDossier -->
+      <article class="project-card reveal" style="--d: 90ms">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="featured-badge" style="margin-bottom: 0;">Featured Case Study</span>
+          <span class="featured-badge" style="margin-bottom: 0; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981;">24/24 Automated Tests Passed</span>
+        </div>
+        <h3 class="project-title">ChargeDossier</h3>
+        <p class="project-subtitle">Evidence-Quality Review Copilot for High-Ticket E-Commerce Disputes</p>
+
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 16px;">
+          <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Mastercard Opportunity Lab</span>
+          <span class="case-badge-pill">Fintech &amp; Payments</span>
+          <span class="case-badge-pill">Deterministic Rules</span>
+          <span class="case-badge-pill">$150&ndash;$2,000+ AOV</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4 class="case-title">Problem</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Third-party recovery agency contingency fee drag (typically ~25% take-rate on recovered claims)</li>
+                <li>Blind submission of contradictory tracking or AVS data causing auto-losses</li>
+                <li>Fragmented manual evidence assembly across disconnected gateways, carriers, and support tools</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="case-col">
+            <h4 class="case-title">System Architecture &amp; Solution</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Deterministic rules engine evaluating 5 core Mastercard evidence criteria</li>
+                <li>Automated fatal flaw detection (In-Transit tracking, address contradictions)</li>
+                <li>Clear Tier triage: Tier A (&ge;80), Tier B (60-79 remediation), Tier C (&lt;60 unviable)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-actions" style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="project-btn" href="./chargedossier.html">Read Full Case Study &rarr;</a>
+          <a class="project-btn project-btn-ghost" href="./portfolio.html#station-dispute">Try Interactive Simulation &rarr;</a>
+        </div>
+      </article>
+
+      <!-- Case 2: Loadvanta -->
+      <article class="project-card reveal" style="--d: 120ms">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="featured-badge" style="margin-bottom: 0; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;">MVP Functional Spec</span>
+          <span class="featured-badge" style="margin-bottom: 0;">Freight Logistics Tech</span>
+        </div>
+        <h3 class="project-title">Loadvanta</h3>
+        <p class="project-subtitle">Confidence Router &amp; Rate Confirmation Processing Architecture</p>
+
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 16px;">
+          <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Logistics &amp; Supply Chain</span>
+          <span class="case-badge-pill">Unstructured PDF Ingestion</span>
+          <span class="case-badge-pill">Completeness Guardrails</span>
+          <span class="case-badge-pill">Human-in-the-Loop</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4 class="case-title">Problem</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Heterogeneous PDF broker rate confirmations requiring heavy manual data entry</li>
+                <li>Silent ingestion errors committing incomplete linehaul rates or contradictory accessorials</li>
+                <li>Operator fatigue during freight surge windows causing costly billing disputes</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="case-col">
+            <h4 class="case-title">System Architecture &amp; Solution</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Pre-commit completeness audit blocking any record with null rate or appointment</li>
+                <li>Dynamic confidence threshold routing: Auto-Sync (&ge;85%), Review Queue (&lt;85%)</li>
+                <li>Zero silent failures: accessorial clauses verified before TMS synchronization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-actions" style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="project-btn" href="./portfolio.html#station-freight">Launch Ingest Simulation &rarr;</a>
+          <a class="project-btn project-btn-ghost" href="./cv.html">Review Architecture Spec in CV &rarr;</a>
+        </div>
+      </article>
+
+      <!-- Case 3: Uber Commute Lock -->
+      <article class="project-card reveal" style="--d: 150ms">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="featured-badge" style="margin-bottom: 0; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b;">Product Strategy Teardown</span>
+          <span class="featured-badge" style="margin-bottom: 0;">Mobility &amp; Pricing</span>
+        </div>
+        <h3 class="project-title">Uber Commute Lock</h3>
+        <p class="project-subtitle">Predictable Price Subscription Model for High-Frequency Urban Commuters</p>
+
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 16px;">
+          <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Marketplace Dynamics</span>
+          <span class="case-badge-pill">Surge Pricing Elasticity</span>
+          <span class="case-badge-pill">Corridor Routing</span>
+          <span class="case-badge-pill">Subscription Economics</span>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-col">
+            <h4 class="case-title">Problem</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Commuter churn driven by extreme morning/evening price volatility and surge unpredictability</li>
+                <li>High willingness to pay on fixed routes paired with frustration over surge multipliers</li>
+                <li>Risk of platform defection to transit alternatives or competitor ride apps</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="case-col">
+            <h4 class="case-title">System Architecture &amp; Solution</h4>
+            <div class="case-body">
+              <ul class="case-list">
+                <li>Fixed-price commute corridor subscriptions with driver gross earnings floor guarantees</li>
+                <li>Dynamic capacity allocation: limiting subscriptions to protect peak fleet availability</li>
+                <li>Margin risk mitigations: automated stop-loss caps during severe regional weather events</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-actions" style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="project-btn" href="./portfolio.html#station-strategy">Test Roadmap Prioritization &rarr;</a>
+          <a class="project-btn project-btn-ghost" href="./cv.html">View Case Breakdown &rarr;</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- ACADEMIC RESEARCH & PREPRINT SECTION                    -->
+  <!-- ======================================================= -->
+  <section id="research" class="projects-section reveal" style="--d: 80ms; margin-top: 70px;" aria-label="Academic Research and Working Paper">
+    <div class="section-title-wrap" style="margin-bottom: 24px;">
+      <span class="hud-tag tag-cyan">ACADEMIC RESEARCH</span>
+      <h2 class="section-title">📄 Academic Working Paper &amp; Preprint</h2>
+      <p style="color: #cbd5e1; font-size: 15px; margin-top: 8px;">
+        Quantitative research exploring global brand awareness, cross-cultural consumer psychology, and international marketing strategies across multinational business environments.
+      </p>
+    </div>
+
+    <article class="project-card reveal" style="--d: 110ms; border: 1px solid rgba(0, 229, 255, 0.35);">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+        <span class="featured-badge" style="position: static; display: inline-block;">Academic Working Paper / Preprint</span>
+        <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Zenodo Repository</span>
+        <span class="case-badge-pill" style="border-color: rgba(255, 255, 255, 0.2); color: #cbd5e1;">DOI: 10.5281/zenodo.23871769</span>
+      </div>
+
+      <h3 class="project-title" style="font-size: 21px; line-height: 1.35; margin-bottom: 12px;">
+        Digital Marketing Strategies and Global Brand Awareness: A Cross-Cultural Study of International Businesses
+      </h3>
+
+      <p class="case-description" style="color: #cbd5e1; font-size: 14px; line-height: 1.7; margin-bottom: 18px;">
+        Investigates cross-cultural digital marketing adoption and brand perception dynamics across international consumer cohorts. Analyzes quantitative variance in engagement metrics across localized vs. standardized messaging frameworks. Published and permanently archived on the CERN/Zenodo open-access research repository.
+      </p>
+
+      <div class="project-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="project-btn" href="https://zenodo.org/records/23871769" target="_blank" rel="noopener noreferrer">
+          Read Working Paper / View Zenodo Record ↗
+        </a>
+        <a class="project-btn project-btn-ghost" href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer">
+          View DOI (10.5281/zenodo.23871769) ↗
+        </a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- CREDENTIALS & CERTIFICATES                              -->
+  <!-- ======================================================= -->
+  <section id="credentials" class="about" style="padding: 70px 0;" aria-label="Credentials and Professional Certifications">
+    <div class="section-title-wrap reveal" style="--d: 60ms; margin-bottom: 24px;">
+      <span class="hud-tag tag-cyan">PROFESSIONAL CREDENTIALS</span>
+      <h2 class="section-title">🎖️ Verified Badges &amp; Credentials</h2>
+      <p class="about-intro" style="margin-bottom: 28px;">
+        Verified industry credentials supporting predictive project execution, product management, and financial markets strategy.
+      </p>
+    </div>
+
+    <div class="about-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <article class="about-card reveal" style="--d: 90ms;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+          <span class="case-badge-pill" style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.12);">Verified Credential</span>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: #94a3b8;">PMI KICKOFF™</span>
+        </div>
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">KICKOFF Predictive Project Management</h4>
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 14px;">
+          Project Management Institute (PMI) verified credential covering waterfall/predictive scheduling, milestone risk analysis, and stakeholder governance.
+        </p>
+        <a href="https://lnkd.in/p/d6pniVbi" target="_blank" rel="noopener noreferrer" class="hud-link">
+          Verify Badge / Credential Record ↗
+        </a>
+      </article>
+
+      <article class="about-card reveal" style="--d: 130ms;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+          <span class="case-badge-pill" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.12);">Course Certificate</span>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: #94a3b8;">Coursera / Yale</span>
+        </div>
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Financial Markets (Honors)</h4>
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 14px;">
+          Comprehensive foundation in financial risk management, behavioral finance, derivatives, and capital market dynamics.
+        </p>
+        <a href="./cv.html" class="hud-link">
+          Review in Detailed CV &rarr;
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- CONTACT & FAST RECRUITER ACCESS                         -->
+  <!-- ======================================================= -->
+  <section id="contact" class="contact-section reveal" style="--d: 80ms; padding: 70px 0 100px;" aria-label="Contact Information">
+    <div class="final-cta-card" style="background: var(--bg-card); border: 1px solid var(--border-cyan); border-radius: 20px; padding: 48px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 50px rgba(0, 0, 0, 0.5);">
+      <h2 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -0.02em;">
+        Ready to Discuss Associate Product Manager Opportunities?
+      </h2>
+      <p style="font-size: 16px; color: var(--text-sub); max-width: 680px; margin-bottom: 28px; line-height: 1.7;">
+        I am actively interviewing for Associate Product Manager (APM) and Product Manager roles. Reach out directly or explore my source documents below.
+      </p>
+
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px;">
+        <button type="button" class="hud-btn hud-btn-primary" data-open-recruiter-modal aria-label="Open Fast Recruiter Access">
+          <span>📋 FAST RECRUITER ACCESS</span>
+        </button>
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="hud-btn hud-btn-ghost">
+          <span>📄 Download Resume (PDF)</span>
+        </a>
+        <a href="./cv.html" class="hud-btn hud-btn-ghost">
+          <span>📑 View Detailed CV</span>
+        </a>
+        <a href="./portfolio.html" class="hud-btn hud-btn-accent">
+          <span>⚡ Explore Product Lab</span>
+        </a>
+      </div>
+
+      <div style="padding-top: 24px; border-top: 1px solid var(--border-subtle); display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px; color: var(--text-muted);">
+        <span>📧 <a href="mailto:pragymathur12@gmail.com" class="hud-link" style="color: #fff;">pragymathur12@gmail.com</a></span>
+        <span>💼 <a href="https://www.linkedin.com/in/pragy-mathur" target="_blank" rel="noopener noreferrer" class="hud-link" style="color: #fff;">LinkedIn Profile ↗</a></span>
+        <span>💻 <a href="https://github.com/pragymathur12-king" target="_blank" rel="noopener noreferrer" class="hud-link" style="color: #fff;">GitHub Profile ↗</a></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================================================= -->
+<!-- FAST RECRUITER ACCESS MODAL (ACCESSIBLE DIALOG)           -->
+<!-- ========================================================= -->
+<div id="recruiterAccessModal" class="recruiter-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="recruiterModalTitle" aria-hidden="true">
+  <div class="recruiter-modal-backdrop" data-close-recruiter-modal></div>
+  <div class="recruiter-modal-dialog" role="document">
+    <div class="recruiter-modal-header">
+      <div>
+        <span class="hud-tag tag-cyan">FAST EVALUATION PACK</span>
+        <h3 id="recruiterModalTitle" class="recruiter-heading">Recruiter Fast-Track Evaluation</h3>
+      </div>
+      <button type="button" class="recruiter-close-btn" data-close-recruiter-modal aria-label="Close Recruiter Modal">&times;</button>
+    </div>
+
+    <div class="recruiter-modal-body">
+      <div class="recruiter-summary-box">
+        <strong>Pragy Mathur</strong> &mdash; Associate Product Manager candidate specializing in AI Product Strategy, Freight Ingestion, and Fintech Dispute Mechanics.
+      </div>
+
+      <div class="recruiter-highlights-grid">
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-emerald">Featured Case Study &bull; 24/24 Tests Passed</div>
+          <h4 class="highlight-title">ChargeDossier (Fintech / Mastercard)</h4>
+          <p class="highlight-desc">Evidence-quality review copilot for Mastercard chargeback disputes. Built with a deterministic rules engine and <strong>24/24 automated tests passing (100% pass rate)</strong> across engine, server, and workflow test suites.</p>
+        </div>
+
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-cyan">Freight Logistics Tech &bull; MVP Spec</div>
+          <h4 class="highlight-title">Loadvanta (Freight Rate Con Ingestion)</h4>
+          <p class="highlight-desc">Product concept, functional architecture, and PRD for AI-assisted freight rate confirmation processing. Designed non-negotiable completeness guardrails and confidence thresholds to isolate incomplete or contradictory documents before TMS commit.</p>
+        </div>
+
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-amber">Marketplace Pricing &bull; Retention Model</div>
+          <h4 class="highlight-title">Uber Commute Lock (Pricing Teardown)</h4>
+          <p class="highlight-desc">Comprehensive product teardown addressing ride-hail commuter churn. Designed a surge-shield subscription model with corridor routing, predictable pricing, and driver gross earnings protections.</p>
+        </div>
+
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-cyan">Academic Research &bull; Zenodo DOI</div>
+          <h4 class="highlight-title">Academic Working Paper / Preprint (Zenodo DOI)</h4>
+          <p class="highlight-desc">Working paper on global digital marketing strategies archived with DOI <code>10.5281/zenodo.23871769</code> on the open-access Zenodo repository.</p>
+        </div>
+      </div>
+
+      <div class="recruiter-modal-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="hud-btn hud-btn-primary">
+          <span>📄 Download One-Page Resume (PDF)</span>
+        </a>
+        <a href="./cv.html" class="hud-btn hud-btn-ghost">
+          <span>📑 View Detailed CV</span>
+        </a>
+        <a href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf" class="hud-btn hud-btn-ghost">
+          <span>📥 Download Detailed CV (PDF)</span>
+        </a>
+        <a href="./portfolio.html" class="hud-btn hud-btn-accent">
+          <span>⚡ Launch Product Intelligence Lab</span>
+        </a>
+        <a href="mailto:pragymathur12@gmail.com" class="hud-btn hud-btn-ghost">
+          <span>✉ Email Candidate Directly</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- SCRIPTS                                                   -->
+<!-- ========================================================= -->
+<script src="script.js"></script>
+
 </body>
 </html>
-
-

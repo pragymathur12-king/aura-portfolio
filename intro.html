@@ -208,11 +208,16 @@
         <span id="soundLabel">AUDIO: OFF</span>
       </button>
 
-      <!-- Skip Button -->
-      <a class="hud-btn" href="portfolio.html" aria-label="Skip intro and enter portfolio">
-        <span>SKIP INTRO</span>
-        <span style="color: var(--accent);">&rarr;</span>
-      </a>
+      <!-- Navigation Buttons -->
+      <div style="display: flex; gap: 8px;">
+        <a class="hud-btn" href="index.html" aria-label="Enter Main Portfolio">
+          <span>MAIN PORTFOLIO</span>
+        </a>
+        <a class="hud-btn" href="portfolio.html" aria-label="Enter Product Lab">
+          <span>PRODUCT LAB</span>
+          <span style="color: var(--accent);">&rarr;</span>
+        </a>
+      </div>
     </div>
 
     <!-- Video Element -->
@@ -331,11 +336,11 @@
       };
 
       video.addEventListener('ended', () => {
-        window.location.href = 'portfolio.html';
+        window.location.href = 'index.html';
       });
 
       video.addEventListener('error', () => {
-        window.location.href = 'portfolio.html';
+        window.location.href = 'index.html';
       });
 
       if (video.readyState >= 2) {

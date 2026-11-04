@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pragy Mathur | AURA // Product Intelligence Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="sci-fi-lab">
+
+<!-- Ambient Background & Tactical Grid Overlay -->
+<div class="ambient-lab-bg" aria-hidden="true">
+  <div class="hud-grid-matrix"></div>
+  <div class="hud-scanlines"></div>
+</div>
+
+<!-- ========================================================= -->
+<!-- STICKY TOP HUD NAVIGATION                                 -->
+<!-- ========================================================= -->
+<header class="hud-header">
+  <nav class="hud-nav" aria-label="Main Navigation">
+    <div class="hud-brand" style="display: flex; align-items: center; gap: 10px;">
+      <a href="index.html" class="hud-back-home-btn" aria-label="Back to Main Portfolio" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(0, 229, 255, 0.3); color: #00e5ff; font-size: 13px; font-weight: 600; text-decoration: none;">
+        &larr; Back to Portfolio
+      </a>
+      <span class="hud-logo-dot" aria-hidden="true"></span>
+      <span class="hud-logo-text">PRAGY MATHUR</span>
+      <span class="hud-facility-tag">// PRODUCT LAB</span>
+    </div>
+
+    <div class="hud-status-chip">
+      <span class="live-beacon" aria-hidden="true"></span>
+      <span class="status-chip-text">3 INTERACTIVE STATIONS READY</span>
+    </div>
+
+    <ul class="hud-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#station-freight">01 Freight</a></li>
+      <li><a href="#station-dispute">02 Dispute</a></li>
+      <li><a href="#station-strategy">03 Strategy</a></li>
+      <li><a href="cv.html">Detailed CV</a></li>
+      <li><a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">Resume</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="hud-nav-cta">
+      <button type="button" class="hud-recruiter-btn" data-open-recruiter-modal aria-haspopup="dialog">
+        <span class="btn-flash-icon">⚡</span>
+        <span>Recruiter Access</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ========================================================= -->
+<!-- OPENING EXPERIENCE: HERO OPERATIONS DECK                  -->
+<!-- ========================================================= -->
+<section class="hero-operations-deck" aria-label="Aura Operations Deck">
+  <div class="deck-container">
+    <div class="deck-left">
+      <div class="telemetry-stamp reveal" style="--d: 40ms">
+        <span class="telemetry-coord">INTERACTIVE PROOF OF WORK // PRAGY MATHUR</span>
+        <span class="telemetry-status">SYSTEM STATE: AUDITABLE &bull; DETERMINISTIC</span>
+      </div>
+
+      <div class="deck-intro reveal" style="--d: 80ms">
+        <h3 class="deck-kicker">INTERACTIVE APM SIMULATION SUITE</h3>
+        <h1 class="deck-title">AURA // PRODUCT<br><span class="cyan-glow">INTELLIGENCE LAB</span></h1>
+        <h2 class="deck-role">Client-Side Heuristic &amp; Risk Engines for APM Evaluation</h2>
+        <p class="deck-statement">
+          Experience firsthand how I translate domain ambiguity into deterministic, auditable software rules &mdash; establishing completeness guardrails in freight logistics, compelling evidence scoring in fintech disputes, and quantitative roadmap trade-offs in mobility pricing.
+        </p>
+      </div>
+
+      <!-- Action Controls -->
+      <div class="deck-actions reveal" style="--d: 140ms">
+        <a href="index.html" class="hud-btn hud-btn-accent">
+          <span>&larr; BACK TO MAIN PORTFOLIO</span>
+        </a>
+        <button type="button" id="enterLabBtn" class="hud-btn hud-btn-primary">
+          <span>⚡ EXPLORE STATIONS</span>
+        </button>
+        <button type="button" class="hud-btn hud-btn-ghost" data-open-recruiter-modal>
+          <span>📋 Recruiter Access</span>
+        </button>
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="hud-btn hud-btn-ghost">
+          <span>Resume (PDF)</span>
+        </a>
+        <a href="./cv.html" class="hud-btn hud-btn-ghost">
+          <span>Detailed CV</span>
+        </a>
+      </div>
+
+      <!-- System Station Map (Console Switcher) -->
+      <div class="station-console-map reveal" style="--d: 200ms" aria-label="Lab Station Navigator">
+        <div class="console-map-header">
+          <span class="console-dot" aria-hidden="true"></span>
+          <span class="console-label">STATION SYSTEM DIRECTORY</span>
+        </div>
+        <div class="console-tiles-grid">
+          <button type="button" class="station-tile" data-target-station="station-freight">
+            <span class="tile-number">STATION 01</span>
+            <strong class="tile-name">Freight Intelligence</strong>
+            <span class="tile-desc">Loadvanta Ingest &amp; Confidence Router</span>
+          </button>
+
+          <button type="button" class="station-tile" data-target-station="station-dispute">
+            <span class="tile-number">STATION 02</span>
+            <strong class="tile-name">Dispute Intelligence</strong>
+            <span class="tile-desc">ChargeDossier Evidence Copilot</span>
+          </button>
+
+          <button type="button" class="station-tile" data-target-station="station-strategy">
+            <span class="tile-number">STATION 03</span>
+            <strong class="tile-name">Strategy Simulator</strong>
+            <span class="tile-desc">Quantitative Roadmap Prioritization</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="deck-right reveal" style="--d: 240ms">
+      <div class="profile-hud-frame">
+        <div class="frame-corner corner-tl"></div>
+        <div class="frame-corner corner-tr"></div>
+        <div class="frame-corner corner-bl"></div>
+        <div class="frame-corner corner-br"></div>
+        <img src="images/profile.jpg.jpeg" alt="Pragy Mathur — Associate Product Manager" class="profile-hud-img">
+        <div class="profile-badge-overlay">
+          <span class="verified-indicator">✔ VERIFIED APM CANDIDATE</span>
+          <span class="verified-sub">24/24 Tests &bull; Zenodo DOI Preprint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- LAB STATIONS CONTAINER                                    -->
+<!-- ========================================================= -->
+<main id="lab-stations" class="lab-stations-wrapper">
+
+  <!-- ======================================================= -->
+  <!-- STATION 01: FREIGHT INTELLIGENCE (LOADVANTA)             -->
+  <!-- ======================================================= -->
+  <section id="station-freight" class="lab-station-section" aria-label="Station 01: Freight Intelligence">
+    <div class="station-inner">
+      <div class="station-header reveal" style="--d: 60ms">
+        <div class="station-badge-row">
+          <span class="station-index-badge">STATION 01 // FREIGHT INTELLIGENCE</span>
+          <span class="station-project-pill">LOADVANTA ARCHITECTURE</span>
+          <span class="station-disclaimer-pill">SYNTHETIC DATA &bull; NOT A LIVE TMS INTEGRATION</span>
+        </div>
+        <h2 class="station-title">Loadvanta: Ingestion &amp; Extraction Confidence Router</h2>
+        <p class="station-subtitle">
+          Deterministic document pipeline simulation analyzing freight broker rate confirmation PDFs, evaluating required-field completeness, and routing records via confidence thresholds.
+        </p>
+      </div>
+
+      <!-- Fleet Overview Telemetry Counters -->
+      <div class="fleet-telemetry-grid reveal" style="--d: 90ms">
+        <div class="telemetry-card">
+          <span class="telemetry-card-label">TOTAL SYNTHETIC DOCS</span>
+          <strong class="telemetry-card-val" id="countFreightTotal">9</strong>
+          <span class="telemetry-card-hint">Modeled broker rate confirmations</span>
+        </div>
+
+        <div class="telemetry-card telemetry-card-emerald">
+          <span class="telemetry-card-label">AUTO-SYNC AUTHORIZED</span>
+          <strong class="telemetry-card-val text-emerald" id="countFreightAuto">3</strong>
+          <span class="telemetry-card-hint">Eligible for direct TMS commit</span>
+        </div>
+
+        <div class="telemetry-card telemetry-card-amber">
+          <span class="telemetry-card-label">MANUAL REVIEW QUEUE</span>
+          <strong class="telemetry-card-val text-amber" id="countFreightReview">4</strong>
+          <span class="telemetry-card-hint">Confidence below active threshold</span>
+        </div>
+
+        <div class="telemetry-card telemetry-card-rose">
+          <span class="telemetry-card-label">BLOCKED // MANDATORY EXCEPTION</span>
+          <strong class="telemetry-card-val text-rose" id="countFreightBlocked">2</strong>
+          <span class="telemetry-card-hint">Missing mandatory field or contradiction</span>
+        </div>
+      </div>
+
+      <!-- Simulation Pipeline Stage Visualizer -->
+      <div class="pipeline-flow-bar reveal" style="--d: 120ms" aria-label="Freight Document Pipeline Flow">
+        <div class="pipeline-step"><span class="step-idx">01</span><span class="step-name">INCOMING</span></div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step"><span class="step-idx">02</span><span class="step-name">EXTRACTION</span></div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step"><span class="step-idx">03</span><span class="step-name">VALIDATION</span></div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step"><span class="step-idx">04</span><span class="step-name">ROUTING</span></div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step step-outcome"><span class="step-idx">05</span><span class="step-name">TMS OUTCOME</span></div>
+      </div>
+
+      <!-- Station Controls & Inspection Console -->
+      <div class="station-console-layout reveal" style="--d: 150ms">
+        <!-- Controls Column -->
+        <div class="console-controls-col">
+          <div class="control-card">
+            <h3 class="control-card-title">Console Controls</h3>
+            
+            <div class="control-group">
+              <label for="freightDocSelect" class="control-label">Select Synthetic Document</label>
+              <select id="freightDocSelect" class="hud-select" aria-label="Select Synthetic Freight Document">
+                <option value="DOC-801" selected>DOC-801: Apex Freight Logistics (ORD -> ATL)</option>
+                <option value="DOC-802">DOC-802: Blue Ridge Cold Chain (DAL -> DEN)</option>
+                <option value="DOC-803">DOC-803: Cascade Heavy Haul (SEA -> SLC) [MISSING RATE]</option>
+                <option value="DOC-804">DOC-804: Desert Sun Transport (LAX -> PHX)</option>
+                <option value="DOC-805">DOC-805: Evergreen Produce Express (MIA -> CLT) [MISSING APPT]</option>
+                <option value="DOC-806">DOC-806: Frontier Specialized Carriers (HOU -> MEM)</option>
+                <option value="DOC-807">DOC-807: Great Lakes Freightway (EWR -> CMH) [CONTRADICTION]</option>
+                <option value="DOC-808">DOC-808: Midwest Corridor Express (IND -> DET)</option>
+                <option value="DOC-809">DOC-809: Keystone Logistics Partners (KCM -> BNA)</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="freightThresholdSlider" class="control-label">Confidence Threshold Setting</label>
+                <span class="control-val" id="freightThresholdVal">85%</span>
+              </div>
+              <input type="range" id="freightThresholdSlider" class="hud-slider" min="60" max="99" value="85" aria-label="Confidence Threshold Slider">
+              <span class="control-hint">Initial baseline: 85%. Adjusting threshold updates fleet routing live.</span>
+            </div>
+
+            <button type="button" id="runFreightPipelineBtn" class="hud-btn hud-btn-primary" style="width: 100%;">
+              RERUN PIPELINE
+            </button>
+          </div>
+
+          <!-- Critical Product Guardrail Notice -->
+          <div class="critical-rule-banner">
+            <span class="banner-icon">🛡️</span>
+            <div class="banner-body">
+              <strong>Non-Negotiable Product Rule:</strong>
+              A missing mandatory field (Rate, Appointment, Destination) or accessorial contradiction <em>must never be automatically synchronized</em>, regardless of extraction confidence.
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Inspection Column -->
+        <div class="console-telemetry-col">
+          <div class="telemetry-inspector-card">
+            <div class="inspector-header">
+              <div>
+                <span class="inspector-eyebrow">DOCUMENT TELEMETRY AUDIT</span>
+                <h4 class="inspector-id" id="fDocIdBadge">DOC-801 // LD-99210-CHI</h4>
+              </div>
+              <div class="inspector-header-badges">
+                <span id="fDocConfidenceBadge" class="hud-tag tag-emerald">94% Confidence</span>
+                <span id="fDocStatusBadge" class="status-pill status-emerald">AUTO-SYNC AUTHORIZED</span>
+              </div>
+            </div>
+
+            <div class="inspector-fields-grid">
+              <div class="field-item">
+                <span class="field-label">Assigned Carrier</span>
+                <span class="field-val" id="fDocCarrier">Apex Freight Logistics</span>
+              </div>
+              <div class="field-item">
+                <span class="field-label">Origin Facility</span>
+                <span class="field-val" id="fDocOrigin">Chicago, IL (ORD Hub)</span>
+              </div>
+              <div class="field-item">
+                <span class="field-label">Consignee Destination</span>
+                <span class="field-val" id="fDocDest">Atlanta, GA (ATL DC)</span>
+              </div>
+              <div class="field-item">
+                <span class="field-label">Agreed Linehaul Rate</span>
+                <span class="field-val" id="fDocRate">$2,450 USD</span>
+              </div>
+              <div class="field-item">
+                <span class="field-label">Weight &amp; Equipment</span>
+                <span class="field-val" id="fDocWeight">41,200 lbs (Dry Van 53ft)</span>
+              </div>
+              <div class="field-item">
+                <span class="field-label">Delivery Appointment Window</span>
+                <span class="field-val" id="fDocDate">2026-11-08</span>
+              </div>
+            </div>
+
+            <div class="decision-rationale-box" id="fDocDecisionNote">
+              <strong>Pipeline Logic:</strong> All mandatory fields verified present and consistent. Extraction confidence (94%) meets or exceeds the active threshold (85%). Document is authorized for automatic synchronization with zero manual touchpoints.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Universal Product Reasoning Layer -->
+      <div class="reasoning-drawer-card reveal" style="--d: 180ms">
+        <div class="reasoning-header">
+          <span class="reasoning-tag">PRODUCT REASONING LAYER</span>
+          <h3 class="reasoning-title">WHY DID THE SYSTEM DECIDE THIS?</h3>
+        </div>
+        <div class="reasoning-grid">
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">1. Problem Being Addressed</h4>
+            <p id="fWhyProblem" class="reasoning-text">
+              Freight rate confirmations arrive in varied, unstructured PDF formats across broker networks. Without deterministic validation guardrails, automated LLM or OCR extraction risks committing incomplete rates or contradictory accessorial clauses into TMS records, leading to billing exceptions and administrative reconciliation overhead.
+            </p>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">2. Decision Rules &amp; Guardrails</h4>
+            <div id="fWhyRule" class="reasoning-text">
+              <strong>Rule 1 (Completeness Guardrail):</strong> If any mandatory field (Rate, Appointment, Route) is null or contradictory, the record is <em>permanently blocked from auto-sync</em>.<br>
+              <strong>Rule 2 (Confidence Threshold):</strong> Complete records are only auto-synced if confidence &ge; 85%. Otherwise routed to human review.
+            </div>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">3. Trade-Off Analysis &amp; Sensitivity</h4>
+            <div id="fWhyTradeoff" class="reasoning-text">
+              At 85% threshold, synthetic rate cons auto-sync cleanly. Raising threshold to 95% eliminates false-positive risk but increases operator queue burden; lowering to 70% accelerates ingest but risks undetected detention/rate misinterpretations.
+            </div>
+          </div>
+        </div>
+        <div class="reasoning-footer">
+          <span class="reasoning-footer-note">
+            <strong>Project Maturity:</strong> Loadvanta is an independent product concept, functional PRD, and architectural specification for freight rate confirmation ingest. The simulation below evaluates 9 synthetic documents against designed business rules; it does not claim live enterprise TMS integrations, paying commercial clients, or measured financial savings.
+          </span>
+          <a href="#projects" class="hud-link">View Loadvanta Case Summary &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- STATION 02: DISPUTE INTELLIGENCE (CHARGEDOSSIER)         -->
+  <!-- ======================================================= -->
+  <section id="station-dispute" class="lab-station-section" aria-label="Station 02: Dispute Intelligence">
+    <div class="station-inner">
+      <div class="station-header reveal" style="--d: 60ms">
+        <div class="station-badge-row">
+          <span class="station-index-badge">STATION 02 // DISPUTE INTELLIGENCE</span>
+          <span class="station-project-pill">CHARGEDOSSIER 24/24 TESTS</span>
+          <span class="station-disclaimer-pill">SYNTHETIC CASES &bull; NOT A LIVE PAYMENT-NETWORK INTEGRATION</span>
+        </div>
+        <h2 class="station-title">ChargeDossier: Evidence-Quality Review Copilot</h2>
+        <p class="station-subtitle">
+          Deterministic Second Presentment evidence-readiness simulation for high-ticket e-commerce disputes under Mastercard Reason 4837 (Fraud) and Reason 4853 (Dispute) rules. (Synthetic benchmark cases replicating the open-source ChargeDossier rules engine).
+        </p>
+      </div>
+
+      <!-- Critical Card Network Reality Notice -->
+      <div class="card-network-warning-box reveal" style="--d: 80ms">
+        <span class="warning-icon">⚠️</span>
+        <div class="warning-content">
+          <strong>Card-Network Reality Check:</strong>
+          A high evidence score does not guarantee a successful dispute outcome. Issuing banks and card-network arbitration committees retain final judgment. ChargeDossier scores <em>evidence completeness and defense viability</em> to eliminate blind submissions and non-refundable fees.
+        </div>
+      </div>
+
+      <div class="dispute-console-layout reveal" style="--d: 110ms">
+        <!-- Dispute Controls Column -->
+        <div class="dispute-left-col">
+          <div class="control-card">
+            <h3 class="control-card-title">Dispute Case Selector</h3>
+            
+            <div class="control-group">
+              <label for="disputeCaseSelect" class="control-label">Select Synthetic Dispute Case</label>
+              <select id="disputeCaseSelect" class="hud-select" aria-label="Select Synthetic Dispute Case">
+                <option value="DSP-1049">DSP-1049: $349.00 USD - Wireless ANC Headphones (Reason 4837 / Fraud)</option>
+                <option value="DSP-2081">DSP-2081: $295.00 USD - Precision Coffee Grinder (Reason 4853 / In Transit)</option>
+                <option value="DSP-3312">DSP-3312: $850.00 USD - Motorized Standing Desk (Reason 4837 / Reshipper Mismatch)</option>
+                <option value="DSP-4190" selected>DSP-4190: $1,150.00 USD - Platform Bed Frame (Reason 4853 / Defective)</option>
+              </select>
+            </div>
+
+            <!-- Case Summary Metadata -->
+            <div class="dispute-case-meta-box">
+              <div class="case-meta-row">
+                <span class="meta-label">Claim Amount:</span>
+                <strong class="meta-val" id="dCaseAmount">$1,150.00 USD</strong>
+              </div>
+              <div class="case-meta-row">
+                <span class="meta-label">Disputed Item:</span>
+                <span class="meta-val" id="dCaseItem">The Modern Modular Platform Bed Frame (King / Natural)</span>
+              </div>
+              <div class="case-meta-row">
+                <span class="meta-label">Reason Code:</span>
+                <span class="meta-val text-cyan" id="dCaseReason">Reason 4853 (Goods Not as Described / Defective Merchandise)</span>
+              </div>
+              <div class="case-context-text" id="dCaseContext">
+                High-ticket furniture purchase ($1,150). Customer reported cracked bed frame slat. Delivered with signature, but merchant dossier initially lacks published 30-day return/warranty policy clause and formal customer support remedy logs.
+              </div>
+            </div>
+
+            <!-- Evidence Modification Checklist -->
+            <h4 class="evidence-checklist-title">Interactive Evidence Checklist (Remediation)</h4>
+            <div class="evidence-checklist-items">
+              <label class="evidence-chk-row">
+                <input type="checkbox" id="chkAvsCvv" class="hud-checkbox" checked>
+                <span class="chk-label">Payment &amp; Identity Auth (AVS match, CVC match, 3DS authenticated) <small>(30 pts)</small></span>
+              </label>
+
+              <label class="evidence-chk-row">
+                <input type="checkbox" id="chkPod" class="hud-checkbox" checked>
+                <span class="chk-label">Carrier Proof of Delivery &amp; Signed Customer Manifest <small>(35 pts)</small></span>
+              </label>
+
+              <label class="evidence-chk-row">
+                <input type="checkbox" id="chkTermsRefund" class="hud-checkbox">
+                <span class="chk-label">Published 30-Day Return &amp; Warranty Policy Attached <small>(+12 pts remediation)</small></span>
+              </label>
+
+              <label class="evidence-chk-row">
+                <input type="checkbox" id="chkCustomerComm" class="hud-checkbox">
+                <span class="chk-label">Customer Support Remedy &amp; Replacement Log Attached <small>(+15 pts remediation)</small></span>
+              </label>
+
+              <label class="evidence-chk-row">
+                <input type="checkbox" id="chkDeviceIp" class="hud-checkbox" checked>
+                <span class="chk-label">Customer Account Tenure &amp; Prior Order History Verified <small>(8 pts)</small></span>
+              </label>
+
+              <label class="evidence-chk-row chk-penalty">
+                <input type="checkbox" id="chkFatalMismatch" class="hud-checkbox">
+                <span class="chk-label text-rose">Fatal Contradiction Flag (Freight Forwarder / Address Contradiction) <small>(-40 pts penalty)</small></span>
+              </label>
+            </div>
+
+            <div class="checklist-actions-row">
+              <button type="button" id="recalcDisputeBtn" class="hud-btn hud-btn-primary">
+                RECALCULATE SCORE
+              </button>
+              <button type="button" id="resetEvidenceBtn" class="hud-btn hud-btn-ghost">
+                Reset Case
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidence Readiness Score Gauge Column -->
+        <div class="dispute-right-col">
+          <div class="score-gauge-card">
+            <span class="score-card-eyebrow">DETERMINISTIC EVIDENCE READINESS</span>
+            
+            <div class="score-center-display">
+              <div class="score-number-box">
+                <span class="score-number text-amber" id="dScoreVal">73</span>
+                <span class="score-max">/100</span>
+              </div>
+              <div class="score-tier-wrap">
+                <span class="status-pill status-amber" id="dScoreTierBadge">TIER B // REMEDIATION NEEDED</span>
+              </div>
+            </div>
+
+            <div class="score-recommendation-box" id="dScoreRecommendation">
+              Moderate defense readiness (73/100). Key merchant disclosure missing (published return policy and support remedy log). Remediation recommended before Second Presentment drafting.
+            </div>
+
+            <!-- Comparison Diff -->
+            <div class="score-diff-banner" id="dInitialComparison">
+              <strong>Baseline Comparison:</strong> Initial Case Score was <strong>73/100</strong> (TIER B). Current Remediation Delta: <span style="color:#10b981; font-weight:700;">0 pts</span>.
+            </div>
+
+            <!-- Scoring Tiers Reference -->
+            <div class="tiers-reference-grid">
+              <div class="tier-ref-item tier-ref-emerald">
+                <strong>TIER A (&ge; 80)</strong>
+                <span>High readiness. Second Presentment recommended.</span>
+              </div>
+              <div class="tier-ref-item tier-ref-amber">
+                <strong>TIER B (60&ndash;79)</strong>
+                <span>Moderate readiness. Remediation recommended.</span>
+              </div>
+              <div class="tier-ref-item tier-ref-rose">
+                <strong>TIER C (&lt; 60)</strong>
+                <span>Unviable. Block submission to avoid representment fees.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Universal Product Reasoning Layer -->
+      <div class="reasoning-drawer-card reveal" style="--d: 140ms">
+        <div class="reasoning-header">
+          <span class="reasoning-tag">PRODUCT REASONING LAYER</span>
+          <h3 class="reasoning-title">WHY DID THE SYSTEM DECIDE THIS?</h3>
+        </div>
+        <div class="reasoning-grid">
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">1. Problem Being Addressed</h4>
+            <p class="reasoning-text">
+              High-ticket online merchants often lack upfront evidentiary triage, leading to representment administrative fees on unviable disputes or reliance on external contingency recovery services (typically ~25% fee on recovered funds).
+            </p>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">2. Scoring Weights &amp; Rules</h4>
+            <p class="reasoning-text">
+              Carrier Proof of Delivery with signature (35 pts) and Gateway Authentication (AVS/CVC/3DS, 30 pts) carry primary weight under Reason 4837/4853. Contradictory tracking or unverified freight forwarders incur a fatal -40 pt deduction, correctly forcing Tier C unviable defense.
+            </p>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">3. Verified Automated Test Suite</h4>
+            <p class="reasoning-text">
+              ChargeDossier is powered by a deterministic scoring rules engine backed by <strong>24/24 passing automated tests</strong> (7 engine tests, 13 REST tests, 4 E2E tests) modeling Mastercard Second Presentment workflows.
+            </p>
+          </div>
+        </div>
+        <div class="reasoning-footer">
+          <span class="reasoning-footer-note">
+            <strong>Prototype Grounding:</strong> ChargeDossier is an APM portfolio project developed under Mastercard Opportunity Lab frameworks with 24/24 tests passed.
+          </span>
+          <div style="display: flex; gap: 10px;">
+            <a class="hud-link" href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+            <a class="hud-link" href="chargedossier.html">Read Case Study &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- STATION 03: PRODUCT STRATEGY SIMULATOR                   -->
+  <!-- ======================================================= -->
+  <section id="station-strategy" class="lab-station-section" aria-label="Station 03: Product Strategy Simulator">
+    <div class="station-inner">
+      <div class="station-header reveal" style="--d: 60ms">
+        <div class="station-badge-row">
+          <span class="station-index-badge">STATION 03 // PRODUCT STRATEGY &amp; PRIORITIZATION</span>
+          <span class="station-project-pill">MULTI-VARIABLE RANKING</span>
+          <span class="station-disclaimer-pill">HYPOTHETICAL MODEL &bull; ILLUSTRATIVE STRATEGY SIMULATION</span>
+        </div>
+        <h2 class="station-title">Product Strategy Simulator: Quantitative Hypothesis Ranking</h2>
+        <p class="station-subtitle">
+          Interactive prioritization model evaluating competing APM roadmap bets across impact, confidence, effort, and risk penalties with live ranking recalculation.
+        </p>
+      </div>
+
+      <!-- Formula Documentation HUD Callout -->
+      <div class="formula-doc-banner reveal" style="--d: 80ms">
+        <span class="formula-label">📐 Transparent Prioritization Formula:</span>
+        <code class="formula-code">Priority Score = [Impact &times; (Confidence / 100)] / [max(1, Effort) &times; (1 + Risk &times; 0.2)] &times; 100</code>
+        <span class="formula-note">Adjusting any slider below recalculates ranking live with division-by-zero protection.</span>
+      </div>
+
+      <!-- Live Dynamic Strategy Cards Container -->
+      <div id="strategyCardsContainer" class="strategy-cards-grid reveal" style="--d: 110ms">
+        <!-- Populated via script.js initStationStrategy() -->
+      </div>
+
+      <!-- Universal Product Reasoning Layer -->
+      <div class="reasoning-drawer-card reveal" style="--d: 140ms">
+        <div class="reasoning-header">
+          <span class="reasoning-tag">PRODUCT REASONING LAYER</span>
+          <h3 class="reasoning-title">WHY DID THE SYSTEM DECIDE THIS?</h3>
+        </div>
+        <div class="reasoning-grid">
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">1. Prioritization Model Reality</h4>
+            <p class="reasoning-text">
+              Quantitative models provide structured heuristics to expose unstated assumptions, but real product strategy depends on organizational constraints, cross-functional dependencies, and strategic alignment.
+            </p>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">2. Risk Penalty Mechanics</h4>
+            <p class="reasoning-text">
+              High uncertainty or regulatory risk penalizes score denominators heavily. Running low-cost discovery spikes elevates confidence and de-risks initiatives before engineering sprint allocation.
+            </p>
+          </div>
+          <div class="reasoning-col">
+            <h4 class="reasoning-col-title">3. Experiment Validation Loop</h4>
+            <p class="reasoning-text">
+              Every ranked initiative includes an explicit validation experiment step (e.g. shadow-mode data tests or corridor pilots) to turn speculative confidence scores into validated learning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================================================= -->
+<!-- PRESERVED PORTFOLIO SECTION: FEATURED CASE STUDIES        -->
+<!-- ========================================================= -->
+<section id="projects" class="projects" aria-label="Featured Product Projects">
+  <div class="projects-inner">
+
+    <div class="projects-section">
+      <div class="section-title-wrap reveal" style="--d: 60ms">
+        <span class="hud-tag tag-cyan">VERIFIED ARTIFACTS</span>
+        <h2 class="section-title">⭐ Featured Product Case Studies &amp; Prototypes</h2>
+      </div>
+      
+      <div class="projects-grid">
+
+        <!-- Case 1: ChargeDossier -->
+        <article class="project-card project-card-uber featured-card reveal" style="--d: 90ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; position: relative; z-index: 2;">
+            <span class="featured-badge" style="margin-bottom: 0;">Featured Case Study</span>
+            <span class="featured-badge" style="margin-bottom: 0; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981;">24/24 Tests Passed</span>
+          </div>
+          <h3 class="project-title">ChargeDossier</h3>
+          <p class="project-subtitle">Evidence-Quality Review Copilot for High-Ticket E-Commerce Disputes</p>
+
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 16px; position: relative; z-index: 2;">
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(0,229,255,0.08); color: #00e5ff; border: 1px solid rgba(0,229,255,0.25);">Mastercard Opportunity Lab</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">Fintech &amp; Payments</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">Deterministic AI Rules</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">$150&ndash;$2,000+ AOV</span>
+          </div>
+
+          <div class="case-grid">
+            <div class="case-col">
+              <h4 class="case-title">Problem</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>Third-party recovery agency contingency fee drag (typically ~25% take-rate on recovered claims)</li>
+                  <li>Blind submission of contradictory tracking or AVS data causing auto-losses</li>
+                  <li>Fragmented manual evidence assembly across disconnected gateways, carriers, and support tools</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Insight</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>High-ticket merchants need pre-flight triage, not post-facto defense</li>
+                  <li>Deterministic scoring beats hallucinating LLMs in financial compliance</li>
+                  <li>Early rejection of unviable claims prevents non-refundable representment administrative fees</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Solution</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>Deterministic rules engine (0&ndash;100 score; Tier A, B, C classification)</li>
+                  <li>Mastercom-modeled Second Presentment dossier compiler (Reason 4837/4853)</li>
+                  <li>Human review lock: operator Approve / Reject checkpoints with zero hallucination</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Impact &amp; Status</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>24/24 automated tests passing (100% pass rate across engine, server &amp; workflow)</li>
+                  <li>Deterministic evidence evaluation executes in &lt;250ms across 24 automated benchmark tests</li>
+                  <li>Interactive gap remediation (DSP-4190 elevates readiness score from 73 to 100)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-actions" style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a class="project-btn" href="https://pragymathur12-king.github.io/chargedossier/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+            <a class="project-btn" href="chargedossier.html" style="background: rgba(0, 229, 255, 0.15); border: 1px solid rgba(0, 229, 255, 0.4); color: #00e5ff;">Read Case Study</a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/chargedossier" target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+          </div>
+        </article>
+
+        <!-- Case 2: Loadvanta -->
+        <article class="project-card project-card-uber featured-card reveal" style="--d: 110ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; position: relative; z-index: 2;">
+            <span class="featured-badge" style="margin-bottom: 0;">Featured MVP Concept</span>
+            <span class="featured-badge" style="margin-bottom: 0; background: rgba(0, 229, 255, 0.15); border: 1px solid rgba(0, 229, 255, 0.4); color: #00e5ff;">Functional Architecture</span>
+          </div>
+          <h3 class="project-title">Loadvanta</h3>
+          <p class="project-subtitle">AI-Enabled Freight Rate Confirmation Processing &amp; Verification System</p>
+
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 16px; position: relative; z-index: 2;">
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(0,229,255,0.08); color: #00e5ff; border: 1px solid rgba(0,229,255,0.25);">Freight &amp; Logistics Tech</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">Deterministic Guardrails</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">Human-in-the-Loop</span>
+            <span style="font-size: 11px; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1);">Auto-Sync vs Review Queue</span>
+          </div>
+
+          <div class="case-grid">
+            <div class="case-col">
+              <h4 class="case-title">Problem</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>Brokers process hundreds of rate cons weekly from fragmented formats</li>
+                  <li>Manual data entry creates errors and billing disputes</li>
+                  <li>Pure OCR and generic LLMs hallucinate critical numbers and accessorials</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Insight</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>Brokers do not need conversational chat &mdash; they need clean TMS sync</li>
+                  <li>Confidence thresholds must decide auto-sync vs human review routing</li>
+                  <li>Accessorial fee detection is the primary driver of invoice disputes</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Solution</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>Deterministic extraction pipeline with field-level confidence scoring</li>
+                  <li>Mandatory field completeness gates: Rate/Appointment nulls strictly blocked</li>
+                  <li>Human-in-the-loop review interface with side-by-side document diff</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="case-col">
+              <h4 class="case-title">Impact &amp; Status</h4>
+              <div class="case-body">
+                <ul class="case-list">
+                  <li>PRD &amp; MVP Functional Architecture completed (Private repository)</li>
+                  <li>Deterministic field extraction validation rules designed for TMS lock</li>
+                  <li>Station 01 simulation model demonstrates live fleet confidence routing</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-actions" style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a class="project-btn" href="#station-freight">Launch Freight Simulator</a>
+            <span style="font-size: 12px; color: #94a3b8; align-self: center;">Private Repository &bull; Architecture Spec</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Section 2: Product Strategy Teardowns -->
+    <div class="projects-section" style="margin-top: 50px;">
+      <h3 class="section-title reveal" style="--d: 60ms; font-size: 24px;">📐 Strategic Product Teardowns &amp; Case Studies</h3>
+      <div class="projects-grid">
+
+        <!-- Case 3: Uber Commute Lock -->
+        <article class="project-card reveal" style="--d: 80ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <span class="featured-badge" style="position: static; margin-bottom: 0;">Strategy Teardown</span>
+            <span class="case-badge-pill">Mobility &amp; Pricing</span>
+          </div>
+          <h3 class="project-title">Uber Commute Lock</h3>
+          <p class="project-subtitle" style="color: #00e5ff; margin-bottom: 12px; font-weight: 500;">Predictable Commuter Subscription Model</p>
+          <p class="project-desc" style="margin-bottom: 18px; font-size: 14px; line-height: 1.65; color: #cbd5e1;">
+            Identified peak-hour churn driven by surge pricing volatility. Designed a subscription model featuring route-locked surge caps, driver earnings protections, and corridor pooling.
+          </p>
+          <div class="project-actions">
+            <a class="project-btn" href="uber.html">Read Teardown</a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/uber-product-teardown" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <!-- Case 4: A/B Testing Framework -->
+        <article class="project-card reveal" style="--d: 100ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Experimentation</span>
+            <span class="case-badge-pill">Growth &amp; Analytics</span>
+          </div>
+          <h3 class="project-title">A/B Testing &amp; Conversion Optimization</h3>
+          <p class="project-subtitle" style="color: #00e5ff; margin-bottom: 12px; font-weight: 500;">Statistical Rigor &amp; Funnel Optimization</p>
+          <p class="project-desc" style="margin-bottom: 18px; font-size: 14px; line-height: 1.65; color: #cbd5e1;">
+            Designed experiment specifications with sample size power calculations, guardrail metrics, and statistical significance tracking. Modeled checkout friction tests to boost conversion safely.
+          </p>
+          <div class="project-actions">
+            <a class="project-btn" href="ab-testing.html">Read Case Study</a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/ab-testing-conversion-optimization" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <!-- Case 5: AI Feature Discovery -->
+        <article class="project-card reveal" style="--d: 120ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">AI Discovery</span>
+            <span class="case-badge-pill">Product Scoping</span>
+          </div>
+          <h3 class="project-title">AI Feature Discovery &amp; PRD Framework</h3>
+          <p class="project-subtitle" style="color: #00e5ff; margin-bottom: 12px; font-weight: 500;">Deterministic Guardrails &amp; Human-in-the-Loop</p>
+          <p class="project-desc" style="margin-bottom: 18px; font-size: 14px; line-height: 1.65; color: #cbd5e1;">
+            Framework for evaluating whether a problem requires deterministic heuristics or probabilistic AI. Includes guardrail definitions, confidence thresholds, and human-in-the-loop review architecture.
+          </p>
+          <div class="project-actions">
+            <a class="project-btn" href="ai-feature.html">Read Case Study</a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/ai-feature-discovery-framework" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <!-- Case 6: Competitor Analysis -->
+        <article class="project-card reveal" style="--d: 140ms">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+            <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Product Strategy</span>
+            <span class="case-badge-pill">Market Research</span>
+          </div>
+          <h3 class="project-title">Competitor Analysis &amp; Roadmap Prioritization</h3>
+          <p class="project-subtitle" style="color: #00e5ff; margin-bottom: 12px; font-weight: 500;">Strategic Benchmarking &amp; RICE Scoring</p>
+          <p class="project-desc" style="margin-bottom: 18px; font-size: 14px; line-height: 1.65; color: #cbd5e1;">
+            Translated competitive landscape signals into strategic product bets. Implemented benchmark mapping, positioning gap analysis, and impact vs effort scoring frameworks.
+          </p>
+          <div class="project-actions">
+            <a class="project-btn" href="competitor-analysis.html">Read Case Study</a>
+            <a class="project-btn project-btn-ghost" href="https://github.com/pragymathur12-king/competitor-analysis-product-roadmap" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- ACADEMIC RESEARCH & PREPRINT SECTION                     -->
+<!-- ========================================================= -->
+<section id="research" class="projects" aria-label="Academic Research and Preprint" style="padding-top: 60px; padding-bottom: 60px;">
+  <div class="projects-inner">
+    <div class="projects-section">
+      <h2 class="section-title reveal" style="--d: 60ms">📚 Academic Research &amp; Preprint</h2>
+      <p style="color: #cbd5e1; font-size: 15px; margin-top: 8px; margin-bottom: 24px;" class="reveal" style="--d: 80ms">
+        Working papers and academic research exploring global brand strategy, digital consumer psychology, and cross-cultural marketing.
+      </p>
+
+      <div class="projects-grid" style="grid-template-columns: 1fr;">
+        <article class="project-card reveal" style="--d: 110ms; border: 1px solid rgba(0,229,255,.35); background: rgba(5,8,22,0.7);">
+          <div class="project-glow"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+            <span class="featured-badge" style="position: static; display: inline-block;">Academic Working Paper / Preprint</span>
+            <span class="case-badge-pill" style="border-color: #00e5ff; color: #00e5ff;">Zenodo Repository</span>
+            <span class="case-badge-pill" style="border-color: rgba(255,255,255,0.2); color: #cbd5e1;">DOI: 10.5281/zenodo.23871769</span>
+          </div>
+
+          <h3 class="project-title" style="font-size: 23px; line-height: 1.4; margin-bottom: 8px; color: #F8FAFC;">
+            Digital Marketing Strategies and Global Brand Awareness: A Cross-Cultural Study of International Businesses
+          </h3>
+
+          <p class="project-subtitle" style="color: #8bcfff; font-size: 14px; margin-bottom: 14px;">
+            <strong>Author:</strong> Pragy Mathur &nbsp;&bull;&nbsp; <strong>Affiliation:</strong> Parul Institute of Business Administration, Parul University
+          </p>
+
+          <p class="project-desc" style="color: #cbd5e1; font-size: 14px; line-height: 1.7; margin-bottom: 22px;">
+            An empirical investigation analyzing digital marketing frameworks across distinct cultural environments, assessing how global enterprises optimize brand affinity, cross-cultural customer engagement, and digital conversion.
+          </p>
+
+          <div class="project-actions">
+            <a class="project-btn" href="https://zenodo.org/records/23871769" target="_blank" rel="noopener noreferrer">
+              Read Working Paper / View Zenodo Record ↗
+            </a>
+            <a class="project-btn project-btn-ghost" href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer">
+              View DOI (10.5281/zenodo.23871769) ↗
+            </a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- CREDENTIALS & BADGES SECTION                              -->
+<!-- ========================================================= -->
+<section id="credentials" class="about" aria-label="Certificates and Badges" style="padding-top: 60px; padding-bottom: 60px;">
+  <div class="about-inner">
+    <h2 class="section-title reveal" style="--d: 60ms">🏅 Certificates &amp; Badges</h2>
+    <p class="about-intro reveal" style="--d: 100ms; margin-bottom: 28px;">
+      Verified industry badges and professional credentials supporting product management, project leadership, and financial market strategy.
+    </p>
+
+    <div class="about-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      
+      <!-- Credential: KICKOFF Predictive Badge -->
+      <article class="about-card reveal" style="--d: 140ms; border: 1px solid rgba(0,229,255,0.25);">
+        <div class="about-card-glow"></div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+          <span class="case-badge-pill" style="border-color: #10b981; color: #10b981; background: rgba(16,185,129,0.12);">Verified Credential</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8;">PMI KICKOFF™</span>
+        </div>
+        <h4 class="about-card-title" style="font-size: 18px; color: #F8FAFC; margin-bottom: 6px;">
+          KICKOFF™ Predictive Badge
+        </h4>
+        <p style="font-size: 13px; color: #00e5ff; font-weight: 600; margin-bottom: 10px;">
+          Issuer: Project Management Institute (PMI) / KICKOFF™
+        </p>
+        <p class="about-card-text" style="font-size: 13px; line-height: 1.6; margin-bottom: 16px;">
+          Demonstrated practical project management competency covering project charters, predictive project lifecycles, and stakeholder alignment (applied in the &lsquo;GrowBot&rsquo; product planning project).
+        </p>
+        <div style="margin-top: auto; padding-top: 10px;">
+          <a class="project-btn" href="https://lnkd.in/p/d6pniVbi" target="_blank" rel="noopener noreferrer" style="font-size: 12px; padding: 8px 14px; display: inline-block;">
+            View Credential on LinkedIn ↗
+          </a>
+        </div>
+      </article>
+
+      <!-- Credential: INDmoney Certificate of Excellence -->
+      <article class="about-card reveal" style="--d: 180ms; border: 1px solid rgba(255,255,255,0.1);">
+        <div class="about-card-glow"></div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+          <span class="case-badge-pill" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.12);">Course Certificate</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8;">INDmoney</span>
+        </div>
+        <h4 class="about-card-title" style="font-size: 18px; color: #F8FAFC; margin-bottom: 6px;">
+          Certificate of Excellence
+        </h4>
+        <p style="font-size: 13px; color: #00e5ff; font-weight: 600; margin-bottom: 10px;">
+          Issuer: INDmoney
+        </p>
+        <p class="about-card-text" style="font-size: 13px; line-height: 1.6; margin-bottom: 16px;">
+          Awarded for successful completion and excellence in mutual funds, index funds analysis, and financial market investment fundamentals.
+        </p>
+        <div style="margin-top: auto; padding-top: 10px;">
+          <span style="font-size: 12px; color: #94a3b8; font-style: italic;">
+            Direct verification link pending
+          </span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- ABOUT SECTION                                             -->
+<!-- ========================================================= -->
+<section id="about" class="about" aria-label="About &amp; Product Thinking">
+  <div class="about-inner">
+    <h2 class="about-title reveal" style="--d: 60ms">About Me</h2>
+
+    <p class="about-intro reveal" style="--d: 100ms">
+      Hi, I'm Pragy Mathur. I am an Integrated MBA candidate (Class of 2027) at Parul Institute of Business Administration, specializing in International Business with a focus on AI Product Management, product discovery, workflow automation, and user experience.
+      <br><br>
+      Rather than building features in isolation, I start by asking: <span class="quote">&ldquo;What is the core user friction, and what measurable problem are we solving?&rdquo;</span> That principle drives every case study, prototype, and evaluation framework I build.
+    </p>
+
+    <h3 class="about-subtitle reveal" style="--d: 140ms">Product Philosophy</h3>
+
+    <div class="about-cards">
+      <article class="about-card reveal" style="--d: 180ms">
+        <div class="about-card-glow"></div>
+        <div class="about-emoji">🧠</div>
+        <h4 class="about-card-title">User First Problem Framing</h4>
+        <p class="about-card-text">I prioritize real customer pain points and behavioral friction before committing to technical solutions.</p>
+      </article>
+
+      <article class="about-card reveal" style="--d: 220ms">
+        <div class="about-card-glow"></div>
+        <div class="about-emoji">📊</div>
+        <h4 class="about-card-title">Deterministic Validation</h4>
+        <p class="about-card-text">I rely on quantitative analytics, deterministic guardrails, and rigorous experiment design to de-risk decisions.</p>
+      </article>
+
+      <article class="about-card reveal" style="--d: 260ms">
+        <div class="about-card-glow"></div>
+        <div class="about-emoji">🤖</div>
+        <h4 class="about-card-title">AI-Augmented Workflows</h4>
+        <p class="about-card-text">I leverage AI tools to accelerate discovery, documentation, and prototyping while keeping human operators in control.</p>
+      </article>
+
+      <article class="about-card reveal" style="--d: 300ms">
+        <div class="about-card-glow"></div>
+        <div class="about-emoji">🚀</div>
+        <h4 class="about-card-title">Continuous Iteration</h4>
+        <p class="about-card-text">I build fast, verify with automated test suites, and continuously improve through user feedback loops.</p>
+      </article>
+    </div>
+
+    <h3 class="about-subtitle reveal" style="--d: 340ms">Verified Track Record &amp; Metrics</h3>
+
+    <div class="metrics" role="list">
+      <div class="metric" role="listitem">
+        <div class="metric-value reveal" data-target="6" data-suffix="+" style="--d: 380ms">0</div>
+        <div class="metric-label reveal" style="--d: 410ms">6+ Case Studies &amp; Prototypes</div>
+      </div>
+
+      <div class="metric" role="listitem">
+        <div class="metric-value reveal" data-target="24" data-suffix="/24" style="--d: 440ms">0</div>
+        <div class="metric-label reveal" style="--d: 470ms">24/24 Automated Tests Passed</div>
+      </div>
+
+      <div class="metric" role="listitem">
+        <div class="metric-value reveal" data-target="1" data-suffix="" style="--d: 500ms">0</div>
+        <div class="metric-label reveal" style="--d: 530ms">1 Research Preprint (Zenodo DOI)</div>
+      </div>
+
+      <div class="metric" role="listitem">
+        <div class="metric-value reveal" data-target="2" data-suffix="" style="--d: 560ms">0</div>
+        <div class="metric-label reveal" style="--d: 590ms">2 Verified Industry Badges</div>
+      </div>
+    </div>
+
+    <h3 class="about-subtitle reveal" style="--d: 620ms">My Product Journey</h3>
+
+    <div class="timeline reveal" style="--d: 660ms" aria-label="Product Journey Timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item" data-step="2024">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-text">Started exploring Product Management &amp; Business Strategy</div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-step="2025">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-text">Built Product Strategy Case Studies &amp; Experimentation Frameworks</div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-step="2026">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-text">Prototyped AI-Powered Systems, Authored Research &amp; Published Portfolio</div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-step="next">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card timeline-card-next">
+          <div class="timeline-year">Next Goal</div>
+          <div class="timeline-text">Join a world-class team as an Associate Product Manager / PM</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- DEDICATED CONTACT SECTION                                 -->
+<!-- ========================================================= -->
+<section id="contact" class="contact-section" aria-label="Contact Information">
+  <div class="contact-inner">
+    <div class="contact-header">
+      <h2 class="section-title reveal" style="--d: 60ms">📬 Get In Touch</h2>
+      <p class="section-subtitle reveal" style="--d: 90ms">
+        I am actively seeking <strong>Associate Product Manager (APM)</strong>, <strong>Junior PM</strong>, and <strong>AI Product Analyst</strong> opportunities. Whether you have an open role, feedback on my case studies, or a product idea to discuss, feel free to reach out directly.
+      </p>
+    </div>
+
+    <div class="contact-cards-grid reveal" style="--d: 120ms">
+      
+      <!-- Card 1: Email -->
+      <article class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-body">
+          <span class="contact-card-label">Email Address</span>
+          <a class="contact-card-value" href="mailto:pragymathur12@gmail.com">pragymathur12@gmail.com</a>
+          <p class="contact-card-hint">Best for direct inquiries and recruiter messages</p>
+        </div>
+        <a class="contact-action-btn" href="mailto:pragymathur12@gmail.com">
+          Send Email ↗
+        </a>
+      </article>
+
+      <!-- Card 2: Phone / WhatsApp -->
+      <article class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-body">
+          <span class="contact-card-label">Direct Phone &amp; WhatsApp</span>
+          <a class="contact-card-value" href="tel:+919509932859">+91 9509932859</a>
+          <p class="contact-card-hint">Available for phone calls and WhatsApp messaging</p>
+        </div>
+        <a class="contact-action-btn" href="tel:+919509932859">
+          Call / WhatsApp ↗
+        </a>
+      </article>
+
+      <!-- Card 3: LinkedIn -->
+      <article class="contact-card">
+        <div class="contact-card-icon">💼</div>
+        <div class="contact-card-body">
+          <span class="contact-card-label">LinkedIn Profile</span>
+          <a class="contact-card-value" href="https://www.linkedin.com/in/pragy-mathur-2a9393257/" target="_blank" rel="noopener noreferrer">in/pragy-mathur-2a9393257</a>
+          <p class="contact-card-hint">Connect and review professional endorsements</p>
+        </div>
+        <a class="contact-action-btn" href="https://www.linkedin.com/in/pragy-mathur-2a9393257/" target="_blank" rel="noopener noreferrer">
+          View LinkedIn ↗
+        </a>
+      </article>
+
+      <!-- Card 4: Location & Fast Documents -->
+      <article class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-body">
+          <span class="contact-card-label">Location &amp; Fast Links</span>
+          <span class="contact-card-value" style="color: #F8FAFC;">Jodhpur, Rajasthan, India</span>
+          <p class="contact-card-hint">Open to on-site, hybrid, and remote relocation</p>
+        </div>
+        <div class="contact-pill-actions">
+          <a class="contact-mini-btn" href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">Resume PDF</a>
+          <a class="contact-mini-btn" href="./cv.html">Detailed CV</a>
+          <a class="contact-mini-btn" href="https://github.com/pragymathur12-king" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FINAL CTA                                                 -->
+<!-- ========================================================= -->
+<section class="final-cta" aria-label="Call To Action">
+  <div class="final-cta-inner">
+    <div class="final-cta-card reveal" style="--d: 80ms">
+      <h2 class="final-cta-title">Let&rsquo;s Build Something Together</h2>
+      <p class="final-cta-subtitle">
+        I&rsquo;m actively looking for Product Management and AI Product roles where I can contribute to real-world product building, deterministic automation, and growth strategy.
+      </p>
+
+      <div class="final-cta-buttons">
+        <a class="cta-btn cta-btn-primary" href="index.html">← Return to Main Portfolio Homepage</a>
+        <a class="cta-btn cta-btn-outline" href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">Download One-Page Resume</a>
+        <a class="cta-btn cta-btn-outline" href="./cv.html">View Detailed CV</a>
+        <a class="cta-btn cta-btn-outline" href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf">Download Detailed CV (PDF)</a>
+        <a class="cta-btn cta-btn-outline" href="index.html#contact">Contact Directly</a>
+        <a class="cta-btn cta-btn-outline" href="https://www.linkedin.com/in/pragy-mathur-2a9393257/" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
+        <a class="cta-btn cta-btn-outline" href="https://github.com/pragymathur12-king" target="_blank" rel="noopener noreferrer">View GitHub Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- RECRUITER ACCESS MODAL (INSTANT CANDIDATE DOSSIER)        -->
+<!-- ========================================================= -->
+<div id="recruiterAccessModal" class="recruiter-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="recruiterModalTitle" aria-hidden="true">
+  <div class="recruiter-modal-backdrop" data-close-recruiter-modal></div>
+  <div class="recruiter-modal-dialog">
+    <div class="recruiter-modal-header">
+      <div class="recruiter-header-left">
+        <span class="hud-tag tag-cyan">⚡ RECRUITER ACCESS DOSSIER</span>
+        <h3 id="recruiterModalTitle" class="recruiter-heading">Pragy Mathur &mdash; APM Candidate Profile</h3>
+      </div>
+      <button type="button" class="recruiter-close-btn" data-close-recruiter-modal aria-label="Close Recruiter Access Modal">&times;</button>
+    </div>
+
+    <div class="recruiter-modal-body">
+      <!-- Candidate Tagline & Positioning -->
+      <div class="recruiter-summary-box">
+        <p><strong>Positioning:</strong> Associate Product Manager specializing in <strong>AI Product Strategy</strong>, <strong>Deterministic Guardrails</strong>, and <strong>Applied Experimentation</strong>. Not just conceptual slides: real code, automated test suites, and empirical research.</p>
+      </div>
+
+      <!-- Core Highlights Grid -->
+      <div class="recruiter-highlights-grid">
+        <!-- Item 1: ChargeDossier -->
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-emerald">Featured Case Study &bull; 24/24 Tests Passed</div>
+          <h4 class="highlight-title">ChargeDossier (Fintech / Mastercard)</h4>
+          <p class="highlight-desc">Evidence-quality review copilot for Mastercard chargeback disputes. Built with a deterministic rules engine and <strong>24/24 automated tests passing (100% pass rate)</strong> across engine, server, and workflow test suites.</p>
+        </div>
+
+        <!-- Item 2: Loadvanta -->
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-cyan">Freight Logistics Tech &bull; MVP Spec</div>
+          <h4 class="highlight-title">Loadvanta (Freight Rate Con Ingestion)</h4>
+          <p class="highlight-desc">Product concept, functional architecture, and PRD for AI-assisted freight rate confirmation processing. Designed non-negotiable completeness guardrails and confidence thresholds to isolate incomplete or contradictory documents before TMS commit.</p>
+        </div>
+
+        <!-- Item 3: Uber Commute Lock -->
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-cyan">Mobility Teardown &bull; Growth Strategy</div>
+          <h4 class="highlight-title">Uber Commute Lock (Pricing Concept)</h4>
+          <p class="highlight-desc">Comprehensive product teardown addressing ride-hail commuter churn. Designed a surge-shield subscription model with corridor routing, predictable pricing, and driver gross earnings protections.</p>
+        </div>
+
+        <!-- Item 4: Zenodo Academic Working Paper -->
+        <div class="recruiter-highlight-item">
+          <div class="highlight-badge text-cyan">Academic Research &bull; Zenodo DOI</div>
+          <h4 class="highlight-title">Academic Working Paper / Preprint (Zenodo DOI)</h4>
+          <p class="highlight-desc">Sole author of research on digital marketing strategies and cross-cultural brand awareness across international markets. Indexed on Zenodo repository (DOI: <a href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer" class="hud-link">10.5281/zenodo.23871769</a>).</p>
+        </div>
+      </div>
+
+      <!-- Fast Action Links -->
+      <div class="recruiter-actions-row">
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="hud-btn hud-btn-primary">Download Resume (PDF)</a>
+        <a href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf" class="hud-btn hud-btn-ghost">Download Detailed CV (PDF)</a>
+        <a href="./cv.html" class="hud-btn hud-btn-ghost">View Detailed CV Page</a>
+        <a href="https://www.linkedin.com/in/pragy-mathur-2a9393257/" target="_blank" rel="noopener noreferrer" class="hud-btn hud-btn-ghost">LinkedIn Profile ↗</a>
+        <a href="mailto:pragymathur12@gmail.com" class="hud-btn hud-btn-ghost">Email Directly ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
