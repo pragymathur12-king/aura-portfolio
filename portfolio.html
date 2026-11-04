@@ -19,6 +19,7 @@
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#judgment-lab">Judgment Lab</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#about">About</a></li>
@@ -31,6 +32,13 @@
 
 <section class="hero">
   <div class="hero-left">
+    <div class="hero-fast-track reveal" style="--d: 40ms; margin-bottom: 16px;">
+      <button id="openFastTrack" class="fast-track-pill" type="button" aria-haspopup="dialog" aria-controls="fastTrackModal">
+        <span class="fast-track-pulse" aria-hidden="true"></span>
+        <span class="fast-track-text">Have 60 seconds? Start here &rarr;</span>
+      </button>
+    </div>
+
     <div class="reveal" style="--d: 80ms">
       <h3>Hello, I'm</h3>
       <h1>Pragy Mathur</h1>
@@ -43,6 +51,7 @@
 
     <div class="buttons reveal" style="--d: 160ms">
       <a href="#projects" class="btn1">Explore Portfolio</a>
+      <a href="#judgment-lab" class="btn2">🧪 Product Judgment Lab</a>
       <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="btn2">Download One-Page Resume</a>
       <a href="./cv.html" class="btn2">View Detailed CV</a>
       <a href="./Pragy_Mathur_CV.pdf" download="Pragy_Mathur_CV.pdf" class="btn2">Download Detailed CV (PDF)</a>
@@ -337,6 +346,197 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- THE PRODUCT JUDGMENT LAB (SIGNATURE APM FEATURE)          -->
+<!-- ========================================================= -->
+<section id="judgment-lab" class="projects judgment-lab-section" aria-label="Product Judgment Lab">
+  <div class="projects-inner">
+
+    <div class="projects-section">
+      <!-- Section Header -->
+      <div class="lab-header reveal" style="--d: 60ms">
+        <div class="lab-badge-wrapper">
+          <span class="lab-pill-badge">Interactive APM Case Simulation</span>
+          <span class="lab-pill-live"><span class="live-dot" aria-hidden="true"></span> Live Interactive Sandbox</span>
+        </div>
+        <h2 class="section-title">🧪 The Product Judgment Lab</h2>
+        <p class="lab-tagline">See how I think through product decisions.</p>
+        <p class="lab-intro-text">
+          Real-world product management is rarely about obvious right or wrong answers; it is about managing trade-offs, uncovering second-order risks, and designing validation loops before deploying capital or engineering hours. Select a scenario below to explore how I evaluate competing solutions.
+        </p>
+      </div>
+
+      <!-- Scenario 1: Checkout Conversion Drops 18% -->
+      <div class="lab-scenario-wrapper reveal" style="--d: 90ms">
+        <div class="lab-scenario-card">
+          <div class="lab-scenario-header">
+            <span class="scenario-number">SCENARIO 01</span>
+            <span class="scenario-category">B2B &amp; Fintech Product Strategy</span>
+          </div>
+          <h3 class="scenario-title">Checkout Conversion Drops 18% Post-Update</h3>
+          <p class="scenario-brief">
+            Following a major platform redesign aimed at multi-currency expansion, overall checkout completion dropped by 18% week-over-week. Executives want an immediate rollback; engineering points to third-party payment gateway latency; sales reports that high-value tier clients are encountering unexpected compliance prompts.
+          </p>
+          <div class="scenario-meta">
+            <span class="meta-item"><strong>Impact:</strong> -18% Conversion (~$140k/wk risk)</span>
+            <span class="meta-item"><strong>Stakeholders:</strong> Execs, Eng, Sales, Compliance</span>
+            <span class="meta-item"><strong>Objective:</strong> Formulate initial hypothesis &amp; immediate response</span>
+          </div>
+        </div>
+
+        <!-- 3 Interactive Choice Cards -->
+        <div class="lab-choices-container" role="radiogroup" aria-label="Scenario 1 Decisions">
+          <!-- Option A -->
+          <button type="button" class="choice-card" data-choice="optA" role="radio" aria-checked="false" id="choiceOptA">
+            <div class="choice-card-glow"></div>
+            <div class="choice-top">
+              <span class="choice-letter">OPTION A</span>
+              <span class="choice-badge">Data &amp; Diagnostics First</span>
+            </div>
+            <h4 class="choice-heading">Granular Funnel &amp; Cohort Segmentation</h4>
+            <p class="choice-summary">
+              Deconstruct drop-offs by device, currency, payment gateway, and user tier before making code changes.
+            </p>
+            <div class="choice-cta">
+              <span class="choice-select-label">Select this path &rarr;</span>
+            </div>
+          </button>
+
+          <!-- Option B -->
+          <button type="button" class="choice-card" data-choice="optB" role="radio" aria-checked="false" id="choiceOptB">
+            <div class="choice-card-glow"></div>
+            <div class="choice-top">
+              <span class="choice-letter">OPTION B</span>
+              <span class="choice-badge">Speed &amp; Damage Control</span>
+            </div>
+            <h4 class="choice-heading">Rapid Checkout Simplification &amp; Rollback</h4>
+            <p class="choice-summary">
+              Instantly roll back the multi-step checkout form to single-page flow to stop top-line revenue bleeding.
+            </p>
+            <div class="choice-cta">
+              <span class="choice-select-label">Select this path &rarr;</span>
+            </div>
+          </button>
+
+          <!-- Option C -->
+          <button type="button" class="choice-card" data-choice="optC" role="radio" aria-checked="false" id="choiceOptC">
+            <div class="choice-card-glow"></div>
+            <div class="choice-top">
+              <span class="choice-letter">OPTION C</span>
+              <span class="choice-badge">Systems &amp; Infra First</span>
+            </div>
+            <h4 class="choice-heading">Critical Technical &amp; Payment Gateway Spike</h4>
+            <p class="choice-summary">
+              Direct an emergency engineering sprint to audit API timeouts, 3D Secure failures, and network latency.
+            </p>
+            <div class="choice-cta">
+              <span class="choice-select-label">Select this path &rarr;</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Dynamic Analysis Output Panel -->
+        <div id="labAnalysisSection" class="lab-analysis-section" aria-live="polite">
+          <div class="lab-analysis-placeholder">
+            <div class="placeholder-icon">💡</div>
+            <p class="placeholder-text">Select an option above to see my complete product trade-off breakdown, unstated assumptions, failure modes, and immediate 48-hour action plan.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- My Product Reasoning Framework Card -->
+      <div class="lab-framework-card reveal" style="--d: 120ms">
+        <div class="framework-header">
+          <div class="framework-badge">Core APM Decision Architecture</div>
+          <h3 class="framework-title">My Product Reasoning Framework: 6-Step Decision Cycle</h3>
+          <p class="framework-subtitle">
+            How I approach complex, ambiguous product problems under pressure — moving from noisy signals to falsifiable hypotheses and validated mitigations.
+          </p>
+        </div>
+
+        <div class="framework-steps-grid">
+          <div class="framework-step">
+            <span class="step-num">01</span>
+            <h4 class="step-title">Clarify &amp; Bound the Problem</h4>
+            <p class="step-desc">Distinguish symptoms from root causes. Separate emotional stakeholder urgency from verifiable statistical reality.</p>
+          </div>
+          <div class="framework-step">
+            <span class="step-num">02</span>
+            <h4 class="step-title">Segment the Variance</h4>
+            <p class="step-desc">Never analyze aggregate numbers. Slice by device, geography, payment gateway, currency, and customer tier.</p>
+          </div>
+          <div class="framework-step">
+            <span class="step-num">03</span>
+            <h4 class="step-title">Quantify Blast Radius</h4>
+            <p class="step-desc">Calculate financial leakage, operational drag, customer churn probability, and brand trust erosion.</p>
+          </div>
+          <div class="framework-step">
+            <span class="step-num">04</span>
+            <h4 class="step-title">Falsifiable Hypotheses</h4>
+            <p class="step-desc">Formulate testable propositions tied to a causal mechanism before committing engineering sprints or redesigns.</p>
+          </div>
+          <div class="framework-step">
+            <span class="step-num">05</span>
+            <h4 class="step-title">Fast-Feedback Mitigations</h4>
+            <p class="step-desc">Deploy targeted feature flags, progressive rollouts, or canary releases rather than disruptive blanket changes.</p>
+          </div>
+          <div class="framework-step">
+            <span class="step-num">06</span>
+            <h4 class="step-title">Post-Mortem &amp; Guardrails</h4>
+            <p class="step-desc">Convert root-cause discoveries into automated monitoring alerts, CI/CD test gates, and updated product runbooks.</p>
+          </div>
+        </div>
+
+        <div class="framework-footer-note">
+          <span class="footer-note-icon">🛡️</span>
+          <div class="footer-note-text">
+            <strong>Deterministic Mindset in Action:</strong> This exact principle is deployed in my <a href="#projects" class="framework-link">ChargeDossier</a> case study — running a deterministic rules engine with <strong>24/24 passing automated tests</strong> to validate payment dispute representment evidence rather than relying on ungrounded AI guesses.
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Experiment Planner -->
+      <div class="experiment-planner-card reveal" style="--d: 140ms">
+        <div class="planner-header">
+          <div class="planner-badge">Applied Experimentation Architecture</div>
+          <h3 class="planner-title">Product Experiment Planner</h3>
+          <p class="planner-subtitle">
+            Explore how I design structured experiment specs with hypothesis bounding, target segmentation, primary success metrics, and non-negotiable guardrails across my portfolio domains.
+          </p>
+        </div>
+
+        <!-- Scenario Tabs -->
+        <div class="planner-tabs" role="tablist" aria-label="Experiment Scenario Tabs">
+          <button type="button" class="planner-tab active" data-exp="exp1" role="tab" aria-selected="true" id="tabExp1" aria-controls="plannerSpecContent">
+            1. Fintech: ChargeDossier Auth Pre-Check
+          </button>
+          <button type="button" class="planner-tab" data-exp="exp2" role="tab" aria-selected="false" id="tabExp2" aria-controls="plannerSpecContent">
+            2. Logistics: Loadvanta Extraction Confidence
+          </button>
+          <button type="button" class="planner-tab" data-exp="exp3" role="tab" aria-selected="false" id="tabExp3" aria-controls="plannerSpecContent">
+            3. Mobility: Uber Commute Surge Shield
+          </button>
+        </div>
+
+        <!-- Dynamic Spec Card -->
+        <div id="plannerSpecContent" class="planner-spec-content" role="tabpanel" aria-labelledby="tabExp1">
+          <!-- Dynamically populated via script.js -->
+        </div>
+
+        <!-- Statistical Rigor Notice -->
+        <div class="planner-rigor-callout">
+          <span class="rigor-icon">📊</span>
+          <p class="rigor-text">
+            <strong>Statistical Rigor &amp; Guardrails:</strong> Every experiment requires sample size power calculations (targeting 80% statistical power at &alpha; = 0.05), minimum runtime to control for day-of-week seasonality, and pre-defined stop-loss criteria to prevent business harm before reaching sample significance.
+          </p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -643,6 +843,69 @@
     </div>
   </div>
 </section>
+
+
+<!-- ========================================================= -->
+<!-- RECRUITER FAST TRACK MODAL (60-SECOND CANDIDATE BRIEFING) -->
+<!-- ========================================================= -->
+<div id="fastTrackModal" class="fast-track-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="fastTrackTitle" aria-hidden="true">
+  <div class="fast-track-backdrop" data-close-modal></div>
+  <div class="fast-track-dialog">
+    <div class="fast-track-dialog-header">
+      <div class="fast-track-header-left">
+        <span class="fast-track-eyebrow">⚡ 60-Second Recruiter Briefing</span>
+        <h3 id="fastTrackTitle" class="fast-track-heading">Pragy Mathur — APM Candidate Snapshot</h3>
+      </div>
+      <button type="button" class="fast-track-close-btn" id="closeFastTrack" aria-label="Close Fast Track Modal">&times;</button>
+    </div>
+
+    <div class="fast-track-dialog-body">
+      <!-- Candidate Tagline & Positioning -->
+      <div class="fast-track-positioning">
+        <p><strong>Positioning:</strong> Associate Product Manager with hands-on experience in <strong>AI Product Strategy</strong>, <strong>Deterministic Guardrails</strong>, and <strong>Applied Experimentation</strong>. Not just conceptual presentations: functional code, automated test suites, and empirical research.</p>
+      </div>
+
+      <!-- Core Highlights Grid -->
+      <div class="fast-track-highlights-grid">
+        <!-- Item 1: ChargeDossier -->
+        <div class="fast-track-item">
+          <div class="fast-track-item-badge">Featured Case Study</div>
+          <h4 class="fast-track-item-title">ChargeDossier (Fintech / Mastercard)</h4>
+          <p class="fast-track-item-desc">Evidence-quality review copilot for Mastercard chargeback disputes. Built with a deterministic rules engine and <strong>24/24 automated tests passing (100% pass rate)</strong>. Reduces evidence audit time from 45 min to &lt;90 seconds.</p>
+        </div>
+
+        <!-- Item 2: Loadvanta -->
+        <div class="fast-track-item">
+          <div class="fast-track-item-badge">Logistics Architecture</div>
+          <h4 class="fast-track-item-title">Loadvanta (Freight Rate Con Ingestion)</h4>
+          <p class="fast-track-item-desc">End-to-end MVP functional architecture and PRD for AI-enabled freight rate confirmation processing. Designed deterministic field validation rules and human-in-the-loop review queues to eliminate costly rate disputes.</p>
+        </div>
+
+        <!-- Item 3: Uber Commute Lock -->
+        <div class="fast-track-item">
+          <div class="fast-track-item-badge">Product Strategy &amp; Growth</div>
+          <h4 class="fast-track-item-title">Uber Commute Lock (Mobility Teardown)</h4>
+          <p class="fast-track-item-desc">Comprehensive product teardown addressing ride-hail commuter churn. Designed a surge-shield subscription model with corridor routing, predictable pricing, and driver gross earnings protections.</p>
+        </div>
+
+        <!-- Item 4: Zenodo Research Publication -->
+        <div class="fast-track-item">
+          <div class="fast-track-item-badge">Academic Research</div>
+          <h4 class="fast-track-item-title">Peer-Reviewed Working Paper (Zenodo DOI)</h4>
+          <p class="fast-track-item-desc">Sole author of research on digital marketing strategies and cross-cultural brand awareness across international markets. Indexed on Zenodo repository (DOI: <a href="https://doi.org/10.5281/zenodo.23871769" target="_blank" rel="noopener noreferrer" class="fast-track-link">10.5281/zenodo.23871769</a>).</p>
+        </div>
+      </div>
+
+      <!-- Fast Action Links -->
+      <div class="fast-track-actions">
+        <a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf" class="fast-track-btn fast-track-btn-primary">Download One-Page Resume (PDF)</a>
+        <a href="./cv.html" class="fast-track-btn fast-track-btn-outline">View Detailed CV</a>
+        <a href="#judgment-lab" class="fast-track-btn fast-track-btn-outline" data-close-modal>Explore Judgment Lab</a>
+        <a href="https://www.linkedin.com/in/pragy-mathur-2a9393257/" target="_blank" rel="noopener noreferrer" class="fast-track-btn fast-track-btn-outline">LinkedIn Profile ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 
