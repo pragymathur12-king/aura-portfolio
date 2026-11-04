@@ -1,13 +1,20 @@
-// Elements marked with .reveal will fade/slide in when they enter the viewport.
+/**
+ * AURA // PRODUCT INTELLIGENCE LAB — CORE LOGIC ENGINES
+ * Deterministic client-side simulation engines for Loadvanta, ChargeDossier,
+ * and Product Strategy Prioritization.
+ *
+ * All simulation data is synthetic and deterministic.
+ */
 
-(function () {
+// =========================================================
+// 1. GLOBAL INTERSECTION OBSERVER (REVEAL ANIMATIONS)
+// =========================================================
+(function initReveals() {
   const supportsIO = typeof IntersectionObserver !== 'undefined';
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   if (!revealEls.length) return;
 
-  // If user prefers reduced motion, show immediately.
   if (reduceMotion || !supportsIO) {
     revealEls.forEach((el) => el.classList.add('is-visible'));
     return;
@@ -22,22 +29,821 @@
         }
       }
     },
-    {
-      threshold: 0.15,
-      rootMargin: '0px 0px -10% 0px',
-    }
+    { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
   );
 
   revealEls.forEach((el) => io.observe(el));
 })();
 
-// Animated statistic counters for the About section
-(function () {
+// =========================================================
+// 2. HERO CONSOLE & HUD CONTROLS
+// =========================================================
+(function initHeroConsole() {
+  const enterBtn = document.getElementById('enterLabBtn');
+  if (enterBtn) {
+    enterBtn.addEventListener('click', () => {
+      const target = document.getElementById('lab-stations') || document.getElementById('station-freight');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // Station navigation buttons
+  const navBtns = document.querySelectorAll('[data-target-station]');
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const stationId = btn.getAttribute('data-target-station');
+      const el = document.getElementById(stationId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+
+// =========================================================
+// 3. STATION ONE: FREIGHT INTELLIGENCE ENGINE (LOADVANTA)
+// =========================================================
+(function initStationFreight() {
+  const container = document.getElementById('station-freight');
+  if (!container) return;
+
+  // Synthetic Dataset: 9 Real-world modeled synthetic rate confirmations
+  const FREIGHT_DOCS = [
+    {
+      id: 'DOC-801',
+      carrier: 'Apex Freight Logistics',
+      loadRef: 'LD-99210-CHI',
+      docType: 'Broker Rate Confirmation (Digital PDF)',
+      origin: 'Chicago, IL (ORD Hub)',
+      destination: 'Atlanta, GA (ATL DC)',
+      cargoType: 'Dry Van (53ft)',
+      weightLbs: 41200,
+      rateUsd: 2450,
+      deliveryDate: '2026-11-08',
+      accessorialsDisclosed: true,
+      extractionConfidence: 94,
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    },
+    {
+      id: 'DOC-802',
+      carrier: 'Blue Ridge Cold Chain',
+      loadRef: 'LD-88341-DAL',
+      docType: 'Broker Rate Confirmation (Scan)',
+      origin: 'Dallas, TX (DFW Depot)',
+      destination: 'Denver, CO (DEN Yard)',
+      cargoType: 'Reefer (-10°F Frozen)',
+      weightLbs: 38500,
+      rateUsd: 3100,
+      deliveryDate: '2026-11-09',
+      accessorialsDisclosed: true,
+      extractionConfidence: 82, // Below 85% default
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    },
+    {
+      id: 'DOC-803',
+      carrier: 'Cascade Heavy Haul',
+      loadRef: 'LD-77192-SEA',
+      docType: 'Broker Rate Confirmation (PDF)',
+      origin: 'Seattle, WA',
+      destination: 'Salt Lake City, UT',
+      cargoType: 'Flatbed (Oversize Steel)',
+      weightLbs: 46800,
+      rateUsd: null, // MISSING MANDATORY FIELD
+      deliveryDate: '2026-11-10',
+      accessorialsDisclosed: false,
+      extractionConfidence: 96, // High confidence, but MISSING RATE!
+      requiredFieldsComplete: false,
+      missingFields: ['Agreed Total Linehaul Rate ($)'],
+      validationErrors: ['Mandatory billing field missing: Rate is null/zero']
+    },
+    {
+      id: 'DOC-804',
+      carrier: 'Desert Sun Transport',
+      loadRef: 'LD-66384-LAX',
+      docType: 'Broker Rate Confirmation (PDF)',
+      origin: 'Los Angeles, CA (Port Terminal)',
+      destination: 'Phoenix, AZ (Sky Harbor Dist)',
+      cargoType: 'Dry Van (Palletized Goods)',
+      weightLbs: 29400,
+      rateUsd: 1350,
+      deliveryDate: '2026-11-07',
+      accessorialsDisclosed: true,
+      extractionConfidence: 89,
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    },
+    {
+      id: 'DOC-805',
+      carrier: 'Evergreen Produce Express',
+      loadRef: 'LD-55201-MIA',
+      docType: 'Broker Rate Confirmation (Fax OCR)',
+      origin: 'Miami, FL (Fruit Terminal)',
+      destination: 'Charlotte, NC (Regional Hub)',
+      cargoType: 'Reefer (Fresh Citrus)',
+      weightLbs: 42100,
+      rateUsd: 2800,
+      deliveryDate: null, // MISSING APPOINTMENT WINDOW
+      accessorialsDisclosed: false,
+      extractionConfidence: 78,
+      requiredFieldsComplete: false,
+      missingFields: ['Consignee Delivery Appointment Date/Time'],
+      validationErrors: ['Missing critical delivery scheduling window']
+    },
+    {
+      id: 'DOC-806',
+      carrier: 'Frontier Specialized Carriers',
+      loadRef: 'LD-44119-HOU',
+      docType: 'Broker Rate Confirmation (Scan)',
+      origin: 'Houston, TX (Petro Corridor)',
+      destination: 'Memphis, TN (Crossdock)',
+      cargoType: 'Step Deck (Piping & Valves)',
+      weightLbs: 44000,
+      rateUsd: 2950,
+      deliveryDate: '2026-11-11',
+      accessorialsDisclosed: true,
+      extractionConfidence: 64, // Low confidence
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    },
+    {
+      id: 'DOC-807',
+      carrier: 'Great Lakes Freightway',
+      loadRef: 'LD-33902-EWR',
+      docType: 'Broker Rate Confirmation (PDF)',
+      origin: 'Newark, NJ',
+      destination: 'Columbus, OH',
+      cargoType: 'Dry Van (Retail Apparel)',
+      weightLbs: 35000,
+      rateUsd: 1950,
+      deliveryDate: '2026-11-08',
+      accessorialsDisclosed: true,
+      extractionConfidence: 91, // High confidence, but CONTRADICTION!
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: ['Contradiction: Header specifies $0 Accessorials, but line-item 3 details $150 detention fee']
+    },
+    {
+      id: 'DOC-808',
+      carrier: 'Midwest Corridor Express',
+      loadRef: 'LD-22871-IND',
+      docType: 'Broker Rate Confirmation (EDI/PDF)',
+      origin: 'Indianapolis, IN (Assembly Hub)',
+      destination: 'Detroit, MI (Auto Plant)',
+      cargoType: 'Dry Van (Automotive Assemblies)',
+      weightLbs: 39800,
+      rateUsd: 1420,
+      deliveryDate: '2026-11-07',
+      accessorialsDisclosed: true,
+      extractionConfidence: 98,
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    },
+    {
+      id: 'DOC-809',
+      carrier: 'Keystone Logistics Partners',
+      loadRef: 'LD-11450-KCM',
+      docType: 'Broker Rate Confirmation (Digital PDF)',
+      origin: 'Kansas City, MO (Rail Yard)',
+      destination: 'Nashville, TN (Logistics Hub)',
+      cargoType: 'Power Only (Trailer Repositioning)',
+      weightLbs: 22000,
+      rateUsd: 1850,
+      deliveryDate: '2026-11-09',
+      accessorialsDisclosed: true,
+      extractionConfidence: 79,
+      requiredFieldsComplete: true,
+      missingFields: [],
+      validationErrors: []
+    }
+  ];
+
+  let selectedDocId = 'DOC-801';
+  let activeThreshold = 85;
+
+  const docSelectEl = document.getElementById('freightDocSelect');
+  const thresholdSlider = document.getElementById('freightThresholdSlider');
+  const thresholdValEl = document.getElementById('freightThresholdVal');
+  const runBtn = document.getElementById('runFreightPipelineBtn');
+
+  // DOM Output Elements
+  const countAutoEl = document.getElementById('countFreightAuto');
+  const countReviewEl = document.getElementById('countFreightReview');
+  const countBlockedEl = document.getElementById('countFreightBlocked');
+
+  const docIdBadge = document.getElementById('fDocIdBadge');
+  const docCarrierEl = document.getElementById('fDocCarrier');
+  const docOriginEl = document.getElementById('fDocOrigin');
+  const docDestEl = document.getElementById('fDocDest');
+  const docRateEl = document.getElementById('fDocRate');
+  const docWeightEl = document.getElementById('fDocWeight');
+  const docDateEl = document.getElementById('fDocDate');
+  const docConfidenceBadge = document.getElementById('fDocConfidenceBadge');
+  const docStatusBadge = document.getElementById('fDocStatusBadge');
+  const docDecisionNote = document.getElementById('fDocDecisionNote');
+
+  // Reasoning Elements
+  const whyProblemEl = document.getElementById('fWhyProblem');
+  const whyRuleEl = document.getElementById('fWhyRule');
+  const whyTradeoffEl = document.getElementById('fWhyTradeoff');
+
+  function evaluateDoc(doc, threshold) {
+    // CRITICAL PRODUCT RULE: Missing mandatory field or fatal validation failure can NEVER auto-sync!
+    if (!doc.requiredFieldsComplete || doc.missingFields.length > 0 || doc.validationErrors.length > 0) {
+      return {
+        status: 'BLOCKED',
+        label: 'BLOCKED // MANDATORY EXCEPTION',
+        theme: 'rose',
+        reason: doc.missingFields.length > 0
+          ? `Missing mandatory field: "${doc.missingFields.join(', ')}". Loadvanta deterministic guardrails strictly forbid auto-sync when mandatory commercial fields are absent, regardless of extraction confidence (${doc.extractionConfidence}%).`
+          : `Validation contradiction detected: ${doc.validationErrors.join(', ')}. Inconsistent accessorial data must be reviewed by broker operations before TMS lock.`
+      };
+    }
+
+    if (doc.extractionConfidence >= threshold) {
+      return {
+        status: 'AUTO_SYNC',
+        label: 'AUTO-SYNC AUTHORIZED // DIRECT TO TMS',
+        theme: 'emerald',
+        reason: `All mandatory fields verified present and consistent. Extraction confidence (${doc.extractionConfidence}%) meets or exceeds the active threshold (${threshold}%). Document is authorized for automatic synchronization with zero manual touchpoints.`
+      };
+    }
+
+    return {
+      status: 'MANUAL_REVIEW',
+      label: 'MANUAL REVIEW QUEUE // CONFIDENCE DEFICIT',
+      theme: 'amber',
+      reason: `All mandatory fields are present, but extraction confidence (${doc.extractionConfidence}%) is below the active authorization threshold (${threshold}%). Document is safely routed to the human operator review queue to prevent silent invoice discrepancies.`
+    };
+  }
+
+  function updateFleetStats() {
+    let autoCount = 0;
+    let reviewCount = 0;
+    let blockedCount = 0;
+
+    FREIGHT_DOCS.forEach(doc => {
+      const res = evaluateDoc(doc, activeThreshold);
+      if (res.status === 'AUTO_SYNC') autoCount++;
+      else if (res.status === 'MANUAL_REVIEW') reviewCount++;
+      else blockedCount++;
+    });
+
+    if (countAutoEl) countAutoEl.textContent = autoCount;
+    if (countReviewEl) countReviewEl.textContent = reviewCount;
+    if (countBlockedEl) countBlockedEl.textContent = blockedCount;
+  }
+
+  function renderSelectedDoc() {
+    if (docSelectEl && docSelectEl.value) {
+      selectedDocId = docSelectEl.value;
+    }
+    const doc = FREIGHT_DOCS.find(d => d.id === selectedDocId) || FREIGHT_DOCS[0];
+    const decision = evaluateDoc(doc, activeThreshold);
+
+    if (docIdBadge) docIdBadge.textContent = `${doc.id} // ${doc.loadRef}`;
+    if (docCarrierEl) docCarrierEl.textContent = doc.carrier;
+    if (docOriginEl) docOriginEl.textContent = doc.origin;
+    if (docDestEl) docDestEl.textContent = doc.destination;
+    if (docRateEl) {
+      docRateEl.textContent = doc.rateUsd !== null ? `$${doc.rateUsd.toLocaleString()} USD` : 'NULL (MISSING)';
+      docRateEl.style.color = doc.rateUsd !== null ? '#F8FAFC' : '#f43f5e';
+    }
+    if (docWeightEl) docWeightEl.textContent = `${doc.weightLbs.toLocaleString()} lbs (${doc.cargoType})`;
+    if (docDateEl) {
+      docDateEl.textContent = doc.deliveryDate || 'NOT SPECIFIED (MISSING)';
+      docDateEl.style.color = doc.deliveryDate ? '#F8FAFC' : '#f43f5e';
+    }
+
+    if (docConfidenceBadge) {
+      docConfidenceBadge.textContent = `${doc.extractionConfidence}% Confidence`;
+      docConfidenceBadge.className = 'hud-tag ' + (doc.extractionConfidence >= activeThreshold ? 'tag-emerald' : 'tag-amber');
+    }
+
+    if (docStatusBadge) {
+      docStatusBadge.textContent = decision.label;
+      docStatusBadge.className = 'status-pill status-' + decision.theme;
+    }
+
+    if (docDecisionNote) {
+      docDecisionNote.innerHTML = `<strong>Pipeline Logic:</strong> ${decision.reason}`;
+    }
+
+    // Update reasoning explanation panel
+    if (whyProblemEl) {
+      whyProblemEl.textContent = 'Freight brokers handle hundreds of rate confirmation PDFs weekly from varied brokers. Blindly trusting LLM/OCR extraction leads to $150–$500 billing discrepancies per load.';
+    }
+    if (whyRuleEl) {
+      whyRuleEl.innerHTML = `
+        <strong>Rule 1 (Completeness Guardrail):</strong> If any mandatory field (Rate, Appointment, Route) is null or contradictory, the record is <em>permanently blocked from auto-sync</em>.<br>
+        <strong>Rule 2 (Confidence Threshold):</strong> Complete records are only auto-synced if confidence &ge; ${activeThreshold}%. Otherwise routed to human review.
+      `;
+    }
+    if (whyTradeoffEl) {
+      whyTradeoffEl.innerHTML = `
+        At ${activeThreshold}% threshold, <strong>${countAutoEl ? countAutoEl.textContent : 0} of ${FREIGHT_DOCS.length}</strong> synthetic rate cons auto-sync.
+        Raising threshold to 95% eliminates false-positive risk but increases operator queue burden; lowering to 70% accelerates ingest but risks undetected detention/rate misinterpretations.
+      `;
+    }
+
+    updateFleetStats();
+  }
+
+  // Populate Selector if empty
+  if (docSelectEl && docSelectEl.options.length <= 1) {
+    docSelectEl.innerHTML = '';
+    FREIGHT_DOCS.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d.id;
+      opt.textContent = `${d.id}: ${d.carrier} (${d.origin.split(' ')[0]} -> ${d.destination.split(' ')[0]})`;
+      docSelectEl.appendChild(opt);
+    });
+    docSelectEl.value = selectedDocId;
+  }
+
+  if (docSelectEl) {
+    docSelectEl.addEventListener('change', (e) => {
+      selectedDocId = e.target.value;
+      renderSelectedDoc();
+    });
+  }
+
+  if (thresholdSlider) {
+    thresholdSlider.addEventListener('input', (e) => {
+      activeThreshold = parseInt(e.target.value, 10);
+      if (thresholdValEl) thresholdValEl.textContent = activeThreshold + '%';
+      renderSelectedDoc();
+    });
+  }
+
+  if (runBtn) {
+    runBtn.addEventListener('click', () => {
+      // Simulate quick pipeline run animation
+      runBtn.classList.add('is-running');
+      runBtn.textContent = 'EXECUTING DETERMINISTIC PIPELINE...';
+      setTimeout(() => {
+        runBtn.classList.remove('is-running');
+        runBtn.textContent = 'RERUN PIPELINE';
+        renderSelectedDoc();
+      }, 250);
+    });
+  }
+
+  renderSelectedDoc();
+})();
+
+// =========================================================
+// 4. STATION TWO: DISPUTE INTELLIGENCE ENGINE (CHARGEDOSSIER)
+// =========================================================
+(function initStationDispute() {
+  const container = document.getElementById('station-dispute');
+  if (!container) return;
+
+  const DISPUTES = [
+    {
+      id: 'DSP-1049',
+      amount: '$349.00 USD',
+      item: 'High-End Noise-Cancelling Headphones',
+      reasonCode: 'Reason 4837 (Fraud / No Cardholder Authorization)',
+      network: 'Mastercard Opportunity Lab Framework',
+      initialEvidence: {
+        avsCvv: true,
+        pod: false,
+        termsRefund: true,
+        customerComm: false,
+        deviceIp: true,
+        fatalMismatch: false
+      },
+      context: 'Cardholder claims card was stolen and transaction was unauthorized. Digital merchant order confirmation matches billing address, but carrier left parcel at porch without signed proof of delivery.'
+    },
+    {
+      id: 'DSP-2081',
+      amount: '$295.00 USD',
+      item: 'Commercial Espresso Coffee Grinder',
+      reasonCode: 'Reason 4853 (Cardholder Dispute / Goods Defective)',
+      network: 'Mastercard Opportunity Lab Framework',
+      initialEvidence: {
+        avsCvv: true,
+        pod: true,
+        termsRefund: true,
+        customerComm: false,
+        deviceIp: false,
+        fatalMismatch: false
+      },
+      context: 'Customer claims goods arrived broken and requested chargeback without contacting merchant support. Merchant has signed delivery scan and clear return merchandise policy disclosed at checkout.'
+    },
+    {
+      id: 'DSP-3312',
+      amount: '$850.00 USD',
+      item: 'Ergonomic Motorized Standing Desk',
+      reasonCode: 'Reason 4837 (Fraud / Cardholder Authorization)',
+      network: 'Mastercard Opportunity Lab Framework',
+      initialEvidence: {
+        avsCvv: true,
+        pod: true,
+        termsRefund: false,
+        customerComm: false,
+        deviceIp: true,
+        fatalMismatch: true // Reshipper delivery address mismatch
+      },
+      context: 'Order was shipped to a known commercial freight forwarding warehouse, while billing address was in a different state. Fatal contradiction under network rules: merchant cannot prove true cardholder received shipment.'
+    },
+    {
+      id: 'DSP-4190',
+      amount: '$1,150.00 USD',
+      item: 'Solid Oak Queen Bed Frame',
+      reasonCode: 'Reason 4853 (Cardholder Dispute / Goods Not Received)',
+      network: 'Mastercard Opportunity Lab Framework',
+      initialEvidence: {
+        avsCvv: true,
+        pod: false, // Initially missing!
+        termsRefund: true,
+        customerComm: true,
+        deviceIp: true,
+        fatalMismatch: false
+      },
+      context: 'High-ticket furniture purchase. Customer claims non-receipt. Merchant has proof of order and email log, but carrier signed delivery receipt was initially not attached to representment dossier.'
+    }
+  ];
+
+  let selectedDisputeId = 'DSP-4190';
+  let currentEvidence = { ...DISPUTES[3].initialEvidence };
+
+  const disputeSelectEl = document.getElementById('disputeCaseSelect');
+  const dAmountEl = document.getElementById('dCaseAmount');
+  const dItemEl = document.getElementById('dCaseItem');
+  const dReasonEl = document.getElementById('dCaseReason');
+  const dContextEl = document.getElementById('dCaseContext');
+
+  const scoreValEl = document.getElementById('dScoreVal');
+  const scoreTierEl = document.getElementById('dScoreTierBadge');
+  const scoreRecommendationEl = document.getElementById('dScoreRecommendation');
+  const scoreInitialComparisonEl = document.getElementById('dInitialComparison');
+
+  // Checkbox inputs
+  const chkAvs = document.getElementById('chkAvsCvv');
+  const chkPod = document.getElementById('chkPod');
+  const chkTerms = document.getElementById('chkTermsRefund');
+  const chkComm = document.getElementById('chkCustomerComm');
+  const chkDevice = document.getElementById('chkDeviceIp');
+  const chkFatal = document.getElementById('chkFatalMismatch');
+
+  const recalculateBtn = document.getElementById('recalcDisputeBtn');
+  const resetEvidenceBtn = document.getElementById('resetEvidenceBtn');
+
+  function calculateScore(ev) {
+    let score = 0;
+    if (ev.avsCvv) score += 20;
+    if (ev.pod) score += 30;
+    if (ev.termsRefund) score += 15;
+    if (ev.customerComm) score += 20;
+    if (ev.deviceIp) score += 15;
+    if (ev.fatalMismatch) score -= 40;
+
+    score = Math.max(0, Math.min(100, score));
+
+    let tier = 'Tier C (Unviable / High Loss Risk)';
+    let tierBadge = 'TIER C // UNVIABLE DEFENSE';
+    let theme = 'rose';
+    let recommendation = 'Do not submit Second Presentment. The dossier lacks essential evidence required by card-network rules. Submitting will incur representment fees ($15-$35) with near-zero probability of recovery.';
+
+    if (score >= 80) {
+      tier = 'Tier A (High Readiness // Ready for Second Presentment)';
+      tierBadge = 'TIER A // DEFENSE READY';
+      theme = 'emerald';
+      recommendation = 'Strong evidence dossier. Comprehensive carrier proof, customer identification, and merchant disclosure meet Second Presentment standards for Mastercard Reason 4837/4853.';
+    } else if (score >= 60) {
+      tier = 'Tier B (Moderate Readiness // Remediation Recommended)';
+      tierBadge = 'TIER B // REMEDIATION NEEDED';
+      theme = 'amber';
+      recommendation = 'Moderate defense readiness. Key evidence artifact missing (e.g. carrier GPS scan or customer correspondence). Remediation recommended before dossier submission.';
+    }
+
+    return { score, tier, tierBadge, theme, recommendation };
+  }
+
+  function renderDispute() {
+    if (disputeSelectEl && disputeSelectEl.value && disputeSelectEl.value !== selectedDisputeId) {
+      selectedDisputeId = disputeSelectEl.value;
+      const d = DISPUTES.find(item => item.id === selectedDisputeId);
+      if (d) {
+        currentEvidence = { ...d.initialEvidence };
+      }
+    }
+    const dispute = DISPUTES.find(d => d.id === selectedDisputeId) || DISPUTES[3];
+
+    if (dAmountEl) dAmountEl.textContent = dispute.amount;
+    if (dItemEl) dItemEl.textContent = dispute.item;
+    if (dReasonEl) dReasonEl.textContent = dispute.reasonCode;
+    if (dContextEl) dContextEl.textContent = dispute.context;
+
+    // Sync checkboxes with current evidence state
+    if (chkAvs) chkAvs.checked = !!currentEvidence.avsCvv;
+    if (chkPod) chkPod.checked = !!currentEvidence.pod;
+    if (chkTerms) chkTerms.checked = !!currentEvidence.termsRefund;
+    if (chkComm) chkComm.checked = !!currentEvidence.customerComm;
+    if (chkDevice) chkDevice.checked = !!currentEvidence.deviceIp;
+    if (chkFatal) chkFatal.checked = !!currentEvidence.fatalMismatch;
+
+    const currentResult = calculateScore(currentEvidence);
+    const initialResult = calculateScore(dispute.initialEvidence);
+
+    if (scoreValEl) {
+      scoreValEl.textContent = currentResult.score;
+      scoreValEl.className = 'score-number text-' + currentResult.theme;
+    }
+    if (scoreTierEl) {
+      scoreTierEl.textContent = currentResult.tierBadge;
+      scoreTierEl.className = 'status-pill status-' + currentResult.theme;
+    }
+    if (scoreRecommendationEl) {
+      scoreRecommendationEl.textContent = currentResult.recommendation;
+    }
+
+    if (scoreInitialComparisonEl) {
+      const delta = currentResult.score - initialResult.score;
+      const deltaText = delta > 0 ? `+${delta}` : `${delta}`;
+      scoreInitialComparisonEl.innerHTML = `
+        <strong>Baseline Comparison:</strong> Initial Case Score was <strong>${initialResult.score}/100</strong> (${initialResult.tierBadge.split(' ')[0]}).
+        Current Remediation Delta: <span style="color: ${delta >= 0 ? '#10b981' : '#f43f5e'}; font-weight:700;">${deltaText} pts</span>.
+      `;
+    }
+  }
+
+  function readCheckboxes() {
+    currentEvidence = {
+      avsCvv: chkAvs ? chkAvs.checked : false,
+      pod: chkPod ? chkPod.checked : false,
+      termsRefund: chkTerms ? chkTerms.checked : false,
+      customerComm: chkComm ? chkComm.checked : false,
+      deviceIp: chkDevice ? chkDevice.checked : false,
+      fatalMismatch: chkFatal ? chkFatal.checked : false
+    };
+  }
+
+  // Populate selector if empty
+  if (disputeSelectEl && disputeSelectEl.options.length <= 1) {
+    disputeSelectEl.innerHTML = '';
+    DISPUTES.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d.id;
+      opt.textContent = `${d.id}: ${d.amount} - ${d.item}`;
+      disputeSelectEl.appendChild(opt);
+    });
+    disputeSelectEl.value = selectedDisputeId;
+  }
+
+  if (disputeSelectEl) {
+    disputeSelectEl.addEventListener('change', (e) => {
+      selectedDisputeId = e.target.value;
+      const dispute = DISPUTES.find(d => d.id === selectedDisputeId);
+      currentEvidence = { ...dispute.initialEvidence };
+      renderDispute();
+    });
+  }
+
+  [chkAvs, chkPod, chkTerms, chkComm, chkDevice, chkFatal].forEach(chk => {
+    if (chk) {
+      chk.addEventListener('change', () => {
+        readCheckboxes();
+        renderDispute();
+      });
+    }
+  });
+
+  if (recalculateBtn) {
+    recalculateBtn.addEventListener('click', () => {
+      readCheckboxes();
+      renderDispute();
+    });
+  }
+
+  if (resetEvidenceBtn) {
+    resetEvidenceBtn.addEventListener('click', () => {
+      const dispute = DISPUTES.find(d => d.id === selectedDisputeId);
+      currentEvidence = { ...dispute.initialEvidence };
+      renderDispute();
+    });
+  }
+
+  renderDispute();
+})();
+
+// =========================================================
+// 5. STATION THREE: PRODUCT STRATEGY & PRIORITIZATION
+// =========================================================
+(function initStationStrategy() {
+  const container = document.getElementById('station-strategy');
+  if (!container) return;
+
+  const INITIATIVES = [
+    {
+      id: 'INIT-01',
+      domain: 'Fintech / ChargeDossier Extension',
+      name: 'Dynamic Pre-Checkout Auth Risk Triage',
+      desc: 'Move 3DS / KYC identity verification to async background pre-checks during cart review for low-risk returning users.',
+      impact: 8,
+      confidence: 75,
+      effort: 5,
+      risk: 2,
+      tradeoff: 'Reduces cart abandonment by ~3.2% but requires tighter telemetry alerting on downstream chargeback rates.',
+      nextStep: 'A/B test dynamic 3DS step-up on transactions under $250 with a strict 0.45% GMV fraud stop-loss.'
+    },
+    {
+      id: 'INIT-02',
+      domain: 'Logistics / Loadvanta Extension',
+      name: 'Confidence-Based Rate Con Auto-Sync',
+      desc: 'Implement deterministic extraction confidence routing at 94% threshold to auto-sync clean freight documents directly to TMS.',
+      impact: 9,
+      confidence: 80,
+      effort: 6,
+      risk: 2,
+      tradeoff: 'Eliminates 85% of operator manual entry hours, but risks rare accessorial dispute if broker formats change unannounced.',
+      nextStep: 'Deploy shadow-mode ingestion against 500 historic broker PDFs to validate zero rate discrepancies.'
+    },
+    {
+      id: 'INIT-03',
+      domain: 'Mobility / Uber Commute Lock Teardown',
+      name: 'Commuter Corridor Surge Shield Subscription',
+      desc: 'Offer monthly subscription capping peak surge multipliers at 1.2x on pre-registered work commute routes.',
+      impact: 7,
+      confidence: 60,
+      effort: 4,
+      risk: 3,
+      tradeoff: 'Stabilizes weekly commuter retention by 14% but risks gross margin compression during extreme weather demand spikes.',
+      nextStep: 'Run a 60-day pilot on two high-density urban corridors with driver gross hourly earnings floor guarantees.'
+    }
+  ];
+
+  function calculateScore(item) {
+    // Transparent Normalized Prioritization Formula:
+    // Score = (Impact * (Confidence / 100)) / (Effort * (1 + Risk * 0.2)) * 100
+    const eff = Math.max(1, item.effort);
+    const riskFactor = 1 + (item.risk * 0.2);
+    const raw = (item.impact * (item.confidence / 100)) / (eff * riskFactor);
+    return Math.round(raw * 100 * 10) / 10;
+  }
+
+  function renderStrategy() {
+    const scored = INITIATIVES.map(init => ({
+      ...init,
+      score: calculateScore(init)
+    }));
+
+    // Sort descending by score
+    scored.sort((a, b) => b.score - a.score);
+
+    const cardsContainer = document.getElementById('strategyCardsContainer');
+    if (!cardsContainer) return;
+
+    cardsContainer.innerHTML = '';
+
+    scored.forEach((item, index) => {
+      const rank = index + 1;
+      const rankBadgeClass = rank === 1 ? 'rank-gold' : rank === 2 ? 'rank-silver' : 'rank-bronze';
+
+      const card = document.createElement('div');
+      card.className = 'strategy-initiative-card reveal is-visible';
+      card.innerHTML = `
+        <div class="strategy-card-header">
+          <div class="rank-badge ${rankBadgeClass}">RANK #${rank}</div>
+          <span class="hud-tag tag-cyan">${item.domain}</span>
+          <div class="strategy-score-display">
+            <span class="score-label">Priority Score</span>
+            <span class="score-val">${item.score}</span>
+          </div>
+        </div>
+
+        <h3 class="strategy-init-title">${item.name}</h3>
+        <p class="strategy-init-desc">${item.desc}</p>
+
+        <!-- Interactive Sliders -->
+        <div class="strategy-sliders-grid">
+          <div class="slider-control-group">
+            <div class="slider-label-row">
+              <label for="impact-${item.id}">Expected Impact (1-10)</label>
+              <span class="slider-val" id="val-impact-${item.id}">${item.impact}</span>
+            </div>
+            <input type="range" min="1" max="10" value="${item.impact}" class="hud-slider" id="impact-${item.id}" data-id="${item.id}" data-param="impact">
+          </div>
+
+          <div class="slider-control-group">
+            <div class="slider-label-row">
+              <label for="conf-${item.id}">Confidence (10%-100%)</label>
+              <span class="slider-val" id="val-conf-${item.id}">${item.confidence}%</span>
+            </div>
+            <input type="range" min="10" max="100" step="5" value="${item.confidence}" class="hud-slider" id="conf-${item.id}" data-id="${item.id}" data-param="confidence">
+          </div>
+
+          <div class="slider-control-group">
+            <div class="slider-label-row">
+              <label for="eff-${item.id}">Effort (1-10)</label>
+              <span class="slider-val" id="val-eff-${item.id}">${item.effort}</span>
+            </div>
+            <input type="range" min="1" max="10" value="${item.effort}" class="hud-slider" id="eff-${item.id}" data-id="${item.id}" data-param="effort">
+          </div>
+
+          <div class="slider-control-group">
+            <div class="slider-label-row">
+              <label for="risk-${item.id}">Risk / Uncertainty (1-5)</label>
+              <span class="slider-val" id="val-risk-${item.id}">${item.risk}</span>
+            </div>
+            <input type="range" min="1" max="5" value="${item.risk}" class="hud-slider" id="risk-${item.id}" data-id="${item.id}" data-param="risk">
+          </div>
+        </div>
+
+        <!-- Strategic Trade-Off Breakdown -->
+        <div class="strategy-tradeoff-box">
+          <div class="tradeoff-item">
+            <span class="tradeoff-label">⚖️ Principal Trade-Off:</span>
+            <span class="tradeoff-text">${item.tradeoff}</span>
+          </div>
+          <div class="tradeoff-item" style="margin-top: 8px;">
+            <span class="tradeoff-label">🧪 Suggested Validation Step:</span>
+            <span class="tradeoff-text">${item.nextStep}</span>
+          </div>
+        </div>
+      `;
+
+      cardsContainer.appendChild(card);
+    });
+
+    // Wire up sliders
+    const sliders = cardsContainer.querySelectorAll('.hud-slider');
+    sliders.forEach(slider => {
+      slider.addEventListener('input', (e) => {
+        const id = e.target.getAttribute('data-id');
+        const param = e.target.getAttribute('data-param');
+        const val = parseInt(e.target.value, 10);
+
+        const targetInit = INITIATIVES.find(i => i.id === id);
+        if (targetInit) {
+          targetInit[param] = val;
+          renderStrategy();
+        }
+      });
+    });
+  }
+
+  renderStrategy();
+})();
+
+// =========================================================
+// 6. RECRUITER ACCESS MODAL CONTROLLER
+// =========================================================
+(function initRecruiterAccess() {
+  const modal = document.getElementById('recruiterAccessModal');
+  const openBtns = document.querySelectorAll('[data-open-recruiter-modal]');
+  const closeBtns = document.querySelectorAll('[data-close-recruiter-modal]');
+
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) firstFocusable.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach(btn => btn.addEventListener('click', openModal));
+  closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+  modal.addEventListener('click', (e) => {
+    if (e.target.classList.contains('recruiter-modal-backdrop') || e.target.hasAttribute('data-close-recruiter-modal')) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+})();
+
+// =========================================================
+// 7. ANIMATED METRICS COUNTERS (ABOUT SECTION)
+// =========================================================
+(function initCounters() {
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const counterEls = Array.from(document.querySelectorAll('.metric-value[data-target]'));
   if (!counterEls.length) return;
-
-  const supportsIO = typeof IntersectionObserver !== 'undefined';
 
   const animate = (el, target) => {
     const suffix = el.getAttribute('data-suffix') !== null ? el.getAttribute('data-suffix') : '+';
@@ -46,9 +852,8 @@
       return;
     }
 
-    const duration = 900; // ms
+    const duration = 900;
     const start = performance.now();
-
     const from = 0;
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -63,11 +868,8 @@
     requestAnimationFrame(step);
   };
 
-  if (!supportsIO) {
-    counterEls.forEach((el) => {
-      const target = Number(el.getAttribute('data-target') || '0');
-      animate(el, target);
-    });
+  if (typeof IntersectionObserver === 'undefined') {
+    counterEls.forEach(el => animate(el, Number(el.getAttribute('data-target') || '0')));
     return;
   }
 
@@ -85,403 +887,5 @@
     { threshold: 0.25, rootMargin: '0px 0px -15% 0px' }
   );
 
-  counterEls.forEach((el) => counterIO.observe(el));
-})();
-
-// Animate product journey timeline while scrolling
-(function () {
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
-
-  const timeline = document.querySelector('.timeline');
-  if (!timeline) return;
-
-  const items = Array.from(document.querySelectorAll('.timeline-item'));
-  if (!items.length) return;
-
-  // Build a scroll-based progress (simple, smooth enough)
-  const ioSupportsIO = typeof IntersectionObserver !== 'undefined';
-  if (!ioSupportsIO) return;
-
-  const activateIO = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add('is-active');
-        activateIO.unobserve(entry.target);
-      }
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
-  );
-
-  activateIO.observe(timeline);
-})();
-
-
-
-
-
-// =========================================================
-// 1. PRODUCT JUDGMENT LAB: SCENARIO & TRADE-OFF SIMULATION
-// =========================================================
-(function initProductJudgmentLab() {
-  const choicesContainer = document.querySelector('.lab-choices-container');
-  const analysisSection = document.getElementById('labAnalysisSection');
-  if (!choicesContainer || !analysisSection) return;
-
-  const choices = Array.from(choicesContainer.querySelectorAll('.choice-card'));
-
-  const tradeOffData = {
-    optA: {
-      badge: 'OPTION A SELECTED &bull; DATA &amp; DIAGNOSTICS FIRST',
-      title: 'Granular Funnel &amp; Cohort Segmentation',
-      thesis: 'Deconstruct drop-offs across [Device &times; Currency &times; Gateway &times; Tier] before committing code changes or rolling back.',
-      whyChoose: 'An 18% aggregate drop is rarely uniform across all segments. As an APM, reacting to top-line averages without segmentation risks rolling back working features when the actual breakdown might be isolated to a single browser, currency, or payment gateway. Diagnostic segmentation establishes the true causal blast radius before making code changes.',
-      advantages: [
-        'Isolates the exact breakdown point (e.g. Safari iOS 17 WebKit quirk, GBP 3DS v2 challenge, or guest modal).',
-        'Preserves working features for unaffected cohorts (e.g. domestic USD transactions continuing without interruption).',
-        'Avoids an expensive, potentially unnecessary full rollback of release milestones.',
-        'Provides engineering with specific repro steps, network logs, and error codes rather than vague reports.'
-      ],
-      risks: [
-        '<strong>Time Drag &amp; Revenue Exposure:</strong> Spending 24–48 hours querying telemetry while top-line revenue continues dropping if the issue is widespread.',
-        '<strong>Data Volume Thresholds:</strong> Low-volume international currencies or enterprise tiers may take days to reach statistical significance.',
-        '<strong>Stakeholder Friction:</strong> Leadership may perceive continued data collection as hesitation during an urgent business incident.'
-      ],
-      evidence: [
-        '<strong>Strengthens this path:</strong> Funnel telemetry reveals drop-off is heavily concentrated in a specific payment gateway or currency, while domestic checkout remains healthy.',
-        '<strong>Weakens this path:</strong> Funnel telemetry shows a uniform 18% drop across every single browser, OS, device, geography, and payment method—indicating a universal flow breakdown.'
-      ],
-      nextAction: [
-        'Run Snowflake/Mixpanel queries: Segment step-by-step funnel completion by [Device &times; OS &times; Gateway &times; Currency &times; User Tier].',
-        'If concentrated in 1 gateway/currency, deploy a targeted feature flag to fallback that specific segment while keeping the new checkout live for the rest.',
-        'Spin up an hourly cross-functional incident Slack channel (#war-room-checkout) with engineering and sales leads with updated cohort deltas.'
-      ],
-      metrics: [
-        'Step-level drop-off rate (Payment Method Selection &rarr; 3DS Challenge &rarr; Order Confirmation)',
-        'Gateway error response codes (HTTP 402, 504 timeouts, Soft decline rates)',
-        'Median checkout completion duration (detecting UI stutter or network latency spikes)'
-      ]
-    },
-    optB: {
-      badge: 'OPTION B SELECTED &bull; SPEED &amp; DAMAGE CONTROL',
-      title: 'Rapid Checkout Simplification &amp; Rollback',
-      thesis: 'Instantly revert recent UI updates to the known-stable single-page checkout to prioritize immediate top-line revenue containment.',
-      whyChoose: 'When checkout conversion drops 18% in high-velocity businesses, every hour of delay represents acute revenue bleeding and enterprise customer churn. If leadership suspects recent deployment friction, an immediate rollback to the known-stable baseline is a classic high-urgency stop-loss strategy: it protects top-line cash flow and customer trust immediately, trading analytical precision for immediate risk containment while investigation continues offline.',
-      advantages: [
-        'Immediate revenue protection: restores checkout flow to the known-stable baseline within minutes of deployment.',
-        'De-escalates executive and sales panic, establishing operational breathing room for the team.',
-        'Creates a clean, controlled environment to isolate discrepancies between staging and production.',
-        'Prevents compounding user frustration and negative public reviews during peak sales periods.'
-      ],
-      risks: [
-        '<strong>Loss of Live Production Telemetry:</strong> Once rolled back, you lose the production traffic environment necessary to observe rare edge-case bugs.',
-        '<strong>Morale &amp; Milestone Delay:</strong> Reverting features delays roadmap delivery and requires careful alignment between Product and Engineering.',
-        '<strong>False Attribution Risk:</strong> If the root cause was an external payment processor outage, rolling back the frontend will not restore conversion.'
-      ],
-      evidence: [
-        '<strong>Strengthens this path:</strong> Incident timeline correlates directly with the deployment timestamp, customer support reports user confusion with the new flow, and error logs show zero gateway API timeouts.',
-        '<strong>Weakens this path:</strong> Error logs reveal severe 504 Gateway Timeouts from an external payment partner—meaning the frontend is blameless and rollback will not restore transactions.'
-      ],
-      nextAction: [
-        'Execute staged feature-flag rollback of the multi-step UI to the legacy checkout for 80% of traffic, reserving 20% in an isolated canary/sandbox with verbose telemetry logging.',
-        'Conduct a 2-hour rapid design critique on checkout stepper friction, form field cognitive load, and mobile autofill behavior.',
-        'Re-baseline hourly GMV and conversion within 3 hours post-rollback to confirm recovery.'
-      ],
-      metrics: [
-        'Overall Checkout Conversion Rate rebound (target: return to &ge; baseline within 4 hours)',
-        'Cart Abandonment Rate delta across returning customers',
-        'Support ticket inflow tagged with \'checkout error\' or \'cannot pay\''
-      ]
-    },
-    optC: {
-      badge: 'OPTION C SELECTED &bull; SYSTEMS &amp; INFRA FIRST',
-      title: 'Critical Technical &amp; Payment Gateway Spike',
-      thesis: 'Direct an emergency engineering sprint to audit payment gateway latency, 3DS authentication failures, and API timeouts.',
-      whyChoose: 'Modern checkout failures are frequently infrastructure and integration failures disguised as UX issues. If engineering telemetry indicates payment gateway latency or 3D Secure handshake timeouts, initiating an immediate technical spike focuses effort directly on API payloads and third-party reliability before revising frontend forms or blaming customer behavior.',
-      advantages: [
-        'Directly investigates external dependencies, API response times, and payment processor status.',
-        'Preserves frontend product enhancements and multi-currency UX improvements.',
-        'Fosters long-term technical resilience (e.g. automatic fallback routing, circuit breakers, and improved retry mechanics).',
-        'Enables rapid operational fixes (e.g. gateway timeout tuning) without full release cycles.'
-      ],
-      risks: [
-        '<strong>Assumption of External Fault:</strong> Assumes the problem is technical. If the issue is actually confusing form field validation or copy, engineering hours will be expended without identifying the UX blocker.',
-        '<strong>Third-Party Dependency Constraints:</strong> If a third-party processor has an undocumented regional outage, internal engineering cannot resolve it without secondary routing.',
-        '<strong>Delayed Front-End Mitigation:</strong> Leaves struggling users on a broken interface while backend engineers inspect server traces.'
-      ],
-      evidence: [
-        '<strong>Strengthens this path:</strong> APM metrics (Datadog/New Relic) show p95 API response times on authorization endpoints spiked dramatically, accompanied by 504 timeouts on 3DS verification.',
-        '<strong>Weakens this path:</strong> Gateway latency and API success rates are at 99.98% green health, but user drop-off occurs on earlier form inputs before payment submission.'
-      ],
-      nextAction: [
-        'Direct engineering to inspect payment gateway webhook acknowledgment logs, 3DS authentication success percentages, and API timeout thresholds.',
-        'Implement dynamic secondary payment routing (if Gateway A latencies exceed 2,000ms, failover transparently to Gateway B).',
-        'Add client-side Sentry error logging to capture silent JavaScript validation crashes in the checkout container.'
-      ],
-      metrics: [
-        'Gateway p95 &amp; p99 API Latency on payment authorization endpoints',
-        '3DS v2 Challenge completion vs. frictionless flow ratio',
-        'Payment processor decline codes (e.g., Do Not Honor, Expired Card, Network Error)'
-      ]
-    }
-  };
-
-  const renderAnalysis = (key) => {
-    const data = tradeOffData[key];
-    if (!data) return;
-
-    analysisSection.innerHTML = `
-      <div class="lab-analysis-panel">
-        <div class="lab-analysis-header">
-          <span class="analysis-badge">${data.badge}</span>
-          <h3 class="analysis-title">${data.title}</h3>
-          <p class="analysis-thesis"><strong>APM Working Hypothesis:</strong> ${data.thesis}</p>
-        </div>
-
-        <div class="analysis-grid">
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">💡 Why an APM Would Choose This</h4>
-            <div class="analysis-block-body">
-              <p>${data.whyChoose}</p>
-            </div>
-          </div>
-
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">✨ Key Advantages</h4>
-            <div class="analysis-block-body">
-              <ul>
-                ${data.advantages.map(adv => `<li>${adv}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">⚠️ Hidden Risks &amp; Unstated Assumptions</h4>
-            <div class="analysis-block-body">
-              <ul>
-                ${data.risks.map(r => `<li>${r}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">🔍 Context &amp; Evidence Test</h4>
-            <div class="analysis-block-body">
-              <ul>
-                ${data.evidence.map(ev => `<li>${ev}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">🚀 Immediate Next Action (First 48 Hours)</h4>
-            <div class="analysis-block-body">
-              <ul>
-                ${data.nextAction.map(act => `<li>${act}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-
-          <div class="analysis-block">
-            <h4 class="analysis-block-title">📊 Diagnostic Signals &amp; Metrics to Watch</h4>
-            <div class="analysis-block-body">
-              <ul>
-                ${data.metrics.map(m => `<li>${m}</li>`).join('')}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="analysis-footer-actions">
-          <button type="button" class="analysis-reset-btn" id="changeLabDecisionBtn">
-            <span>↺ Change my decision</span>
-          </button>
-          <span style="font-size: 13px; color: #94a3b8;">
-            Evidence-dependent APM evaluation &bull; Aura Lab
-          </span>
-        </div>
-      </div>
-    `;
-
-    const resetBtn = document.getElementById('changeLabDecisionBtn');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        choicesContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        const firstChoice = choices[0];
-        if (firstChoice) firstChoice.focus();
-      });
-    }
-  };
-
-  choices.forEach((card) => {
-    card.addEventListener('click', () => {
-      const choiceKey = card.getAttribute('data-choice');
-      choices.forEach((c) => {
-        c.classList.remove('is-selected');
-        c.setAttribute('aria-checked', 'false');
-      });
-      card.classList.add('is-selected');
-      card.setAttribute('aria-checked', 'true');
-      renderAnalysis(choiceKey);
-      analysisSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
-    });
-  });
-})();
-
-// =========================================================
-// 2. PRODUCT EXPERIMENT PLANNER: HYPOTHETICAL SPEC EXPLORER
-// =========================================================
-(function initExperimentPlanner() {
-  const tabs = Array.from(document.querySelectorAll('.planner-tab'));
-  const contentContainer = document.getElementById('plannerSpecContent');
-  if (!tabs.length || !contentContainer) return;
-
-  const experiments = {
-    exp1: {
-      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; FINTECH DOMAIN',
-      name: 'Proposed Extension: Dynamic Pre-Checkout Auth Risk Triage',
-      distinction: '<strong>Current Project Ground Truth:</strong> <a href="chargedossier.html" class="framework-link">ChargeDossier</a> currently operates as a post-dispute evidence-quality review copilot with <strong>24/24 passing automated tests</strong>. This scenario represents a <em>hypothetical upstream product experiment</em> exploring pre-checkout 3DS risk triage before disputes occur.',
-      hypothesis: 'Moving 3D Secure & identity verification to background asynchronous pre-checks during cart review will increase checkout completion by 3.2% without increasing fraudulent chargeback rates.',
-      segment: 'Returning authenticated users on desktop & mobile with transaction values under $250.',
-      intervention: 'Dynamic risk-based step-up authentication: frictionless 1-click authorization for low-risk returning users; stepped-up verification reserved only for high-risk fraud flags.',
-      successMetric: 'Checkout Completion Rate (+3.2% target, statistical significance p &lt; 0.05).',
-      guardrailMetric: 'Dispute & Chargeback Rate (must remain strictly &le; 0.45% of GMV; stop experiment immediately if &gt; 0.60%).',
-      evidence: 'ChargeDossier historical dispute analysis demonstrating that 92% of fraud losses originate from guest checkouts with order value &gt; $400.'
-    },
-    exp2: {
-      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; LOGISTICS DOMAIN',
-      name: 'Proposed Extension: Dynamic Confidence Routing for Rate Con Auto-Sync',
-      distinction: '<strong>Current Project Ground Truth:</strong> <a href="#projects" class="framework-link">Loadvanta</a> currently has a completed PRD and MVP functional architecture defining deterministic validation rules and operator review queues. This scenario represents a <em>hypothetical live A/B experiment</em> to determine the optimal extraction confidence cutoff (94%) for direct TMS synchronization.',
-      hypothesis: 'Setting deterministic extraction confidence thresholds at 94% on inbound rate confirmation PDFs will allow 68% of documents to auto-sync to TMS while maintaining zero billing discrepancies.',
-      segment: 'Top 15 vetted freight broker PDF templates representing 60% of recurring weekly load volume.',
-      intervention: 'Automated document pipeline extraction with deterministic field validation; rate cons scoring below 94% confidence routed to a human-in-the-loop review queue.',
-      successMetric: 'Average document processing time reduced from 8.5 minutes to &lt; 30 seconds per rate con.',
-      guardrailMetric: 'Rate discrepancy claim rate (must remain strictly 0.0% on auto-synced loads).',
-      evidence: 'Loadvanta architecture benchmarks showing accessorial fee misinterpretations (detention, lumper fees) are the sole cause of freight invoice disputes.'
-    },
-    exp3: {
-      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; MOBILITY DOMAIN',
-      name: 'Proposed Extension: Commuter Surge Shield Subscription Pilot',
-      distinction: '<strong>Current Project Ground Truth:</strong> <a href="uber.html" class="framework-link">Uber Commute Lock</a> is an independent strategic product teardown and growth concept. This scenario represents a <em>hypothetical 60-day regional pilot experiment</em> to validate commuter willingness to pay for corridor surge caps.',
-      hypothesis: 'Offering fixed-price surge shields on frequent commute corridors will lift 30-day rider retention by 14% and stabilize weekly trip frequency.',
-      segment: 'Daily commuters traveling between major residential clusters and commercial hubs during peak hours (8-10 AM & 5-7 PM, Mon-Fri).',
-      intervention: '\'Commute Lock\' subscription tier: riders pay a flat monthly pass fee in exchange for capped 1.2x surge pricing on their pre-registered route.',
-      successMetric: 'Weekly completed trips per active subscriber (+18% lift) &amp; 60-day subscription renewal rate (&gt; 72%).',
-      guardrailMetric: 'Driver gross hourly earnings (must not decrease vs. standard dynamic surge dispatch).',
-      evidence: 'Commuter teardown analytics indicating that rider app abandonment jumps by 47% whenever peak surge multipliers exceed 1.6x on standard workdays.'
-    }
-  };
-
-  const renderSpec = (key) => {
-    const exp = experiments[key];
-    if (!exp) return;
-
-    contentContainer.innerHTML = `
-      <div class="spec-grid">
-        <div class="spec-item full-width" style="border-left: 3px solid #00e5ff;">
-          <div class="spec-label" style="letter-spacing: 0.08em;">${exp.typeTag}</div>
-          <div class="spec-value" style="font-size: 17px; font-weight: 700; color: #F8FAFC; margin-top: 4px;">${exp.name}</div>
-        </div>
-
-        <div class="spec-item full-width spec-distinction-callout">
-          <div class="spec-value">${exp.distinction}</div>
-        </div>
-
-        <div class="spec-item full-width">
-          <div class="spec-label">💡 Testable Hypothesis</div>
-          <div class="spec-value">${exp.hypothesis}</div>
-        </div>
-
-        <div class="spec-item">
-          <div class="spec-label">🎯 Target Cohort / Segment</div>
-          <div class="spec-value">${exp.segment}</div>
-        </div>
-
-        <div class="spec-item">
-          <div class="spec-label">⚙️ Product Intervention</div>
-          <div class="spec-value">${exp.intervention}</div>
-        </div>
-
-        <div class="spec-item">
-          <div class="spec-label">📈 Primary Success Metric</div>
-          <div class="spec-value" style="color: #10b981; font-weight: 600;">${exp.successMetric}</div>
-        </div>
-
-        <div class="spec-item">
-          <div class="spec-label">🛡️ Non-Negotiable Guardrail</div>
-          <div class="spec-value" style="color: #f59e0b; font-weight: 600;">${exp.guardrailMetric}</div>
-        </div>
-
-        <div class="spec-item full-width">
-          <div class="spec-label">📚 Pre-Launch Grounding &amp; Evidence</div>
-          <div class="spec-value">${exp.evidence}</div>
-        </div>
-      </div>
-    `;
-  };
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const expKey = tab.getAttribute('data-exp');
-      tabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      renderSpec(expKey);
-    });
-  });
-
-  renderSpec('exp1');
-})();
-
-// =========================================================
-// 3. RECRUITER FAST TRACK MODAL CONTROLLER
-// =========================================================
-(function initRecruiterFastTrack() {
-  const modal = document.getElementById('fastTrackModal');
-  const openBtn = document.getElementById('openFastTrack');
-  const closeBtn = document.getElementById('closeFastTrack');
-  if (!modal || !openBtn) return;
-
-  const openModal = () => {
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    if (closeBtn) closeBtn.focus();
-  };
-
-  const closeModal = () => {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    openBtn.focus();
-  };
-
-  openBtn.addEventListener('click', openModal);
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target.hasAttribute('data-close-modal') || e.target.classList.contains('fast-track-backdrop')) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
+  counterEls.forEach(el => counterIO.observe(el));
 })();
