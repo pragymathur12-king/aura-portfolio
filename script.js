@@ -1,5 +1,5 @@
 /**
- * AURA // PRODUCT INTELLIGENCE LAB — CORE LOGIC ENGINES
+ * PRODUCT INTELLIGENCE LAB — CORE LOGIC ENGINES
  * Deterministic client-side simulation engines for Loadvanta, ChargeDossier,
  * and Product Strategy Prioritization.
  *
