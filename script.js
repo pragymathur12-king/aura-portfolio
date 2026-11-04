@@ -658,8 +658,8 @@
       confidence: 75,
       effort: 5,
       risk: 2,
-      tradeoff: 'Reduces cart abandonment by ~3.2% but requires tighter telemetry alerting on downstream chargeback rates.',
-      nextStep: 'A/B test dynamic 3DS step-up on transactions under $250 with a strict 0.45% GMV fraud stop-loss.'
+      tradeoff: 'Hypothesized checkout abandonment reduction balanced against requirement for real-time chargeback velocity alerting.',
+      nextStep: 'A/B test dynamic 3DS step-up on transactions under $250 with an automated stop-loss threshold.'
     },
     {
       id: 'INIT-02',
@@ -670,8 +670,8 @@
       confidence: 80,
       effort: 6,
       risk: 2,
-      tradeoff: 'Eliminates 85% of operator manual entry hours, but risks rare accessorial dispute if broker formats change unannounced.',
-      nextStep: 'Deploy shadow-mode ingestion against 500 historic broker PDFs to validate zero rate discrepancies.'
+      tradeoff: 'Targets high automation yield on standard formats, balanced against human review overhead for ambiguous accessorial clauses.',
+      nextStep: 'Deploy shadow-mode ingestion against historic broker PDFs to benchmark parsing accuracy.'
     },
     {
       id: 'INIT-03',
@@ -682,8 +682,8 @@
       confidence: 60,
       effort: 4,
       risk: 3,
-      tradeoff: 'Stabilizes weekly commuter retention by 14% but risks gross margin compression during extreme weather demand spikes.',
-      nextStep: 'Run a 60-day pilot on two high-density urban corridors with driver gross hourly earnings floor guarantees.'
+      tradeoff: 'Aims to reduce peak commuter churn through predictable pricing, balanced against margin risk during severe demand surges.',
+      nextStep: 'Run a pilot on high-density commuter corridors with driver gross hourly earnings floor guarantees.'
     }
   ];
 
