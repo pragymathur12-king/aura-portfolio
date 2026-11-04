@@ -3,128 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intro</title>
+  <title>Aura 2.0 // Cinematic Intro</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --accent:#00e5ff; }
-
-    html,body{height:100%;}
-
-    body{
-      margin:0;
-      background:#000;
-      color:white;
-      overflow:hidden;
-      font-family:'Poppins',sans-serif;
+    :root {
+      --accent: #00e5ff;
+      --accent-emerald: #10b981;
+      --bg: #030712;
     }
 
-    .intro-wrap{
-      position:relative;
-      width:100vw;
-      height:100vh;
-      background:#000;
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
     }
 
-    video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      object-position:center;
-      background:#000;
+    .intro-wrap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
 
-    .overlay{
-      position:absolute;
-      inset:0;
+    .overlay {
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(circle at top left, rgba(0,229,255,.12), transparent 40%),
-        radial-gradient(circle at bottom right, rgba(0,102,255,.12), transparent 40%),
-        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
-      pointer-events:none;
-      z-index:1;
+        radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.08), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.06), transparent 45%),
+        linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, transparent 20%, transparent 80%, rgba(3, 7, 18, 0.6) 100%);
+      pointer-events: none;
+      z-index: 2;
     }
 
-    .skip{
-      position:fixed;
-      top:18px;
-      right:18px;
-      z-index:5;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(0,229,255,.25);
-      background:rgba(255,255,255,.06);
-      color:white;
-      text-decoration:none;
-      font-weight:800;
-      letter-spacing:.02em;
-      cursor:pointer;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow:0 0 35px rgba(0,229,255,.10);
-      transition: transform .2s ease, background-color .25s ease, border-color .25s ease;
-      user-select:none;
+    /* Top HUD Controls */
+    .hud-controls-bar {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      pointer-events: none;
     }
 
-    .skip:hover{
+    .hud-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(8, 12, 20, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .hud-btn:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(14, 22, 38, 0.95);
       transform: translateY(-2px);
-      background:rgba(0,229,255,.10);
-      border-color: rgba(0,229,255,.45);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
-    .skip:focus-visible{
-      outline:none;
-      box-shadow: 0 0 0 4px rgba(0,229,255,.22), 0 0 35px rgba(0,229,255,.35);
+    .hud-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 229, 255, 0.3);
     }
 
-    .skip .arrow{
-      width:22px;
-      height:22px;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      background:rgba(0,229,255,.14);
-      border:1px solid rgba(0,229,255,.3);
-      font-size:12px;
-      flex:0 0 auto;
+    /* Sound Wave Animation */
+    .sound-bars {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      height: 12px;
     }
 
-    @media (max-width: 520px){
-      .skip{top:12px; right:12px; padding:9px 12px;}
+    .sound-bars span {
+      display: block;
+      width: 2px;
+      height: 4px;
+      background: #94a3b8;
+      border-radius: 1px;
+      transition: all 0.2s ease;
     }
 
-    @media (prefers-reduced-motion: reduce){
-      video{object-fit:contain;}
+    .sound-bars.active span {
+      background: var(--accent);
+      animation: soundWave 0.8s ease-in-out infinite alternate;
     }
 
-    /* Mobile: choose best fit so important content remains visible */
-    @media (max-width: 520px){
-      video{
-        object-fit:cover;
-        object-position:center;
-      }
+    .sound-bars.active span:nth-child(1) { animation-delay: 0.1s; height: 10px; }
+    .sound-bars.active span:nth-child(2) { animation-delay: 0.3s; height: 14px; }
+    .sound-bars.active span:nth-child(3) { animation-delay: 0.2s; height: 8px; }
+
+    @keyframes soundWave {
+      0% { height: 4px; }
+      100% { height: 14px; }
+    }
+
+    /* Interactive Unmute Banner / Prompt */
+    .unmute-prompt-container {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .unmute-prompt-container.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .unmute-prompt-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      background: rgba(8, 12, 20, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 35px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.05em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+      100% { box-shadow: 0 0 45px rgba(0, 229, 255, 0.45); }
+    }
+
+    .unmute-prompt-card:hover {
+      transform: scale(1.03);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .hud-controls-bar { top: 14px; left: 14px; right: 14px; }
+      .hud-btn { padding: 8px 14px; font-size: 11px; }
+      .unmute-prompt-card { padding: 10px 18px; font-size: 11px; width: 90vw; justify-content: center; }
     }
   </style>
 </head>
 <body>
-  <div class="intro-wrap">
-    <a class="skip" href="portfolio.html" aria-label="Skip intro">
-      <span class="arrow" aria-hidden="true">›</span>
-      Skip
-    </a>
+  <div class="intro-wrap" id="introContainer">
+    <!-- Top Controls HUD -->
+    <div class="hud-controls-bar">
+      <!-- Sound Toggle Button -->
+      <button id="soundToggleBtn" class="hud-btn" type="button" aria-label="Toggle Sound">
+        <span class="sound-bars" id="soundBars">
+          <span></span><span></span><span></span>
+        </span>
+        <span id="soundLabel">AUDIO: OFF</span>
+      </button>
 
+      <!-- Skip Button -->
+      <a class="hud-btn" href="portfolio.html" aria-label="Skip intro and enter portfolio">
+        <span>SKIP INTRO</span>
+        <span style="color: var(--accent);">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Video Element -->
     <video
       id="introVideo"
       playsinline
       preload="auto"
-      muted
       controlslist="nodownload nodoremote noplaybackrate"
     >
       <source src="videos/videosintro.mp4.mp4" type="video/mp4" />
@@ -132,32 +227,105 @@
     </video>
 
     <div class="overlay" aria-hidden="true"></div>
+
+    <!-- Interactive Tap-to-Unmute Prompt -->
+    <div class="unmute-prompt-container" id="unmutePrompt">
+      <div class="unmute-prompt-card" id="unmuteCard">
+        <span class="pulse-dot"></span>
+        <span>CLICK ANYWHERE TO UNMUTE AUDIO</span>
+      </div>
+    </div>
   </div>
 
   <script>
-    (function(){
+    (function () {
       const video = document.getElementById('introVideo');
+      const soundBtn = document.getElementById('soundToggleBtn');
+      const soundBars = document.getElementById('soundBars');
+      const soundLabel = document.getElementById('soundLabel');
+      const unmutePrompt = document.getElementById('unmutePrompt');
+      const container = document.getElementById('introContainer');
+
       const params = new URLSearchParams(window.location.search);
-      const sound = (params.get('sound') || '').toLowerCase();
+      const soundParam = (params.get('sound') || '').toLowerCase();
+      const userRequestedSound = soundParam === 'on';
 
-      const shouldPlaySound = sound === 'on';
+      function updateSoundUI(isUnmuted) {
+        if (isUnmuted) {
+          soundBars.classList.add('active');
+          soundLabel.textContent = 'AUDIO: ON';
+          soundBtn.style.borderColor = 'rgba(0, 229, 255, 0.45)';
+          unmutePrompt.classList.remove('is-visible');
+        } else {
+          soundBars.classList.remove('active');
+          soundLabel.textContent = 'AUDIO: OFF';
+          soundBtn.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+        }
+      }
 
-      // Muted by default to satisfy autoplay policies.
-      video.muted = !shouldPlaySound;
-
-      // Ensure no controls are shown.
-      video.controls = false;
-
-      // Attempt autoplay.
-      const tryPlay = async () => {
+      async function enableAudio() {
+        video.muted = false;
+        video.volume = 1.0;
         try {
           await video.play();
-        } catch (e) {
-          // Autoplay might be blocked even when muted=false.
-          // If blocked, fall back to muted play.
-          if (video.muted === false) {
-            video.muted = true;
-            try { await video.play(); } catch (_) {}
+          updateSoundUI(true);
+        } catch (err) {
+          console.warn('Playback error on unmute:', err);
+        }
+      }
+
+      function disableAudio() {
+        video.muted = true;
+        updateSoundUI(false);
+      }
+
+      soundBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (video.muted) {
+          enableAudio();
+        } else {
+          disableAudio();
+        }
+      });
+
+      // Clicking anywhere on the video container enables audio if currently muted
+      container.addEventListener('click', () => {
+        if (video.muted) {
+          enableAudio();
+        }
+      });
+
+      // Initial Playback orchestration
+      video.muted = true; // Start muted to ensure instant playback without rejection
+
+      const startPlayback = async () => {
+        try {
+          await video.play();
+          if (userRequestedSound) {
+            // Attempt unmuting directly
+            video.muted = false;
+            video.volume = 1.0;
+            // Test if unmuted play is allowed
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                updateSoundUI(true);
+              }).catch(() => {
+                video.muted = true;
+                video.play();
+                updateSoundUI(false);
+                unmutePrompt.classList.add('is-visible');
+              });
+            }
+          } else {
+            updateSoundUI(false);
+          }
+        } catch (err) {
+          video.muted = true;
+          try { await video.play(); } catch (_) {}
+          updateSoundUI(false);
+          if (userRequestedSound) {
+            unmutePrompt.classList.add('is-visible');
           }
         }
       };
@@ -166,19 +334,16 @@
         window.location.href = 'portfolio.html';
       });
 
-      // In case the video ends quickly or fails to load.
       video.addEventListener('error', () => {
         window.location.href = 'portfolio.html';
       });
 
-      // Start as soon as metadata is available.
       if (video.readyState >= 2) {
-        tryPlay();
+        startPlayback();
       } else {
-        video.addEventListener('loadeddata', tryPlay, { once: true });
+        video.addEventListener('loadeddata', startPlayback, { once: true });
       }
     })();
   </script>
 </body>
 </html>
-

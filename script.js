@@ -892,3 +892,27 @@
 
   counterEls.forEach(el => counterIO.observe(el));
 })();
+
+// =========================================================
+// 8. TACTILE CARD ILLUMINATION (CREATIVE CREW COMMUNITY)
+// =========================================================
+(function initTactileGlow() {
+  const cardSelector = '.station-tile, .telemetry-card, .control-card, .telemetry-inspector-card, .reasoning-drawer-card, .score-gauge-card, .strategy-initiative-card, .project-card, .about-card, .station-console-map';
+
+  let ticking = false;
+
+  document.addEventListener('pointermove', (e) => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const card = e.target.closest(cardSelector);
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  }, { passive: true });
+})();
