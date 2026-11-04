@@ -136,21 +136,21 @@
       badge: 'OPTION A SELECTED &bull; DATA &amp; DIAGNOSTICS FIRST',
       title: 'Granular Funnel &amp; Cohort Segmentation',
       thesis: 'Deconstruct drop-offs across [Device &times; Currency &times; Gateway &times; Tier] before committing code changes or rolling back.',
-      whyChoose: 'An 18% aggregate drop is almost never uniform. Jumping to conclusions risks reverting weeks of engineering work when the failure is localized to a single browser, currency, or gateway API. Segmentation establishes the true blast radius before modifying production systems.',
+      whyChoose: 'An 18% aggregate drop is rarely uniform across all segments. As an APM, reacting to top-line averages without segmentation risks rolling back working features when the actual breakdown might be isolated to a single browser, currency, or payment gateway. Diagnostic segmentation establishes the true causal blast radius before making code changes.',
       advantages: [
         'Isolates the exact breakdown point (e.g. Safari iOS 17 WebKit quirk, GBP 3DS v2 challenge, or guest modal).',
         'Preserves working features for unaffected cohorts (e.g. domestic USD transactions continuing without interruption).',
-        'Avoids an expensive, demoralizing full rollback of the release.',
+        'Avoids an expensive, potentially unnecessary full rollback of release milestones.',
         'Provides engineering with specific repro steps, network logs, and error codes rather than vague reports.'
       ],
       risks: [
-        '<strong>Time Drag &amp; Revenue Bleed:</strong> Spending 24–48 hours querying telemetry while top-line revenue continues dropping at ~$20k/day.',
+        '<strong>Time Drag &amp; Revenue Exposure:</strong> Spending 24–48 hours querying telemetry while top-line revenue continues dropping if the issue is widespread.',
         '<strong>Data Volume Thresholds:</strong> Low-volume international currencies or enterprise tiers may take days to reach statistical significance.',
-        '<strong>Executive Impatience:</strong> Leadership may perceive analytical rigor as indecisiveness during an active business incident.'
+        '<strong>Stakeholder Friction:</strong> Leadership may perceive continued data collection as hesitation during an urgent business incident.'
       ],
       evidence: [
-        '<strong>Strengthens:</strong> Funnel telemetry reveals 88% of drop-off is concentrated in a specific payment gateway (e.g. Adyen 3DS redirect failure on mobile), while domestic checkout is stable.',
-        '<strong>Weakens:</strong> Telemetry shows a uniform 18% drop across every single browser, OS, device, geography, and payment method—indicating a systemic UX checkout flow flaw.'
+        '<strong>Strengthens this path:</strong> Funnel telemetry reveals drop-off is heavily concentrated in a specific payment gateway or currency, while domestic checkout remains healthy.',
+        '<strong>Weakens this path:</strong> Funnel telemetry shows a uniform 18% drop across every single browser, OS, device, geography, and payment method—indicating a universal flow breakdown.'
       ],
       nextAction: [
         'Run Snowflake/Mixpanel queries: Segment step-by-step funnel completion by [Device &times; OS &times; Gateway &times; Currency &times; User Tier].',
@@ -166,22 +166,22 @@
     optB: {
       badge: 'OPTION B SELECTED &bull; SPEED &amp; DAMAGE CONTROL',
       title: 'Rapid Checkout Simplification &amp; Rollback',
-      thesis: 'Instantly revert the multi-step form to single-page flow to stop top-line revenue bleeding while investigation continues offline.',
-      whyChoose: 'When top-line conversion hemorrhages 18% post-release, the primary duty of an APM is business risk mitigation and stop-loss. If the monetary loss exceeds the cost of delayed roadmap milestones, immediately reverting to the known-stable single-page checkout protects customer trust and corporate cash flow while root-cause investigation happens offline.',
+      thesis: 'Instantly revert recent UI updates to the known-stable single-page checkout to prioritize immediate top-line revenue containment.',
+      whyChoose: 'When checkout conversion drops 18% in high-velocity businesses, every hour of delay represents acute revenue bleeding and enterprise customer churn. If leadership suspects recent deployment friction, an immediate rollback to the known-stable baseline is a classic high-urgency stop-loss strategy: it protects top-line cash flow and customer trust immediately, trading analytical precision for immediate risk containment while investigation continues offline.',
       advantages: [
-        'Immediate revenue protection: returns conversion to the baseline average within minutes of deployment.',
-        'De-escalates executive and sales panic, buying calm focus for the team.',
-        'Provides a clean control environment to isolate discrepancies between staging and production.',
-        'Protects customer trust during critical billing cycles.'
+        'Immediate revenue protection: restores checkout flow to the known-stable baseline within minutes of deployment.',
+        'De-escalates executive and sales panic, establishing operational breathing room for the team.',
+        'Creates a clean, controlled environment to isolate discrepancies between staging and production.',
+        'Prevents compounding user frustration and negative public reviews during peak sales periods.'
       ],
       risks: [
-        '<strong>Loss of Live Production Telemetry:</strong> Once rolled back, you lose live production traffic data necessary to debug rare edge-case bugs.',
-        '<strong>Engineering Sunk Cost &amp; Morale:</strong> Reverting features can demoralize engineers and cause friction between Product and Dev.',
-        '<strong>Multi-Currency Rollout Delay:</strong> May breach contractual commitments with new international partners or enterprise clients expecting foreign currency support.'
+        '<strong>Loss of Live Production Telemetry:</strong> Once rolled back, you lose the production traffic environment necessary to observe rare edge-case bugs.',
+        '<strong>Morale &amp; Milestone Delay:</strong> Reverting features delays roadmap delivery and requires careful alignment between Product and Engineering.',
+        '<strong>False Attribution Risk:</strong> If the root cause was an external payment processor outage, rolling back the frontend will not restore conversion.'
       ],
       evidence: [
-        '<strong>Strengthens:</strong> Customer support tickets show broad user frustration across all tiers, confusion with the new multi-step stepper, and zero specific API errors in Datadog.',
-        '<strong>Weakens:</strong> Error logs immediately show a 504 Gateway Timeout from an external KYC validation vendor—meaning a localized config fix or timeout increase would resolve the issue without reverting the entire frontend.'
+        '<strong>Strengthens this path:</strong> Incident timeline correlates directly with the deployment timestamp, customer support reports user confusion with the new flow, and error logs show zero gateway API timeouts.',
+        '<strong>Weakens this path:</strong> Error logs reveal severe 504 Gateway Timeouts from an external payment partner—meaning the frontend is blameless and rollback will not restore transactions.'
       ],
       nextAction: [
         'Execute staged feature-flag rollback of the multi-step UI to the legacy checkout for 80% of traffic, reserving 20% in an isolated canary/sandbox with verbose telemetry logging.',
@@ -197,22 +197,22 @@
     optC: {
       badge: 'OPTION C SELECTED &bull; SYSTEMS &amp; INFRA FIRST',
       title: 'Critical Technical &amp; Payment Gateway Spike',
-      thesis: 'Direct an emergency engineering sprint to audit API timeouts, 3D Secure failures, and network latency.',
-      whyChoose: 'Modern checkout failures are frequently infrastructure and integration failures disguised as UX issues. If engineering already suspects third-party gateway latency, initiating a focused technical spike directly targets API payloads, 3D Secure v2 handshakes, and webhook drop-offs before redesigning forms or blaming user psychology.',
+      thesis: 'Direct an emergency engineering sprint to audit payment gateway latency, 3DS authentication failures, and API timeouts.',
+      whyChoose: 'Modern checkout failures are frequently infrastructure and integration failures disguised as UX issues. If engineering telemetry indicates payment gateway latency or 3D Secure handshake timeouts, initiating an immediate technical spike focuses effort directly on API payloads and third-party reliability before revising frontend forms or blaming customer behavior.',
       advantages: [
-        'Solves the actual underlying failure mode if the issue is API latency, tokenization failure, or gateway timeout.',
-        'Preserves all UX work and multi-currency UI enhancements.',
-        'Builds permanent technical monitoring resilience (gateway fallback routing, automated retries, circuit breakers).',
-        'Directly tests third-party vendor SLAs and contract guarantees.'
+        'Directly investigates external dependencies, API response times, and payment processor status.',
+        'Preserves frontend product enhancements and multi-currency UX improvements.',
+        'Fosters long-term technical resilience (e.g. automatic fallback routing, circuit breakers, and improved retry mechanics).',
+        'Enables rapid operational fixes (e.g. gateway timeout tuning) without full release cycles.'
       ],
       risks: [
-        '<strong>Assumption of Technical Fault:</strong> Assumes the problem is technical. If the issue is actually UX friction, unhelpful error messaging, or hidden fees, engineering hours will be wasted hunting ghosts.',
-        '<strong>Third-Party Dependency:</strong> If the gateway itself has a regional outage or rate limit, engineering cannot fix it internally without routing traffic elsewhere.',
-        '<strong>Delayed UX Fixes:</strong> Leaves confused users struggling on an unintuitive interface while engineers inspect database queries.'
+        '<strong>Assumption of External Fault:</strong> Assumes the problem is technical. If the issue is actually confusing form field validation or copy, engineering hours will be expended without identifying the UX blocker.',
+        '<strong>Third-Party Dependency Constraints:</strong> If a third-party processor has an undocumented regional outage, internal engineering cannot resolve it without secondary routing.',
+        '<strong>Delayed Front-End Mitigation:</strong> Leaves struggling users on a broken interface while backend engineers inspect server traces.'
       ],
       evidence: [
-        '<strong>Strengthens:</strong> APM monitoring (Datadog/New Relic) shows API response times on /api/v2/charge spiked from 420ms to 4,800ms, with a surge in HTTP 504 timeouts on 3DS authorization calls.',
-        '<strong>Weakens:</strong> Gateway latency and API success rates are at 99.98% green health, but users spend 4 minutes on the address verification screen before abandoning.'
+        '<strong>Strengthens this path:</strong> APM metrics (Datadog/New Relic) show p95 API response times on authorization endpoints spiked dramatically, accompanied by 504 timeouts on 3DS verification.',
+        '<strong>Weakens this path:</strong> Gateway latency and API success rates are at 99.98% green health, but user drop-off occurs on earlier form inputs before payment submission.'
       ],
       nextAction: [
         'Direct engineering to inspect payment gateway webhook acknowledgment logs, 3DS authentication success percentages, and API timeout thresholds.',
@@ -266,7 +266,7 @@
           </div>
 
           <div class="analysis-block">
-            <h4 class="analysis-block-title">🔍 What Evidence Strengthens / Weakens It</h4>
+            <h4 class="analysis-block-title">🔍 Context &amp; Evidence Test</h4>
             <div class="analysis-block-body">
               <ul>
                 ${data.evidence.map(ev => `<li>${ev}</li>`).join('')}
@@ -298,7 +298,7 @@
             <span>↺ Change my decision</span>
           </button>
           <span style="font-size: 13px; color: #94a3b8;">
-            Deterministic product reasoning framework &bull; Aura Lab
+            Evidence-dependent APM evaluation &bull; Aura Lab
           </span>
         </div>
       </div>
@@ -324,12 +324,9 @@
       card.classList.add('is-selected');
       card.setAttribute('aria-checked', 'true');
       renderAnalysis(choiceKey);
-
-      // Smoothly scroll down so the analysis panel is comfortably in view
       analysisSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
-    // Keyboard support: Enter or Space selects
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -340,7 +337,7 @@
 })();
 
 // =========================================================
-// 2. PRODUCT EXPERIMENT PLANNER: INTERACTIVE SPEC EXPLORER
+// 2. PRODUCT EXPERIMENT PLANNER: HYPOTHETICAL SPEC EXPLORER
 // =========================================================
 (function initExperimentPlanner() {
   const tabs = Array.from(document.querySelectorAll('.planner-tab'));
@@ -349,16 +346,20 @@
 
   const experiments = {
     exp1: {
-      name: 'Fintech: ChargeDossier Dynamic Auth Pre-Check',
+      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; FINTECH DOMAIN',
+      name: 'Proposed Extension: Dynamic Pre-Checkout Auth Risk Triage',
+      distinction: '<strong>Current Project Ground Truth:</strong> <a href="chargedossier.html" class="framework-link">ChargeDossier</a> currently operates as a post-dispute evidence-quality review copilot with <strong>24/24 passing automated tests</strong>. This scenario represents a <em>hypothetical upstream product experiment</em> exploring pre-checkout 3DS risk triage before disputes occur.',
       hypothesis: 'Moving 3D Secure & identity verification to background asynchronous pre-checks during cart review will increase checkout completion by 3.2% without increasing fraudulent chargeback rates.',
       segment: 'Returning authenticated users on desktop & mobile with transaction values under $250.',
-      intervention: 'Dynamic risk-based step-up authentication. Frictionless 1-click authorization for low-risk returning users; stepped-up verification reserved only for high-risk fraud flags.',
+      intervention: 'Dynamic risk-based step-up authentication: frictionless 1-click authorization for low-risk returning users; stepped-up verification reserved only for high-risk fraud flags.',
       successMetric: 'Checkout Completion Rate (+3.2% target, statistical significance p &lt; 0.05).',
       guardrailMetric: 'Dispute & Chargeback Rate (must remain strictly &le; 0.45% of GMV; stop experiment immediately if &gt; 0.60%).',
       evidence: 'ChargeDossier historical dispute analysis demonstrating that 92% of fraud losses originate from guest checkouts with order value &gt; $400.'
     },
     exp2: {
-      name: 'Logistics: Loadvanta Extraction Confidence Routing',
+      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; LOGISTICS DOMAIN',
+      name: 'Proposed Extension: Dynamic Confidence Routing for Rate Con Auto-Sync',
+      distinction: '<strong>Current Project Ground Truth:</strong> <a href="#projects" class="framework-link">Loadvanta</a> currently has a completed PRD and MVP functional architecture defining deterministic validation rules and operator review queues. This scenario represents a <em>hypothetical live A/B experiment</em> to determine the optimal extraction confidence cutoff (94%) for direct TMS synchronization.',
       hypothesis: 'Setting deterministic extraction confidence thresholds at 94% on inbound rate confirmation PDFs will allow 68% of documents to auto-sync to TMS while maintaining zero billing discrepancies.',
       segment: 'Top 15 vetted freight broker PDF templates representing 60% of recurring weekly load volume.',
       intervention: 'Automated document pipeline extraction with deterministic field validation; rate cons scoring below 94% confidence routed to a human-in-the-loop review queue.',
@@ -367,7 +368,9 @@
       evidence: 'Loadvanta architecture benchmarks showing accessorial fee misinterpretations (detention, lumper fees) are the sole cause of freight invoice disputes.'
     },
     exp3: {
-      name: 'Mobility: Uber Commute Surge Shield Subscription',
+      typeTag: 'HYPOTHETICAL EXPERIMENT PROPOSAL &bull; MOBILITY DOMAIN',
+      name: 'Proposed Extension: Commuter Surge Shield Subscription Pilot',
+      distinction: '<strong>Current Project Ground Truth:</strong> <a href="uber.html" class="framework-link">Uber Commute Lock</a> is an independent strategic product teardown and growth concept. This scenario represents a <em>hypothetical 60-day regional pilot experiment</em> to validate commuter willingness to pay for corridor surge caps.',
       hypothesis: 'Offering fixed-price surge shields on frequent commute corridors will lift 30-day rider retention by 14% and stabilize weekly trip frequency.',
       segment: 'Daily commuters traveling between major residential clusters and commercial hubs during peak hours (8-10 AM & 5-7 PM, Mon-Fri).',
       intervention: '\'Commute Lock\' subscription tier: riders pay a flat monthly pass fee in exchange for capped 1.2x surge pricing on their pre-registered route.',
@@ -383,9 +386,13 @@
 
     contentContainer.innerHTML = `
       <div class="spec-grid">
-        <div class="spec-item full-width">
-          <div class="spec-label">🔬 Experiment Scenario</div>
-          <div class="spec-value" style="font-size: 16px; font-weight: 700; color: #00e5ff;">${exp.name}</div>
+        <div class="spec-item full-width" style="border-left: 3px solid #00e5ff;">
+          <div class="spec-label" style="letter-spacing: 0.08em;">${exp.typeTag}</div>
+          <div class="spec-value" style="font-size: 17px; font-weight: 700; color: #F8FAFC; margin-top: 4px;">${exp.name}</div>
+        </div>
+
+        <div class="spec-item full-width spec-distinction-callout">
+          <div class="spec-value">${exp.distinction}</div>
         </div>
 
         <div class="spec-item full-width">
@@ -434,7 +441,6 @@
     });
   });
 
-  // Render initial spec (exp1)
   renderSpec('exp1');
 })();
 
@@ -467,14 +473,12 @@
     closeBtn.addEventListener('click', closeModal);
   }
 
-  // Close on backdrop or any element with data-close-modal
   modal.addEventListener('click', (e) => {
     if (e.target.hasAttribute('data-close-modal') || e.target.classList.contains('fast-track-backdrop')) {
       closeModal();
     }
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) {
       closeModal();

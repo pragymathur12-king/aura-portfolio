@@ -2524,3 +2524,23 @@ html {
         transition: none;
     }
 }
+
+.spec-distinction-callout {
+    background: rgba(245, 158, 11, 0.07);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    border-radius: 10px;
+    padding: 14px 18px;
+}
+.spec-distinction-callout .spec-value {
+    color: #e2e8f0;
+    font-size: 13.5px;
+    line-height: 1.65;
+}
+.spec-distinction-callout strong {
+    color: #fbbf24;
+}
+.spec-distinction-callout em {
+    color: #fef08a;
+    font-style: normal;
+    font-weight: 600;
+}
