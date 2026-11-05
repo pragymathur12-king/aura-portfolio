@@ -2,37 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Pragy Mathur // Cinematic Intro</title>
+  <meta name="description" content="Cinematic opening experience for the portfolio of Pragy Mathur, Associate Product Manager." />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --accent: #00e5ff;
+      --accent-glow: rgba(0, 229, 255, 0.35);
       --accent-emerald: #10b981;
       --bg: #030712;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
     html, body {
       height: 100%;
       margin: 0;
+      padding: 0;
       background: #000;
-      color: #fff;
+      color: var(--text);
       overflow: hidden;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .intro-wrap {
+    .intro-viewport {
       position: relative;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
+    /* Video Player */
     video {
       position: absolute;
       inset: 0;
@@ -41,41 +54,44 @@
       object-fit: contain;
       object-position: center;
       background: #000;
+      z-index: 1;
+      cursor: pointer;
     }
 
-    .overlay {
+    /* Cinematic Vignette Overlay */
+    .cinematic-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.08), transparent 45%),
-        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.06), transparent 45%),
-        linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, transparent 20%, transparent 80%, rgba(3, 7, 18, 0.6) 100%);
+        radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.5) 100%),
+        linear-gradient(180deg, rgba(3, 7, 18, 0.45) 0%, transparent 15%, transparent 85%, rgba(3, 7, 18, 0.6) 100%);
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Top HUD Controls */
-    .hud-controls-bar {
+    /* Top HUD Navigation & Controls Bar */
+    .intro-hud-bar {
       position: fixed;
-      top: 20px;
-      left: 20px;
-      right: 20px;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 16px max(20px, env(safe-area-inset-left));
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10;
+      z-index: 20;
       pointer-events: none;
     }
 
-    .hud-btn {
+    .intro-hud-btn {
       pointer-events: auto;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 10px 18px;
       border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(8, 12, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(8, 12, 20, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       color: #F8FAFC;
@@ -88,31 +104,37 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
+      min-height: 42px;
     }
 
-    .hud-btn:hover {
-      border-color: rgba(0, 229, 255, 0.4);
+    .intro-hud-btn:hover {
+      border-color: rgba(0, 229, 255, 0.45);
       background: rgba(14, 22, 38, 0.95);
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(0, 229, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
-    .hud-btn:focus-visible {
+    .intro-hud-btn:focus-visible {
       outline: none;
       box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 229, 255, 0.3);
     }
 
-    /* Sound Wave Animation */
+    /* Sound Control Button Specifics */
+    .hud-btn-sound.is-unmuted {
+      border-color: rgba(0, 229, 255, 0.5);
+      color: #00e5ff;
+    }
+
     .sound-bars {
       display: inline-flex;
       align-items: center;
-      gap: 2px;
+      gap: 2.5px;
       height: 12px;
     }
 
     .sound-bars span {
       display: block;
-      width: 2px;
+      width: 2.5px;
       height: 4px;
       background: #94a3b8;
       border-radius: 1px;
@@ -127,37 +149,60 @@
     .sound-bars.active span:nth-child(1) { animation-delay: 0.1s; height: 10px; }
     .sound-bars.active span:nth-child(2) { animation-delay: 0.3s; height: 14px; }
     .sound-bars.active span:nth-child(3) { animation-delay: 0.2s; height: 8px; }
+    .sound-bars.active span:nth-child(4) { animation-delay: 0.4s; height: 12px; }
 
     @keyframes soundWave {
       0% { height: 4px; }
       100% { height: 14px; }
     }
 
-    /* Interactive Unmute Banner / Prompt */
-    .unmute-prompt-container {
+    /* Skip Intro Button Specifics */
+    .hud-btn-skip {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: rgba(0, 229, 255, 0.35);
+      color: #F8FAFC;
+    }
+
+    .hud-btn-skip:hover {
+      background: rgba(0, 229, 255, 0.25);
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+    }
+
+    .hud-btn-skip .skip-arrow {
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    .hud-btn-skip:hover .skip-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Floating Center/Bottom Tap-To-Unmute Banner */
+    .unmute-banner {
       position: fixed;
-      bottom: 40px;
+      bottom: max(34px, env(safe-area-inset-bottom));
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
+      z-index: 20;
+      opacity: 1;
+      pointer-events: auto;
       transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .unmute-prompt-container.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+    .unmute-banner.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(12px);
     }
 
-    .unmute-prompt-card {
+    .unmute-card {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 12px 24px;
       border-radius: 9999px;
-      background: rgba(8, 12, 20, 0.9);
+      background: rgba(8, 12, 20, 0.88);
       border: 1px solid rgba(0, 229, 255, 0.4);
       box-shadow: 0 0 35px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(20px);
@@ -169,16 +214,20 @@
       color: #fff;
       letter-spacing: 0.05em;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: pulseGlow 2s infinite alternate;
+      animation: pulseGlow 2.5s infinite alternate;
+      user-select: none;
     }
 
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
-      100% { box-shadow: 0 0 45px rgba(0, 229, 255, 0.45); }
+    .unmute-card:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 0 45px rgba(0, 229, 255, 0.45);
     }
 
-    .unmute-prompt-card:hover {
-      transform: scale(1.03);
+    .unmute-hint {
+      font-size: 11px;
+      font-weight: 500;
+      color: #94a3b8;
     }
 
     .pulse-dot {
@@ -186,167 +235,422 @@
       height: 8px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
     }
 
-    @media (max-width: 600px) {
-      .hud-controls-bar { top: 14px; left: 14px; right: 14px; }
-      .hud-btn { padding: 8px 14px; font-size: 11px; }
-      .unmute-prompt-card { padding: 10px 18px; font-size: 11px; width: 90vw; justify-content: center; }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+      100% { box-shadow: 0 0 45px rgba(0, 229, 255, 0.4); }
+    }
+
+    /* Video Progress Bar */
+    .intro-progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      z-index: 25;
+    }
+
+    .intro-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transition: width 0.15s linear;
+    }
+
+    /* Fallback Card for Blocked Autoplay or Slow Buffering */
+    .fallback-modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 30;
+      padding: 20px;
+    }
+
+    .fallback-card {
+      width: min(480px, 92vw);
+      background: rgba(10, 16, 31, 0.95);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 229, 255, 0.15);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .fallback-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .fallback-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .fallback-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+
+    .fallback-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .fallback-timer {
+      margin-top: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    body.fade-out {
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+    }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 640px) {
+      .intro-hud-bar {
+        padding: max(12px, env(safe-area-inset-top)) 12px 12px 12px;
+      }
+      .intro-hud-btn {
+        padding: 8px 14px;
+        font-size: 11px;
+        min-height: 38px;
+      }
+      .unmute-card {
+        padding: 10px 18px;
+        font-size: 11px;
+        width: 92vw;
+        max-width: 360px;
+        justify-content: center;
+      }
+      .unmute-hint {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="intro-wrap" id="introContainer">
-    <!-- Top Controls HUD -->
-    <div class="hud-controls-bar">
+  <div class="intro-viewport" id="introContainer">
+    <!-- Top HUD Controls Bar -->
+    <header class="intro-hud-bar" aria-label="Intro Controls">
       <!-- Sound Toggle Button -->
-      <button id="soundToggleBtn" class="hud-btn" type="button" aria-label="Toggle Sound">
-        <span class="sound-bars" id="soundBars">
-          <span></span><span></span><span></span>
+      <button
+        id="soundToggleBtn"
+        class="intro-hud-btn hud-btn-sound"
+        type="button"
+        aria-label="Toggle audio playback"
+        aria-pressed="false"
+      >
+        <span id="soundIcon" aria-hidden="true">🔇</span>
+        <span class="sound-bars" id="soundBars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
         </span>
-        <span id="soundLabel">AUDIO: OFF</span>
+        <span id="soundLabel">ENABLE SOUND</span>
       </button>
 
-      <!-- Navigation Buttons -->
-      <div style="display: flex; gap: 8px;">
-        <a class="hud-btn" href="index.html" aria-label="Enter Main Portfolio">
-          <span>MAIN PORTFOLIO</span>
-        </a>
-        <a class="hud-btn" href="portfolio.html" aria-label="Enter Product Lab">
-          <span>PRODUCT LAB</span>
-          <span style="color: var(--accent);">&rarr;</span>
-        </a>
-      </div>
-    </div>
+      <!-- Skip Intro Button -->
+      <button
+        id="skipIntroBtn"
+        class="intro-hud-btn hud-btn-skip"
+        type="button"
+        aria-label="Skip intro and go to professional homepage"
+      >
+        <span>SKIP INTRO</span>
+        <span class="skip-arrow" aria-hidden="true">➔</span>
+      </button>
+    </header>
 
-    <!-- Video Element -->
+    <!-- Video Element (Playsinline, Muted Autoplay) -->
     <video
       id="introVideo"
       playsinline
+      webkit-playsinline
+      muted
+      autoplay
       preload="auto"
       controlslist="nodownload nodoremote noplaybackrate"
+      tabindex="-1"
+      aria-label="Portfolio Introduction Video"
     >
       <source src="videos/videosintro.mp4.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+      Your browser does not support HTML5 video playback.
     </video>
 
-    <div class="overlay" aria-hidden="true"></div>
+    <!-- Cinematic Vignette Overlay -->
+    <div class="cinematic-overlay" aria-hidden="true"></div>
 
-    <!-- Interactive Tap-to-Unmute Prompt -->
-    <div class="unmute-prompt-container" id="unmutePrompt">
-      <div class="unmute-prompt-card" id="unmuteCard">
-        <span class="pulse-dot"></span>
+    <!-- Floating Tap-To-Unmute Banner -->
+    <div class="unmute-banner" id="unmuteBanner" role="status" aria-live="polite">
+      <div class="unmute-card" id="unmuteCard">
+        <span class="pulse-dot" aria-hidden="true"></span>
         <span>CLICK ANYWHERE TO UNMUTE AUDIO</span>
+        <span class="unmute-hint">(Plays muted by default)</span>
+      </div>
+    </div>
+
+    <!-- Video Progress Bar -->
+    <div class="intro-progress-bar" aria-hidden="true">
+      <div class="intro-progress-fill" id="introProgressFill"></div>
+    </div>
+
+    <!-- Fallback / Stalled Buffering Modal (Hidden by Default) -->
+    <div id="fallbackModal" class="fallback-modal" style="display: none;" role="dialog" aria-modal="true" aria-label="Video Playback Notice">
+      <div class="fallback-card">
+        <div class="fallback-icon">⚡</div>
+        <h2 class="fallback-title">Pragy Mathur // Portfolio</h2>
+        <p class="fallback-desc">Associate Product Manager &bull; AI Product Strategy &bull; Freight &amp; Fintech</p>
+        <div class="fallback-actions">
+          <button id="fallbackPlayBtn" class="intro-hud-btn" type="button" style="border-color: var(--accent); color: #00e5ff;">
+            ▶ PLAY INTRO
+          </button>
+          <button id="fallbackSkipBtn" class="intro-hud-btn hud-btn-skip" type="button">
+            CONTINUE TO HOMEPAGE ➔
+          </button>
+        </div>
+        <p class="fallback-timer" id="fallbackTimer">Auto-advancing to homepage in <span id="timerCountdown">4</span>s...</p>
       </div>
     </div>
   </div>
 
   <script>
     (function () {
+      'use strict';
+
       const video = document.getElementById('introVideo');
       const soundBtn = document.getElementById('soundToggleBtn');
       const soundBars = document.getElementById('soundBars');
+      const soundIcon = document.getElementById('soundIcon');
       const soundLabel = document.getElementById('soundLabel');
-      const unmutePrompt = document.getElementById('unmutePrompt');
+      const skipBtn = document.getElementById('skipIntroBtn');
+      const unmuteBanner = document.getElementById('unmuteBanner');
+      const unmuteCard = document.getElementById('unmuteCard');
+      const progressFill = document.getElementById('introProgressFill');
+      const fallbackModal = document.getElementById('fallbackModal');
+      const fallbackPlayBtn = document.getElementById('fallbackPlayBtn');
+      const fallbackSkipBtn = document.getElementById('fallbackSkipBtn');
+      const timerCountdown = document.getElementById('timerCountdown');
       const container = document.getElementById('introContainer');
 
-      const params = new URLSearchParams(window.location.search);
-      const soundParam = (params.get('sound') || '').toLowerCase();
-      const userRequestedSound = soundParam === 'on';
+      let hasRedirected = false;
+      let countdownTimer = null;
+      let safetyWatchdog = null;
 
+      // Finish and redirect to the professional homepage
+      function finishAndRedirect() {
+        if (hasRedirected) return;
+        hasRedirected = true;
+
+        if (countdownTimer) clearInterval(countdownTimer);
+        if (safetyWatchdog) clearTimeout(safetyWatchdog);
+
+        try {
+          sessionStorage.setItem('pm_intro_seen', 'true');
+        } catch (e) {
+          // Fallback if sessionStorage is disabled in private mode
+        }
+
+        try {
+          video.pause();
+        } catch (_) {}
+
+        document.body.classList.add('fade-out');
+        setTimeout(function () {
+          window.location.replace('index.html');
+        }, 220);
+      }
+
+      // Update Sound UI state
       function updateSoundUI(isUnmuted) {
         if (isUnmuted) {
           soundBars.classList.add('active');
-          soundLabel.textContent = 'AUDIO: ON';
-          soundBtn.style.borderColor = 'rgba(0, 229, 255, 0.45)';
-          unmutePrompt.classList.remove('is-visible');
+          soundIcon.textContent = '🔊';
+          soundLabel.textContent = 'MUTE AUDIO';
+          soundBtn.classList.add('is-unmuted');
+          soundBtn.setAttribute('aria-pressed', 'true');
+          unmuteBanner.classList.add('is-hidden');
         } else {
           soundBars.classList.remove('active');
-          soundLabel.textContent = 'AUDIO: OFF';
-          soundBtn.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+          soundIcon.textContent = '🔇';
+          soundLabel.textContent = 'ENABLE SOUND';
+          soundBtn.classList.remove('is-unmuted');
+          soundBtn.setAttribute('aria-pressed', 'false');
         }
       }
 
+      // Enable audio playback
       async function enableAudio() {
         video.muted = false;
         video.volume = 1.0;
+        updateSoundUI(true);
         try {
           await video.play();
-          updateSoundUI(true);
         } catch (err) {
-          console.warn('Playback error on unmute:', err);
+          console.warn('Audio unmute blocked by browser policy:', err);
+          video.muted = true;
+          updateSoundUI(false);
         }
       }
 
-      function disableAudio() {
+      // Mute audio playback
+      function muteAudio() {
         video.muted = true;
         updateSoundUI(false);
       }
 
-      soundBtn.addEventListener('click', (e) => {
+      // Sound toggle click handler
+      soundBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         if (video.muted) {
           enableAudio();
         } else {
-          disableAudio();
+          muteAudio();
         }
       });
 
-      // Clicking anywhere on the video container enables audio if currently muted
-      container.addEventListener('click', () => {
+      // Skip button handler
+      skipBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        finishAndRedirect();
+      });
+
+      // Clicking anywhere on the video area toggles sound (unmutes if muted)
+      container.addEventListener('click', function (e) {
+        if (e.target.closest('#skipIntroBtn') || e.target.closest('#fallbackModal')) {
+          return;
+        }
         if (video.muted) {
           enableAudio();
         }
       });
 
-      // Initial Playback orchestration
-      video.muted = true; // Start muted to ensure instant playback without rejection
+      // Update progress bar as video plays
+      video.addEventListener('timeupdate', function () {
+        if (video.duration) {
+          const pct = (video.currentTime / video.duration) * 100;
+          progressFill.style.width = pct + '%';
+        }
+      });
 
-      const startPlayback = async () => {
-        try {
-          await video.play();
-          if (userRequestedSound) {
-            // Attempt unmuting directly
-            video.muted = false;
-            video.volume = 1.0;
-            // Test if unmuted play is allowed
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.then(() => {
-                updateSoundUI(true);
-              }).catch(() => {
-                video.muted = true;
-                video.play();
-                updateSoundUI(false);
-                unmutePrompt.classList.add('is-visible');
-              });
-            }
-          } else {
-            updateSoundUI(false);
-          }
-        } catch (err) {
-          video.muted = true;
-          try { await video.play(); } catch (_) {}
-          updateSoundUI(false);
-          if (userRequestedSound) {
-            unmutePrompt.classList.add('is-visible');
+      // When video ends naturally, transition to homepage
+      video.addEventListener('ended', function () {
+        finishAndRedirect();
+      });
+
+      // Video error handler
+      video.addEventListener('error', function (err) {
+        console.warn('Video failed to load or decode:', err);
+        finishAndRedirect();
+      });
+
+      // Keyboard accessibility
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'Enter') {
+          e.preventDefault();
+          finishAndRedirect();
+        } else if (e.key === 'm' || e.key === 'M') {
+          e.preventDefault();
+          if (video.muted) enableAudio();
+          else muteAudio();
+        } else if (e.key === ' ') {
+          if (document.activeElement !== soundBtn && document.activeElement !== skipBtn) {
+            e.preventDefault();
+            finishAndRedirect();
           }
         }
-      };
-
-      video.addEventListener('ended', () => {
-        window.location.href = 'index.html';
       });
 
-      video.addEventListener('error', () => {
-        window.location.href = 'index.html';
+      // Show graceful fallback if video cannot autoplay or buffer
+      function showFallback() {
+        if (hasRedirected) return;
+        fallbackModal.style.display = 'flex';
+
+        let remainingSeconds = 4;
+        timerCountdown.textContent = remainingSeconds;
+        countdownTimer = setInterval(function () {
+          remainingSeconds -= 1;
+          timerCountdown.textContent = remainingSeconds;
+          if (remainingSeconds <= 0) {
+            clearInterval(countdownTimer);
+            finishAndRedirect();
+          }
+        }, 1000);
+      }
+
+      fallbackPlayBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (countdownTimer) clearInterval(countdownTimer);
+        fallbackModal.style.display = 'none';
+        video.muted = false;
+        video.play().then(function () {
+          updateSoundUI(true);
+        }).catch(function () {
+          video.muted = true;
+          video.play();
+          updateSoundUI(false);
+        });
       });
+
+      fallbackSkipBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        finishAndRedirect();
+      });
+
+      // Autoplay Orchestration (Start muted for 100% compliance)
+      video.muted = true;
+      video.defaultMuted = true;
+
+      function startPlayback() {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function () {
+            // Autoplay succeeded muted
+            updateSoundUI(false);
+            if (safetyWatchdog) clearTimeout(safetyWatchdog);
+          }).catch(function (err) {
+            console.warn('Muted autoplay rejected by browser:', err);
+            showFallback();
+          });
+        }
+      }
+
+      // Safety watchdog: if video hasn't progressed in 5.5 seconds, display fallback
+      safetyWatchdog = setTimeout(function () {
+        if (!hasRedirected && (video.paused || video.currentTime === 0)) {
+          showFallback();
+        }
+      }, 5500);
 
       if (video.readyState >= 2) {
         startPlayback();
       } else {
         video.addEventListener('loadeddata', startPlayback, { once: true });
+        video.addEventListener('canplay', startPlayback, { once: true });
       }
     })();
   </script>

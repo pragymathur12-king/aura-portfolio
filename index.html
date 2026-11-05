@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var noIntro = params.get('nointro') === '1';
+        var hasSeenIntro = sessionStorage.getItem('pm_intro_seen') === 'true';
+        if (!noIntro && !hasSeenIntro) {
+          window.location.replace('intro.html');
+        }
+      } catch (e) {
+        // Fallback gracefully to homepage if storage is restricted
+      }
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pragy Mathur | Associate Product Manager</title>
   <meta name="description" content="Portfolio of Pragy Mathur — Associate Product Manager specializing in AI Product Strategy, Freight Ingestion, and Fintech Dispute Mechanics.">
@@ -214,6 +229,7 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="./portfolio.html" class="cyan-glow" style="font-weight: 700;">⚡ Product Lab</a></li>
+      <li><a href="./intro.html?replay=1" title="Watch Cinematic Intro Video">▶ Intro</a></li>
       <li><a href="./cv.html">Detailed CV</a></li>
       <li><a href="./Pragy_Mathur_Resume.pdf" download="Pragy_Mathur_Resume.pdf">Resume</a></li>
       <li><a href="#contact">Contact</a></li>
