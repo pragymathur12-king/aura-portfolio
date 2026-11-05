@@ -18,8 +18,8 @@
   </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pragy Mathur | Associate Product Manager</title>
-  <meta name="description" content="Portfolio of Pragy Mathur — Associate Product Manager specializing in AI Product Strategy, Freight Ingestion, and Fintech Dispute Mechanics.">
+  <title>Pragy Mathur | Aspiring Associate Product Manager</title>
+  <meta name="description" content="Portfolio of Pragy Mathur — Aspiring Associate Product Manager &amp; Integrated MBA candidate specializing in International Business, AI Product Strategy, Fintech, and Logistics.">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -65,26 +65,54 @@
       border-radius: 999px;
     }
     .hero-title {
-      font-size: clamp(38px, 5.2vw, 64px);
+      font-size: clamp(32px, 4.2vw, 54px);
       font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
       color: #ffffff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .hero-role {
-      font-size: clamp(20px, 2.4vw, 26px);
+      font-size: clamp(17px, 2vw, 22px);
       font-weight: 600;
-      color: var(--accent-blue);
+      color: var(--accent-cyan);
       margin-bottom: 20px;
       letter-spacing: -0.01em;
     }
     .hero-bio {
-      font-size: 16.5px;
-      line-height: 1.8;
+      font-size: 16px;
+      line-height: 1.75;
       color: var(--text-sub);
-      max-width: 660px;
-      margin-bottom: 32px;
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+    .hero-core-areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      margin-bottom: 28px;
+    }
+    .core-area-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(14, 22, 42, 0.7);
+      border: 1px solid rgba(0, 229, 255, 0.22);
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .core-area-tag:hover {
+      border-color: rgba(0, 229, 255, 0.6);
+      background: rgba(18, 30, 56, 0.9);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
     }
     .hero-actions {
       display: flex;
@@ -195,7 +223,10 @@
       .principles-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      .hero-main { padding: 50px 5% 40px; }
+      .hero-main { padding: 40px 5% 35px; }
+      .hero-title { font-size: clamp(26px, 7vw, 34px); line-height: 1.2; }
+      .hero-role { font-size: 15px; line-height: 1.4; }
+      .core-area-tag { font-size: 11px; padding: 5px 11px; }
       .principles-grid { grid-template-columns: 1fr; }
       .lab-feature-banner { padding: 24px; }
       .hero-actions { flex-direction: column; width: 100%; align-items: stretch; }
@@ -252,23 +283,38 @@
     <div class="hero-content">
       <div class="hero-kicker reveal" style="--d: 40ms">
         <span class="live-beacon" aria-hidden="true"></span>
-        <span>ASSOCIATE PRODUCT MANAGER &bull; APM CANDIDATE</span>
+        <span>PRAGY MATHUR &bull; ASPIRING ASSOCIATE PRODUCT MANAGER</span>
       </div>
 
       <h1 class="hero-title reveal" style="--d: 80ms">
-        Translating Domain Ambiguity into <span class="cyan-glow">Deterministic Software</span>
+        Business thinking. <span class="cyan-glow">Product building.</span><br>Real-world problem solving.
       </h1>
 
       <h2 class="hero-role reveal" style="--d: 120ms">
-        AI Product Strategy &bull; Freight Ingestion &bull; Fintech Dispute Mechanics
+        Aspiring Associate Product Manager <span style="color: rgba(255, 255, 255, 0.25); font-weight: 400; margin: 0 4px;">|</span> AI Product Strategy &amp; Product Development
       </h2>
 
-      <p class="hero-bio reveal" style="--d: 160ms">
-        I am <strong>Pragy Mathur</strong>, an Associate Product Manager focused on building auditable, deterministic product systems. I bridge customer discovery and engineering execution by establishing non-negotiable completeness guardrails, confidence-based automation thresholds, and continuous quantitative trade-off models.
-      </p>
+      <div class="hero-bio reveal" style="--d: 160ms">
+        <p style="margin-bottom: 12px;">
+          I’m an <strong>Integrated MBA candidate</strong> specializing in <strong>International Business</strong>, with a strong interest in the intersection of business, technology and product innovation. I explore complex business problems, turn research and customer needs into product opportunities, and build practical prototypes across fintech, logistics and mobility.
+        </p>
+        <p style="margin-bottom: 0;">
+          My work brings together product strategy, analytical thinking, market research and hands-on experimentation.
+        </p>
+      </div>
+
+      <!-- Core Focus Areas -->
+      <div class="hero-core-areas reveal" style="--d: 190ms" aria-label="Core Competencies and Focus Areas">
+        <span class="core-area-tag">Product Strategy &amp; Product Discovery</span>
+        <span class="core-area-tag">AI-enabled Product Concepts</span>
+        <span class="core-area-tag">Fintech &amp; Payments</span>
+        <span class="core-area-tag">Logistics &amp; Supply Chain</span>
+        <span class="core-area-tag">International Business</span>
+        <span class="core-area-tag">Market Research &amp; Business Analysis</span>
+      </div>
 
       <!-- Action Buttons System (Zero Overlap Guaranteed) -->
-      <div class="hero-actions reveal" style="--d: 200ms">
+      <div class="hero-actions reveal" style="--d: 220ms">
         <a href="./portfolio.html" class="hud-btn hud-btn-primary" aria-label="Explore Interactive Product Lab">
           <span>⚡ EXPLORE PRODUCT LAB</span>
         </a>
@@ -284,16 +330,16 @@
       </div>
     </div>
 
-    <div class="hero-portrait reveal" style="--d: 240ms">
+    <div class="hero-portrait reveal" style="--d: 250ms">
       <div class="profile-hud-frame">
         <div class="frame-corner corner-tl"></div>
         <div class="frame-corner corner-tr"></div>
         <div class="frame-corner corner-bl"></div>
         <div class="frame-corner corner-br"></div>
-        <img src="images/profile.jpg.jpeg" alt="Pragy Mathur — Associate Product Manager" class="profile-hud-img">
+        <img src="images/profile.jpg.jpeg" alt="Pragy Mathur — Aspiring Associate Product Manager" class="profile-hud-img">
         <div class="profile-badge-overlay">
           <span class="verified-indicator">PRAGY MATHUR</span>
-          <span class="verified-sub">Associate Product Manager &bull; Jodhpur, India</span>
+          <span class="verified-sub">Aspiring APM &bull; Integrated MBA (IB)</span>
         </div>
       </div>
     </div>
